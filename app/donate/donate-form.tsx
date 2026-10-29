@@ -26,7 +26,7 @@ export default function DonateForm() {
     }
 
     return (
-        <form onSubmit={onSubmit} className="mx-auto w-full max-w-[460px] rounded-3xl border border-line bg-white p-6 shadow-[0_2px_4px_rgba(16,39,67,0.04),0_24px_48px_-16px_rgba(16,39,67,0.14)] sm:p-8">
+        <form onSubmit={onSubmit} className="w-full rounded-[28px] border border-line bg-white p-6 shadow-[0_2px_4px_rgba(16,39,67,0.04),0_24px_48px_-16px_rgba(16,39,67,0.14)] sm:p-10">
             {done ? (
                 <div role="status" className="flex min-h-[420px] flex-col items-center justify-center text-center">
                     <h2 className="font-display text-4xl tracking-[-0.02em]">Thank you.</h2>
@@ -103,11 +103,11 @@ export default function DonateForm() {
                     <Button
                         type="submit"
                         disabled={!valid}
-                        className="mt-6 h-12 w-full rounded-xl bg-hope text-base font-bold text-white hover:bg-hope-deep"
+                        className="mt-6 h-14 w-full rounded-xl bg-hope text-[17px] font-extrabold text-white hover:bg-hope-deep"
                     >
                         {monthly ? "Donate monthly" : "Donate now"}{valid ? ` · $${amount}` : ""}
                     </Button>
-                    <p className="mt-4 text-center text-xs text-quiet">Secure, encrypted donation</p>
+                    <p className="mt-4 text-center text-sm text-quiet">Secure, encrypted donation</p>
                 </>
             )}
         </form>
