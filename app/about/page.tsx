@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { ArrowDown, ArrowUpRight, Handshake, Settings, Wrench } from "lucide-react";
 import styles from "./page.module.css";
-import workshopImage from "./about-images/Workshop image.png";
-import presentDayImage from "./about-images/Present day image.png";
+import workshopImage from "./about-images/13_Creativibe_Display_Team.jpg";
+import presentDayImage from "./about-images/11_First_HOPE_Printer_Build.jpg";
 
 export const metadata: Metadata = {
   title: "About H.O.P.E.",
@@ -49,7 +49,7 @@ export default function AboutPage() {
         <div className={styles.heroPhoto}>
           <Image
             src={workshopImage}
-            alt="Students collaborating on prosthetic engineering and hands-on design."
+            alt="H.O.P.E. members with their engineering project display."
             fill
             sizes="(max-width: 700px) 100vw, 45vw"
             className={styles.panelImage}
@@ -99,7 +99,7 @@ export default function AboutPage() {
         <div className={styles.presentPhoto}>
           <Image
             src={presentDayImage}
-            alt="Hands-on engineering workspace with prosthetic components, tools, and prototypes."
+            alt="Students gathered around a 3D printer during a hands-on H.O.P.E. workshop."
             fill
             sizes="(max-width: 700px) 90vw, (max-width: 1440px) 44vw, 630px"
             className={styles.panelImage}
