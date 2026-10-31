@@ -1,54 +1,63 @@
 import Image from "next/image";
 
-// Information for each institutional partner
-const partners = [
+interface InstitutionalPartner {
+    name: string;
+    type: string;
+    description: string;
+    logo: string;
+    logoAlt: string;
+    url: string;
+}
+
+// Information for each institutional partner from Content Packet Section 6
+const partners: InstitutionalPartner[] = [
     {
         logo: "/images/partners/musc.png",
-        logoScale: "scale-100",
         logoAlt: "Medical University of South Carolina logo",
-        type: "CLINICAL PARTNERSHIP",
+        type: "INSTITUTIONAL COLLABORATION",
         name: "Medical University of South Carolina (MUSC)",
         description:
-            "Our partnership with MUSC brings a clinical perspective to our hands-on prosthetic engineering work, connecting the work of makers with orthopedic care.",
+            "HOPE is developing an institutional collaboration with the Medical University of South Carolina focused on opportunities where engineering, digital design, 3D printing, and healthcare education can intersect. Current work includes supporting students in learning CAD and additive-manufacturing skills that can be applied to assistive and rehabilitation-related challenges.",
+        url: "https://web.musc.edu/",
     },
     {
         logo: "/images/partners/usc.png",
-        logoScale: "scale-[1.35]",
         logoAlt: "University of South Carolina logo",
-        type: "ACADEMIC COLLABORATION",
+        type: "CAMPUS & ACADEMIC PARTNERSHIP",
         name: "University of South Carolina",
         description:
-            "Our connection with the University of South Carolina creates space for academic collaboration, bringing student perspectives and shared learning to the challenges of prosthetic engineering.",
+            "The University of South Carolina is home to the HOPE student organization at USC and provides the campus community where students recruit, train, organize, and carry out much of HOPE\u2019s hands-on work. HOPE Inc. and the student organization are separate organizations that collaborate closely.",
+        url: "https://sc.edu/",
     },
     {
         logo: "/images/partners/mix.png",
-        logoScale: "scale-100",
         logoAlt: "The MIX logo",
-        type: "TECHNOLOGY & INCUBATOR SUPPORT",
-        name: "The MIX / USC Columbia Technology Incubator",
+        type: "ENTREPRENEURSHIP & INNOVATION",
+        name: "The Midlands Innovation X-Change (The MIX)",
         description:
-            "The MIX / USC Columbia Technology Incubator connects HOPE with a local environment for technology and innovation, supporting the exchange of ideas as we develop our work.",
+            "HOPE\u2019s history includes support from the University of South Carolina\u2019s entrepreneurship and innovation ecosystem. HOPE previously worked through the USC/Columbia Technology Incubator, which has since transitioned into The Midlands Innovation X-Change (The MIX), continuing entrepreneurial-support, mentorship, and resources for developing ventures.",
+        url: "https://themixsc.org/",
     },
     {
         logo: "/images/partners/ktp.png",
-        logoScale: "scale-[1.2]",
         logoAlt: "Kappa Theta Pi logo",
         type: "TECHNOLOGY & DEVELOPMENT PARTNER",
         name: "Kappa Theta Pi",
         description:
-            "Kappa Theta Pi works with HOPE as a technology and development partner, bringing a collaborative, technology-focused perspective to the tools and systems behind our mission.",
+            "Kappa Theta Pi at the University of South Carolina contributed its technology and development expertise to the redesign and development of the HOPE Inc. website. Through its nonprofit consulting program, KTP students work with nonprofit organizations on real technology projects while gaining practical project experience.",
+        url: "https://www.ktpusc.com/",
     },
 ];
 
 export default function InstitutionalPartners() {
     return (
-        <section className="bg-[#FFF4D8]">
-            <div className="mx-auto max-w-6xl px-6 py-14 lg:px-8">
+        <section className="border-t border-slate-200/80 bg-slate-50/70 py-14">
+            <div className="mx-auto max-w-6xl px-6 lg:px-8">
 
                 {/* Section heading */}
-                <div className="mb-8 grid gap-6 md:grid-cols-2 md:items-end">
+                <div className="mb-10 grid gap-6 md:grid-cols-2 md:items-end">
                     <div>
-                        <p className="mb-3 text-xs uppercase tracking-wide text-slate-500">
+                        <p className="mb-3 text-xs uppercase font-semibold tracking-wide text-slate-600">
                             Our Institutional Partners
                         </p>
 
@@ -57,46 +66,75 @@ export default function InstitutionalPartners() {
                         </h2>
                     </div>
 
-                    <p className="max-w-sm text-sm leading-relaxed text-slate-500 md:justify-self-end">
+                    <p className="max-w-sm text-sm leading-relaxed text-slate-600 md:justify-self-end">
                         The relationships that connect our mission to
                         care, learning, and technology.
                     </p>
                 </div>
 
                 {/* Partners grid */}
-                <div className="grid grid-cols-1 gap-px overflow-hidden border border-[#E5DCC6] bg-[#E5DCC6] md:grid-cols-2">
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
 
                     {partners.map((partner) => (
                         <article
                             key={partner.name}
-                            className="flex min-h-[250px] flex-col bg-[#FFF4D8] p-8"
+                            className="flex min-h-[320px] flex-col justify-between rounded-lg border border-slate-200/80 bg-white p-8 shadow-sm transition-colors hover:border-slate-300"
                         >
+                            <div>
+                                {/* Partner logo */}
+                                <div className="relative mb-6 h-16 w-full max-w-[220px]">
+                                    <Image
+                                        src={partner.logo}
+                                        alt={partner.logoAlt}
+                                        fill
+                                        sizes="220px"
+                                        className="object-contain object-left"
+                                    />
+                                </div>
 
-                            {/* Partner logo */}
-                            <div className="relative mb-7 h-20 w-full max-w-[280px]">
-                                <Image
-                                    src={partner.logo}
-                                    alt={partner.logoAlt}
-                                    fill
-                                    sizes="280px"
-                                    className={`origin-left object-contain object-left ${partner.logoScale}`}
-                                />
+                                {/* Partnership type */}
+                                <p className="mb-2 text-xs uppercase font-semibold tracking-wide text-slate-500">
+                                    {partner.type}
+                                </p>
+
+                                {/* Partner name */}
+                                <h3 className="mb-3 text-lg font-medium text-[#1B2D4C]">
+                                    {partner.name}
+                                </h3>
+
+                                {/* Description */}
+                                <p className="text-sm leading-relaxed text-slate-600">
+                                    {partner.description}
+                                </p>
                             </div>
 
-                            {/* Partnership type */}
-                            <p className="mb-2 text-xs uppercase tracking-wide text-slate-500">
-                                {partner.type}
-                            </p>
-
-                            {/* Partner name */}
-                            <h3 className="mb-3 text-lg font-medium text-[#1B2D4C]">
-                                {partner.name}
-                            </h3>
-
-                            {/* Description */}
-                            <p className="text-sm leading-relaxed text-slate-500">
-                                {partner.description}
-                            </p>
+                            {/* Partner external link */}
+                            <div className="mt-6 border-t border-slate-100 pt-4">
+                                <a
+                                    href={partner.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-2 text-sm font-semibold text-[#1B2D4C] hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1B2D4C]"
+                                    aria-label={`Visit ${partner.name} website (opens in a new tab)`}
+                                >
+                                    Visit partner website
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="14"
+                                        height="14"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        aria-hidden="true"
+                                    >
+                                        <path d="M7 17 17 7" />
+                                        <path d="M7 7h10v10" />
+                                    </svg>
+                                </a>
+                            </div>
 
                         </article>
                     ))}
