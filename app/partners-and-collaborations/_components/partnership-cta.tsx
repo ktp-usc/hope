@@ -9,7 +9,7 @@ export default function PartnershipCTA() {
 
                     {/* Left side: heading and description */}
                     <div>
-                        <p className="mb-4 text-xs font-medium uppercase tracking-wide text-[#F5CA58]">
+                        <p className="mb-4 text-xs font-semibold uppercase tracking-wide text-[#F5CA58]">
                             Let&apos;s Build Something Meaningful
                         </p>
 
@@ -26,8 +26,8 @@ export default function PartnershipCTA() {
 
                     {/* Right side: CTA button */}
                     <Link
-                        href="/get-involved"
-                        className="inline-flex shrink-0 items-center justify-center gap-4 self-start rounded-md bg-[#F5CA58] px-6 py-4 text-sm font-medium text-[#1B2D4C] transition-colors hover:bg-[#E9B942] md:self-center"
+                        href="/contact"
+                        className="inline-flex shrink-0 items-center justify-center gap-4 self-start rounded-md bg-[#F5CA58] px-6 py-4 text-sm font-semibold text-[#1B2D4C] transition-colors hover:bg-[#E9B942] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F5CA58] md:self-center"
                     >
                         Start a conversation
                         <svg
