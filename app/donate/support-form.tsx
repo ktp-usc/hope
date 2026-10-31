@@ -133,7 +133,7 @@ export default function SupportForm() {
                     >
                         Send support inquiry
                     </Button>
-                    <p className="mt-4 text-center text-xs text-quiet">Our team responds within 2-3 business days</p>
+                    {/* <p className="mt-4 text-center text-xs text-quiet">Our team responds within 2-3 business days</p> */}
                 </>
             )}
         </form>
