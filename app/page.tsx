@@ -184,7 +184,6 @@ export default function Home() {
               Designed with people. Built for life.
             </p>
             <p className="mt-0.5 text-xs text-slate-500 flex items-center gap-1.5">
-              <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#f7d06b]" />
               Everyday needs are where better design begins.
             </p>
           </div>
