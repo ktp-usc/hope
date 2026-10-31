@@ -1,6 +1,5 @@
-import Header from "@/components/header";
-import Footer from "@/components/footer";
 import DonateForm from "./donate-form";
+import SupportForm from "./support-form";
 
 const supportWays = [
     {
@@ -24,13 +23,8 @@ const supportWays = [
 export default function Donate({ enabled }: { enabled: boolean }) {
     return (
         <div className="min-h-screen bg-paper text-ink">
-            <Header />
             <main>
-                <section
-                    className={`mx-auto grid max-w-[1240px] gap-14 px-6 pb-16 pt-10 lg:px-10 lg:pb-24 lg:pt-16 ${
-                        enabled ? "lg:grid-cols-[1.1fr_0.9fr] lg:items-center" : "justify-items-center text-center"
-                    }`}
-                >
+                <section className="mx-auto grid max-w-[1240px] gap-14 px-6 pb-16 pt-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:px-10 lg:pb-24 lg:pt-16">
                     <div className="max-w-[650px]">
                         <h1 className="font-display text-[clamp(3.25rem,7vw,6rem)] leading-[0.92] tracking-[-0.03em] text-balance">
                             Give hope.
@@ -46,7 +40,7 @@ export default function Donate({ enabled }: { enabled: boolean }) {
                             Your support is what allows us to provide life changing prosthetics to those in need.
                         </p>
                     </div>
-                    {enabled && <DonateForm />}
+                    {enabled ? <DonateForm /> : <SupportForm />}
                 </section>
 
                 <section aria-labelledby="support-heading" className="bg-wash px-6 py-16 lg:px-10 lg:py-24">
@@ -69,7 +63,6 @@ export default function Donate({ enabled }: { enabled: boolean }) {
                     </div>
                 </section>
             </main>
-            <Footer />
         </div>
     );
 }
