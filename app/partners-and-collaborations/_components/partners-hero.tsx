@@ -5,8 +5,8 @@ export default function PartnersHero() {
 
                 {/* Left side: heading */}
                 <div>
-                    <p className="mb-5 text-xs font-medium uppercase tracking-wider text-slate-500">
-                        Partners & Collaborations
+                    <p className="mb-5 text-xs font-semibold uppercase tracking-wider text-slate-600">
+                        Partners &amp; Collaborations
                     </p>
 
                     <h1 className="text-4xl font-normal leading-tight tracking-tight text-[#1B2D4C] sm:text-5xl">
@@ -18,7 +18,7 @@ export default function PartnersHero() {
 
                 {/* Right side: introduction */}
                 <div className="pb-1">
-                    <p className="max-w-md text-base leading-relaxed text-slate-500">
+                    <p className="max-w-md text-base leading-relaxed text-slate-600">
                         Progress is a shared effort. We bring together
                         a global maker network, clinical expertise,
                         and local technology communities to put
@@ -30,4 +30,3 @@ export default function PartnersHero() {
         </section>
     );
 }
-
