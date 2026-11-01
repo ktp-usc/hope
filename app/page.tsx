@@ -17,7 +17,7 @@ export default function Home() {
     <main className="min-h-screen overflow-hidden bg-[#fffef8] font-[450] text-slate-900">
       <header className="relative z-10 mx-auto flex max-w-7xl items-center justify-between px-5 py-5 sm:px-8">
         <a
-          href="#top"
+          href="/"
           className="flex items-center gap-2.5 rounded-lg text-sm font-bold tracking-[0.16em] text-sky-900 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-800"
           aria-label="H.O.P.E. home"
         >
