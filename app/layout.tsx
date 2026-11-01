@@ -3,8 +3,8 @@ import "./globals.css";
 import React from "react";
 
 export const metadata: Metadata = {
-    title: "Future KTP Web App",
-    description: "KTP SP26"
+    title: "Get Help | H.O.P.E.",
+    description: "Reach out to H.O.P.E.'s student-powered support team."
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
