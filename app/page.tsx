@@ -70,27 +70,27 @@ function SecondaryButton({ href, children }: { href: string; children: React.Rea
   );
 }
 
-/* ---------- Data Sources (Content Packet v0.2 & Figma Mockup) ---------- */
+/* ---------- Data: Content Packet v0.2 §1, §3, §15 ---------- */
 
 const campusCards = [
   {
-    eyebrow: "Listen & understand",
+    eyebrow: "Listen & define",
     title: "Person-centered design",
     body: "Connecting student engineers with individuals and families to understand real practical needs before designing.",
     image: "/images/campus-design.jpg",
     alt: "HOPE students engaging with the campus community during project outreach",
   },
   {
-    eyebrow: "Build & refine",
+    eyebrow: "Design & iterate",
     title: "Hands-on engineering",
     body: "Students gain direct experience with CAD modeling, 3D printing, prototyping, and iterative fabrication.",
     image: "/images/campus-engineering.jpg",
     alt: "HOPE team member assembling and calibrating a 3D printer for prosthetics work",
   },
   {
-    eyebrow: "Learn & share",
-    title: "Knowledge that travels",
-    body: "Bringing together university talent, open-source resources, and community partners to scale assistive technology.",
+    eyebrow: "Build & document",
+    title: "Two organizations, one mission",
+    body: "The HOPE student organization at USC carries out hands-on design and fabrication. HOPE Inc. provides continuity, resources, and organizational support.",
     image: "/images/campus-community.jpg",
     alt: "HOPE student organization members at the University of South Carolina",
   },
@@ -106,20 +106,22 @@ export default function Home() {
         <div>
           <Eyebrow>Hands On Prosthetic Engineering</Eyebrow>
           <h1 className="text-4xl font-bold tracking-tight text-[#1b2d4c] sm:text-5xl lg:text-6xl leading-[1.12]">
-            Moving Forward.
+            Turning Practical Needs
             <br />
-            Living Without Limits.
+            Into Practical Solutions.
           </h1>
           <p className="mt-6 max-w-lg text-base leading-relaxed text-slate-600">
-            People first. Possibilities next. HOPE brings hands-on engineering and human
-            understanding together to make prosthetic solutions more accessible.
+            A student-powered engineering and nonprofit community. Our charitable roots are in
+            developing experimental pediatric upper-limb prosthetic devices. Today, HOPE also
+            works on task-specific assistive devices, accessibility solutions, and adaptable
+            designs that can be customized for individual needs.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <PrimaryButton href="/get-help">Get Help</PrimaryButton>
             <SecondaryButton href="/our-work">Explore Our Work</SecondaryButton>
           </div>
           <p className="mt-6 text-xs text-slate-500">
-            A nonprofit built around people, not just prosthetics.
+            HOPE Inc. is an independent 501(c)(3) nonprofit. The HOPE student organization at USC carries out much of the hands-on work.
           </p>
         </div>
 
@@ -136,10 +138,7 @@ export default function Home() {
           </div>
           <div className="px-3 py-3.5">
             <p className="text-sm font-semibold text-[#1b2d4c]">
-              Designed with people. Built for life.
-            </p>
-            <p className="mt-0.5 text-xs text-slate-500 flex items-center gap-1.5">
-              Everyday needs are where better design begins.
+              Students gain hands-on experience in engineering design, CAD, 3D printing, and prototyping.
             </p>
           </div>
         </div>
@@ -152,14 +151,15 @@ export default function Home() {
             <div>
               <Eyebrow>Why HOPE exists</Eyebrow>
               <h2 className="text-2xl font-bold tracking-tight text-[#1b2d4c] sm:text-3xl lg:text-4xl leading-tight">
-                Turning practical needs into practical solutions.
+                From experimental prosthetics to assistive, adaptive, and accessibility engineering.
               </h2>
             </div>
             <div>
               <p className="text-sm leading-relaxed text-slate-700 sm:text-base">
-                HOPE is a student-powered engineering and nonprofit community focused on creating
-                accessible prosthetic devices, task-specific assistive technologies, and adaptable
-                designs customized for individual needs.
+                HOPE develops experimental prosthetic devices and other assistive technologies,
+                ranging from custom, task-specific solutions to adaptive designs. Not every HOPE
+                project is a prosthetic &mdash; the same design and manufacturing capabilities also
+                support service, training, outreach, and other practical engineering work.
               </p>
               <Link
                 href="/about"
