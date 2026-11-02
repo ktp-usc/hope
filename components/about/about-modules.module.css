@@ -1,0 +1,49 @@
+.module { width: 90%; max-width: 1296px; margin-inline: auto; padding-block: 48px 64px; border-top: 1px solid #e7edf3; background: white; color: #12233f; scroll-margin-top: 24px; }
+.label { display: inline-block; padding: 0; background: transparent; color: #12233f; font-size: 12px; line-height: 1.3; font-weight: 700; text-transform: uppercase; }
+.module .heading { margin-top: 18px; font-size: clamp(30px, 3vw, 42px); line-height: 1.12; letter-spacing: -.6px; }
+.module .description { max-width: 980px; margin-top: 16px; font-size: 18px; line-height: 1.5; }
+.organizations { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 30px; align-items: stretch; }
+.organizationCard { min-width: 0; display: flex; gap: 20px; padding: 28px; border-radius: 16px; }
+.nonprofit { background: #eaf3fe; }
+.studentOrg { background: #fcf6e3; }
+.logo { width: 92px; height: 110px; object-fit: contain; flex-shrink: 0; background: white; border-radius: 12px; padding: 8px; }
+.organizationCopy { min-width: 0; }
+.module h3 { font-size: 23px; line-height: 1.2; }
+.entityLabel { display: inline-block; font-size: 12px; font-weight: 700; margin-top: 12px; }
+.organizationCopy ul { padding-left: 18px; margin-block: 18px 0; list-style: disc; font-size: 16px; line-height: 1.5; }
+.organizationCopy li + li { margin-top: 5px; }
+.connector { grid-column: 1 / -1; padding-top: 4px; text-align: center; font-size: 15px; line-height: 1.5; }
+.connector svg { color: #f8cd53; }
+.connector > span { width: 24px; height: 14px; border-top: 1px solid #f8cd53; clip-path: polygon(0 0, 100% 0, 50% 100%); background: #f8cd5340; }
+.buttons { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; max-width: 100%; padding: 10px 16px; border: 1px solid #458fd2; background: white; color: #155a96; border-radius: 30px; font-family: inherit; font-weight: 700; font-size: 12px; line-height: 1.4; text-align: center; text-decoration: none; }
+.button svg { flex-shrink: 0; }
+.garnetButton { background: #a80b35; color: white; border-color: #a80b35; }
+.button:disabled { cursor: not-allowed; background: #edf2f7; color: #425269; border-color: #c8d4df; }
+.module .availabilityNote { font-size: 14px; line-height: 1.5; margin-top: 12px; color: #344d6a; }
+.button:focus-visible { outline: 3px solid #12233f; outline-offset: 4px; }
+.transparencyGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; margin-top: 28px; }
+.disclosureCard { min-width: 0; padding: 28px; border: 1px solid #deE8f2; border-radius: 16px; background: white; }
+.disclosureIcon { display: grid; place-items: center; width: 32px; height: 32px; color: #1c70bc; margin-bottom: 16px; }
+
+.module .disclosureCard p { font-size: 16px; line-height: 1.5; margin-top: 12px; color: #344d6a; }
+.pendingLabel { display: inline-block; margin-top: 12px; padding: 4px 9px; font-size: 12px; border-radius: 20px; background: #f0f5fa; font-weight: 700; }
+@media (max-width: 1100px) {
+  .organizations { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .organizationCard { flex-direction: column; padding: 24px; }
+  .logo { width: 90px; height: 100px; }
+}
+@media (max-width: 750px) {
+  .module { padding-block: 36px 48px; }
+  .module .description { font-size: 16px; }
+  .organizations { grid-template-columns: minmax(0, 1fr); gap: 18px; margin-top: 24px; }
+  .connector { padding: 4px 20px; }
+  .connector p { max-width: 65ch; margin-inline: auto; }
+  .connector > span { display: none; }
+  .transparencyGrid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .organizationCard { flex-direction: row; }
+}
+@media (max-width: 450px) {
+  .organizationCard { flex-direction: column; padding: 24px; }
+  .disclosureCard { padding: 24px; }
+}
