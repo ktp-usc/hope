@@ -118,7 +118,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <StudentOrgModule />
+      <StudentOrgModule garnetGateUrl="https://garnetgate.sa.sc.edu/organization/hope" />
 
       <section id="leadership" className={styles.leadership} aria-labelledby="leadership-title">
         <div className={styles.container}>

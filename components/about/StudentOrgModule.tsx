@@ -37,11 +37,11 @@ export default function StudentOrgModule({ garnetGateUrl, studentBlogUrl }: Stud
           </ul>
           <div className={styles.buttons}>
             {garnetGateUrl
-              ? <a className={`${styles.button} ${styles.garnetButton}`} href={garnetGateUrl}>Garnet Gate <ArrowRight size={16} aria-hidden="true" /></a>
+              ? <a className={`${styles.button} ${styles.garnetButton}`} href={garnetGateUrl} target="_blank" rel="noopener noreferrer">Garnet Gate <ArrowRight size={16} aria-hidden="true" /></a>
               : <button className={`${styles.button} ${styles.garnetButton}`} disabled title="Awaiting approved Garnet Gate URL">Garnet Gate <ArrowRight size={16} aria-hidden="true" /></button>}
-            {studentBlogUrl
-              ? <a className={styles.button} href={studentBlogUrl}>Student Organization Blog <ArrowRight size={16} aria-hidden="true" /></a>
-              : <button className={styles.button} disabled title="Awaiting approved Student Organization Blog URL">Student Organization Blog <ArrowRight size={16} aria-hidden="true" /></button>}
+            {/* {studentBlogUrl
+              ? <a className={styles.button} href={studentBlogUrl} target="_blank" rel="noopener noreferrer">Student Organization Blog <ArrowRight size={16} aria-hidden="true" /></a>
+              : <button className={styles.button} disabled title="Awaiting approved Student Organization Blog URL">Student Organization Blog <ArrowRight size={16} aria-hidden="true" /></button>} */}
           </div>
         </div>
       </article>
