@@ -279,65 +279,7 @@ export default function AboutPage() {
 
       {/* Transparency Module */}
       <TransparencyModule />
-
-      {/* Take Part / Concluding Action Section */}
-      <section className={styles.takePartSection} aria-labelledby="take-part-title">
-        <div className={`${styles.container} ${styles.takePartInner}`}>
-          <div className={styles.takePartCopy}>
-            <h2 id="take-part-title">Help move H.O.P.E. forward</h2>
-            <p className={styles.takePartLead}>
-              Every custom device and workshop build begins with people willing to contribute.
-              Whether you are a student maker, a prospective recipient, or a philanthropic partner, there is a clear place for you.
-            </p>
-
-            <div className={styles.actionsCluster}>
-              <div className={styles.actionButtons}>
-                <a
-                  className={`${styles.button} ${styles.yellowButton}`}
-                  href="mailto:support@handsonhope.ngo?subject=Support%20HOPE%20Inquiry"
-                >
-                  Support HOPE <ArrowUpRight size={17} aria-hidden="true" />
-                </a>
-                <a
-                  className={styles.buttonWhite}
-                  href="https://garnetgate.sa.sc.edu/organization/hope"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Join at USC <ArrowUpRight size={17} aria-hidden="true" />
-                </a>
-              </div>
-
-              {/* Dedicated Device Inquiry Intake Callout */}
-              <div className={styles.intakeCard}>
-                <div className={styles.intakeCopy}>
-                  <h3>Need an assistive or adaptive device?</h3>
-                  <p>
-                    We partner directly with individuals, families, and occupational specialists.
-                    Initial inquiries require no medical records or sensitive health data.
-                  </p>
-                </div>
-                <a
-                  className={styles.intakeAction}
-                  href="mailto:intake@handsonhope.ngo?subject=HOPE%20Device%20Inquiry"
-                >
-                  Tell us what you need <ArrowUpRight size={16} aria-hidden="true" />
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div className={styles.handIllustration} aria-hidden="true">
-            <HandMark outline />
-            <div className={styles.palmLines}>
-              <span />
-              <span />
-              <span />
-            </div>
-            <span className={styles.palmAccent} />
-          </div>
-        </div>
-      </section>
+      
     </main>
   );
 }
