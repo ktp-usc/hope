@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import React from "react";
 import { DM_Serif_Display, Manrope } from "next/font/google";
+import Header from "@/components/header";
+import Footer from "@/components/footer";
 
 const display = DM_Serif_Display({ weight: "400", subsets: ["latin"], variable: "--font-dm-serif" });
 const sans = Manrope({ subsets: ["latin"], variable: "--font-manrope" });
@@ -15,7 +17,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     return (
         <html lang="en" className={`${display.variable} ${sans.variable}`}>
         <body className="font-sans">
+        <Header />
         { children }
+        <Footer />
         </body>
         </html>
     );
