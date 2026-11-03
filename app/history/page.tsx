@@ -57,7 +57,7 @@ export default function HistoryPage() {
       <p className={styles.timelineIntro}>From a student organization to a broader engineering mission, here are some of the milestones that have shaped our work, our community, and our impact.</p>
       <TimelineReveal><ol className={styles.timeline}>{milestones.map(({ period, title, image, alt, color, description }) => <li key={period} className={`${styles.milestone} ${styles[color]}`}>
         <span className={styles.marker} aria-hidden="true" />
-        <div className={styles.milestoneVisual}>{image ? <Image src={image} alt={alt} unoptimized={image === shields} fill sizes="(max-width: 850px) 85vw, 42vw" className={styles.cover} /> : <div className={styles.nonprofit}><FileBadge size={106} strokeWidth={1.25} aria-hidden="true" /><div><h3>A stronger foundation<br />for a bigger impact.</h3><p>H.O.P.E. Inc. was established to expand our reach, resources, and long-term sustainability.</p></div></div>}</div>
+        <div className={styles.milestoneVisual}>{image ? <Image src={image} alt={alt} fill sizes="(max-width: 850px) 85vw, 42vw" className={styles.cover} /> : <div className={styles.nonprofit}><FileBadge size={106} strokeWidth={1.25} aria-hidden="true" /><div><h3>A stronger foundation<br />for a bigger impact.</h3><p>H.O.P.E. Inc. was established to expand our reach, resources, and long-term sustainability.</p></div></div>}</div>
         <div className={styles.milestoneCopy}><p className={styles.period}>{period}</p><h3>{title}</h3><p>{description}</p>
           {storyLinks[period] && <Link className={styles.storyLink} href={storyLinks[period]}>Read the full story <ArrowRight size={16} aria-hidden="true" /></Link>}
         </div>
