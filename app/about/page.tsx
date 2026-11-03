@@ -42,7 +42,7 @@ export default function AboutPage() {
           <h1 id="about-title">About<br />H.O.P.E.</h1>
           <p>H.O.P.E. is a student-powered engineering community turning practical needs into practical solutions. From experimental prosthetics to custom assistive technologies, we bring students together to design, build, and make a difference.</p>
           <div className={styles.heroActions}>
-            <a className={styles.button} href="#history">Explore our history <ArrowUpRight size={17} /></a>
+            <a className={styles.button} href="/history">Explore our history <ArrowUpRight size={17} /></a>
             <a className={styles.scrollLink} href="#purpose">Scroll to learn more <ArrowDown size={17} /></a>
           </div>
         </div>
