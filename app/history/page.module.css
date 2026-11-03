@@ -78,17 +78,6 @@
 .callout svg { flex: 0 0 80px; width: 80px; }
 .callout h4 { font-size: 19px; margin-bottom: 6px; }
 .callout p { font-size: 16px; }
-.cta { position: relative; background: var(--blue); color: white; overflow: hidden; padding-block: 40px 64px; }
-.ctaInner { display: grid; grid-template-columns: 1.2fr 1fr; align-items: center; gap: 35px; position: relative; z-index: 1; }
-.cta .label > span { background: var(--yellow); }
-.cta h2 { font-size: clamp(32px, 3.2vw, 46px); margin-bottom: 12px; }
-.cta p:not(.label) { max-width: 620px; font-size: 18px; }
-.buttons { display: flex; gap: 16px; justify-content: flex-end; }
-.outlineButton { background: transparent; border-color: white; color: white; }
-.cta > .accents { right: 2%; top: 20%; }
-.cta .accents span { background: var(--yellow); }
-.cta .accents span:nth-child(2) { background: var(--red); }
-.cta .accents span:nth-child(3) { display: block; background: #548dec; top: 85px; left: 15px; transform: rotate(30deg); }
 @media (hover: hover) { .button[href]:hover { filter: brightness(.95); transform: translateY(-2px); } }
 @media (prefers-reduced-motion: no-preference) {
   :global(html):has(.page) { scroll-behavior: smooth; }
@@ -101,7 +90,7 @@
   .introduction { gap: 35px; } .floatingCard { right: -20px; font-size: 17px; padding: 22px; }
   .milestone { column-gap: 60px; } .milestoneCopy { padding: 18px; } .nonprofit { padding: 22px; gap: 15px; } .nonprofit svg { flex-basis: 70px; width: 70px; } .nonprofit p { font-size: 16px; }
   .featuredInner { gap: 35px; } .callout { padding: 22px; gap: 16px; } .callout svg { flex-basis: 80px; width: 80px; }
-  .ctaInner { grid-template-columns: 1fr; gap: 28px; } .buttons { justify-content: flex-start; }
+  
 }
 @media (max-width: 850px) {
   .page { font-size: 16px; } .hero { grid-template-columns: 1fr; } .heroCopy { padding: 38px 7%; } .heroVisual { min-height: 320px; margin-left: 0; clip-path: none; }
@@ -116,7 +105,7 @@
   .milestoneCopy > p:not(.period) { font-size: 16px; line-height: 1.4; } .milestone h3 { font-size: 23px; }
   .storyLink { min-height: 44px; }
   .featuredInner { grid-template-columns: 1fr; gap: 28px; } .featuredCopy { padding-top: 0; } .callout { margin-top: 24px; } .storyPhotos { min-width: 0; }
-  .cta { padding-block: 35px 48px; } .cta > .accents { opacity: .35; } .buttons { flex-wrap: wrap; }
+  
 }
 @media (max-width: 380px) {
   .container, .wideContainer { width: 90%; } .heroCopy { padding-inline: 5%; } .heroVisual { min-height: 260px; }
