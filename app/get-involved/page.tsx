@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
-    title: "Get Involved | H.O.P.E.",
+    title: "Get Involved | HOPE Inc.",
     description:
         "Join H.O.P.E. at the University of South Carolina or reach out from another school, then find the way you want to contribute.",
 };
@@ -15,27 +16,59 @@ const GARNET_GATE_URL = "https://garnetgate.sa.sc.edu/organization/HOPE";
 const contributions = [
     {
         title: "Design and technical",
-        description: "Design and build prosthetics.",
-        roles: ["CAD and 3D modeling", "3D printing and fabrication", "Electronics and software"],
+        description: "Build and refine the prosthetics themselves.",
+        roles: [
+            "Engineering design",
+            "CAD",
+            "3D printing",
+            "Manufacturing",
+            "Prototyping and testing",
+            "Software",
+            "Electronics",
+            "Accessibility",
+            "Human-centered design",
+            "Digital design and illustration",
+        ],
     },
     {
         title: "People and community",
         description: "Connect H.O.P.E. with the people it serves.",
-        roles: ["Outreach and events", "Recipient and family support", "Marketing and storytelling"],
+        roles: [
+            "Recipient and family engagement",
+            "Outreach",
+            "Hospital and partner coordination",
+            "Accessibility research",
+            "Public health",
+            "Psychology and human behavior",
+            "Rehabilitation perspectives",
+            "Translating needs into requirements",
+        ],
     },
     {
         title: "Business and organizational",
         description: "Keep the organization running and growing.",
-        roles: ["Fundraising and grants", "Partnerships and sponsors", "Finance and operations"],
+        roles: [
+            "Operations",
+            "Fundraising",
+            "Grant writing",
+            "Communications",
+            "Project coordination",
+            "Leadership",
+            "Finance",
+            "Event planning",
+        ],
     },
 ];
+
+// Student org WordPress blog: URL not yet provided, the link renders once this is set.
+const STUDENT_ORG_BLOG_URL = "";
 
 const pill =
     "inline-flex items-center gap-2.5 rounded-full px-7 py-[17px] text-base font-extrabold border-2 transition-colors focus-visible:outline-2 focus-visible:outline-offset-4";
 
-function ExternalLink({ className, children }: { className: string; children: React.ReactNode }) {
+function ExternalLink({ className, children, href = GARNET_GATE_URL }: { className: string; children: React.ReactNode; href?: string }) {
     return (
-        <a href={GARNET_GATE_URL} target="_blank" rel="noopener noreferrer" className={className}>
+        <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
             {children}
             <ArrowRight aria-hidden className="size-[18px]" />
             <span className="sr-only">(opens in a new tab)</span>
@@ -61,8 +94,8 @@ export default function GetInvolvedPage() {
                         </span>
                     </h1>
                     <p className="mt-10 max-w-[35rem] text-lg leading-8 text-quiet text-pretty">
-                        H.O.P.E. is built by students who want to put their skills to work for people who need
-                        prosthetics. See the ways you can contribute below, then choose where you&apos;re studying to get started.
+                        H.O.P.E. is a student-powered organization. Students gain practical engineering, community, and
+                        organizational experience while building prosthetics for people who need them. See the ways you can contribute below, then choose where you&apos;re studying to get started.
                     </p>
                 </section>
 
@@ -108,14 +141,21 @@ export default function GetInvolvedPage() {
                             <p className="text-sm font-extrabold uppercase tracking-[0.14em] text-sun">University of South Carolina</p>
                             <h3 className="mt-4 font-display text-4xl leading-[1.1] sm:text-[44px]">I&apos;m a USC student</h3>
                             <p className="mt-5 text-[17px] leading-7 text-[#d7e6ff]">
-                                Join the H.O.P.E. chapter on campus. Sign up through Garnet Gate to become a member,
-                                attend meetings, and join a project team.
+                                Join the H.O.P.E. chapter on campus. Two steps: connect with the student organization&apos;s
+                                leadership, then join officially on Garnet Gate.
                             </p>
                             <div className="mt-8">
                                 <ExternalLink className={`${pill} border-sun bg-sun text-ink hover:bg-white hover:border-white focus-visible:outline-white`}>
-                                    Join HOPE at USC
+                                    Join HOPE at USC (Garnet Gate)
                                 </ExternalLink>
-                                <p className="mt-5 text-sm font-semibold text-[#d7e6ff]">Opens Garnet Gate</p>
+                                {STUDENT_ORG_BLOG_URL && (
+                                    <p className="mt-5">
+                                        <a href={STUDENT_ORG_BLOG_URL} target="_blank" rel="noopener noreferrer" className="text-sm font-bold text-white underline underline-offset-4 hover:text-sun">
+                                            Read the student organization blog
+                                            <span className="sr-only"> (opens in a new tab)</span>
+                                        </a>
+                                    </p>
+                                )}
                             </div>
                         </div>
 
@@ -127,10 +167,10 @@ export default function GetInvolvedPage() {
                                 start a H.O.P.E. group at your school.
                             </p>
                             <div className="mt-8">
-                                <ExternalLink className={`${pill} border-hope bg-white text-hope hover:bg-hope hover:text-white focus-visible:outline-hope`}>
+                                <Link href="/contact" className={`${pill} border-hope bg-white text-hope hover:bg-hope hover:text-white focus-visible:outline-hope`}>
                                     Connect with HOPE
-                                </ExternalLink>
-                                <p className="mt-5 text-sm font-semibold text-quiet">Opens our Garnet Gate page, which lists contact details</p>
+                                    <ArrowRight aria-hidden className="size-[18px]" />
+                                </Link>
                             </div>
                         </div>
                     </div>

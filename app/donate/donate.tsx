@@ -2,7 +2,6 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import DonateForm from "./donate-form";
 
 const facts = [
     "A student-run chapter at the University of South Carolina",
@@ -27,6 +26,10 @@ const supportWays = [
         title: "Workplace giving",
         description: "Support H.O.P.E. through matching gifts, payroll giving, or a team-led fundraising campaign.",
     },
+    {
+        title: "Alumni mentorship",
+        description: "Alumni and professionals can mentor the students who design and build each prosthetic.",
+    },
 ];
 
 const faqs = [
@@ -47,6 +50,11 @@ const faqs = [
         answer: "Yes. Matching gifts, payroll giving, and team-led fundraising campaigns are all ways to support the work.",
     },
 ];
+
+const PAYPAL_URL = "https://www.paypal.com/us/fundraiser/charity/2442369";
+const VENMO_HANDLE = "@HandsOnHOPENGO";
+const VENMO_URL = "https://account.venmo.com/u/HandsOnHOPENGO";
+const CONTACT_EMAIL = "aturner@handsonhope.ngo";
 
 const pill =
     "inline-flex items-center gap-2.5 rounded-full border-2 px-7 py-[17px] text-base font-extrabold transition-colors focus-visible:outline-2 focus-visible:outline-offset-4";
@@ -83,6 +91,66 @@ function DonationsPaused() {
     );
 }
 
+function DonationWidget() {
+    const card = "rounded-[28px] border border-line bg-white p-8 shadow-[0_2px_4px_rgba(16,39,67,0.04),0_24px_48px_-16px_rgba(16,39,67,0.14)] sm:p-10";
+    return (
+        <div className="grid w-full gap-5">
+            <section aria-labelledby="paypal-heading" className={card}>
+                <h2 id="paypal-heading" className="font-display text-4xl leading-[1.1] tracking-[-0.02em]">
+                    PayPal Giving Fund
+                </h2>
+                <p className="mt-3 font-semibold">Hands On Prosthetic Engineering - HOPE</p>
+                <p className="mt-3 text-[17px] leading-7 text-quiet">0% charity fees, so your whole gift reaches our work.</p>
+                <a
+                    href={PAYPAL_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`${pill} mt-7 border-hope bg-hope text-white hover:border-hope-deep hover:bg-hope-deep focus-visible:outline-hope`}
+                >
+                    Donate with PayPal
+                    <ArrowRight aria-hidden className="size-[18px]" />
+                    <span className="sr-only">(opens in a new tab)</span>
+                </a>
+            </section>
+            <section aria-labelledby="venmo-heading" className={card}>
+                <h2 id="venmo-heading" className="font-display text-3xl leading-[1.1] tracking-[-0.02em]">
+                    Venmo Charity
+                </h2>
+                <div className="mt-4 flex items-center gap-6">
+                    <div
+                        role="img"
+                        aria-label="QR code coming soon"
+                        className="grid size-24 shrink-0 place-items-center rounded-xl border-2 border-dashed border-line text-center text-xs font-semibold text-quiet"
+                    >
+                        QR code
+                        <br />
+                        coming soon
+                    </div>
+                    <div>
+                        <p className="font-extrabold">{VENMO_HANDLE}</p>
+                        <a
+                            href={VENMO_URL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="mt-2 inline-block text-[15px] font-bold text-hope underline underline-offset-4 hover:text-hope-deep"
+                        >
+                            Give on Venmo
+                            <span className="sr-only"> (opens in a new tab)</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+            <p className="text-[15px] leading-6 text-quiet">
+                Employer matching or grant checks? Email{" "}
+                <a href={`mailto:${CONTACT_EMAIL}`} className="font-bold text-hope underline underline-offset-4 hover:text-hope-deep">
+                    {CONTACT_EMAIL}
+                </a>
+                .
+            </p>
+        </div>
+    );
+}
+
 export default function Donate({ enabled }: { enabled: boolean }) {
     return (
         <div className="min-h-screen bg-paper text-ink">
@@ -111,7 +179,7 @@ export default function Donate({ enabled }: { enabled: boolean }) {
                             ))}
                         </ul>
                     </div>
-                    {enabled ? <DonateForm /> : <DonationsPaused />}
+                    {enabled ? <DonationWidget /> : <DonationsPaused />}
                 </section>
 
                 <section aria-labelledby="support-heading" className="bg-wash px-6 py-16 lg:px-10 lg:py-24">
