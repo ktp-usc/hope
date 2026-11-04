@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowUpRight, CheckCircle2, ShieldAlert } from "lucide-react";
+import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 
 interface FormData {
   name: string;
@@ -47,6 +47,7 @@ export default function GetHelpForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -54,6 +55,20 @@ export default function GetHelpForm() {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
     if (errorMessage) setErrorMessage("");
+    if (fieldErrors[name]) {
+      setFieldErrors((prev) => {
+        const next = { ...prev };
+        delete next[name];
+        return next;
+      });
+    }
+    if (name === "bestContactMethod" && value !== "Phone" && fieldErrors.phone) {
+      setFieldErrors((prev) => {
+        const next = { ...prev };
+        delete next.phone;
+        return next;
+      });
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -66,16 +81,43 @@ export default function GetHelpForm() {
       return;
     }
 
-    // Client-side validation for required fields
-    if (
-      !formData.name.trim() ||
-      !formData.email.trim() ||
-      !formData.contactingFor ||
-      !formData.lookingFor ||
-      !formData.description.trim() ||
-      !formData.bestContactMethod
-    ) {
-      setErrorMessage("Please complete all required fields before submitting.");
+    // Client-side field-specific validation
+    const errors: Record<string, string> = {};
+
+    if (!formData.name.trim()) {
+      errors.name = "Please enter your name.";
+    }
+
+    const emailTrim = formData.email.trim();
+    if (!emailTrim) {
+      errors.email = "Please enter your email address.";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailTrim)) {
+      errors.email = "Please enter a valid email address.";
+    }
+
+    if (formData.bestContactMethod === "Phone" && !formData.phone.trim()) {
+      errors.phone = "Please enter your phone number.";
+    }
+
+    if (!formData.contactingFor) {
+      errors.contactingFor = "Please select who you are contacting HOPE for.";
+    }
+
+    if (!formData.lookingFor) {
+      errors.lookingFor = "Please select what you are looking for.";
+    }
+
+    if (!formData.description.trim()) {
+      errors.description = "Please describe what you want help accomplishing.";
+    }
+
+    if (!formData.bestContactMethod) {
+      errors.bestContactMethod = "Please select your preferred contact method.";
+    }
+
+    if (Object.keys(errors).length > 0) {
+      setFieldErrors(errors);
+      setErrorMessage("Please complete all required fields correctly before submitting.");
       return;
     }
 
@@ -95,7 +137,9 @@ export default function GetHelpForm() {
   const handleReset = () => {
     setFormData(initialFormData);
     setIsSubmitted(false);
+    setIsSubmitting(false);
     setErrorMessage("");
+    setFieldErrors({});
   };
 
   if (isSubmitted) {
@@ -129,8 +173,12 @@ export default function GetHelpForm() {
     );
   }
 
-  const inputClass =
-    "mt-1.5 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-[#1b2d4c] shadow-sm transition outline-none placeholder:text-slate-400 focus:border-[#1260d6] focus:ring-4 focus:ring-[#1260d6]/10";
+  const getInputClass = (hasError?: boolean) =>
+    `mt-1.5 w-full rounded-xl border bg-white px-4 py-3 text-sm text-[#1b2d4c] shadow-sm transition outline-none placeholder:text-slate-400 ${
+      hasError
+        ? "border-red-500 focus:border-red-500 focus:ring-4 focus:ring-red-500/10"
+        : "border-slate-200 focus:border-[#1260d6] focus:ring-4 focus:ring-[#1260d6]/10"
+    }`;
   const labelClass = "block text-xs font-bold uppercase tracking-wider text-slate-700";
 
   return (
@@ -205,8 +253,15 @@ export default function GetHelpForm() {
               placeholder="Your full name"
               value={formData.name}
               onChange={handleChange}
-              className={inputClass}
+              aria-invalid={!!fieldErrors.name}
+              aria-describedby={fieldErrors.name ? "name-error" : undefined}
+              className={getInputClass(!!fieldErrors.name)}
             />
+            {fieldErrors.name && (
+              <p id="name-error" role="alert" className="mt-1 text-xs font-medium text-red-600">
+                {fieldErrors.name}
+              </p>
+            )}
           </div>
 
           <div>
@@ -222,26 +277,46 @@ export default function GetHelpForm() {
               placeholder="you@example.com"
               value={formData.email}
               onChange={handleChange}
-              className={inputClass}
+              aria-invalid={!!fieldErrors.email}
+              aria-describedby={fieldErrors.email ? "email-error" : undefined}
+              className={getInputClass(!!fieldErrors.email)}
             />
+            {fieldErrors.email && (
+              <p id="email-error" role="alert" className="mt-1 text-xs font-medium text-red-600">
+                {fieldErrors.email}
+              </p>
+            )}
           </div>
         </div>
 
         {/* Row 2: Phone */}
         <div>
           <label htmlFor="phone" className={labelClass}>
-            Phone <span className="text-xs font-normal lowercase tracking-normal text-slate-500">(optional)</span>
+            Phone{" "}
+            {formData.bestContactMethod === "Phone" ? (
+              <span className="text-red-600">*</span>
+            ) : (
+              <span className="text-xs font-normal lowercase tracking-normal text-slate-500">(optional)</span>
+            )}
           </label>
           <input
             id="phone"
             name="phone"
             type="tel"
+            required={formData.bestContactMethod === "Phone"}
             autoComplete="tel"
             placeholder="(555) 555-5555"
             value={formData.phone}
             onChange={handleChange}
-            className={inputClass}
+            aria-invalid={!!fieldErrors.phone}
+            aria-describedby={fieldErrors.phone ? "phone-error" : undefined}
+            className={getInputClass(!!fieldErrors.phone)}
           />
+          {fieldErrors.phone && (
+            <p id="phone-error" role="alert" className="mt-1 text-xs font-medium text-red-600">
+              {fieldErrors.phone}
+            </p>
+          )}
         </div>
 
         {/* Row 3: Contacting For & Looking For */}
@@ -257,7 +332,9 @@ export default function GetHelpForm() {
                 required
                 value={formData.contactingFor}
                 onChange={handleChange}
-                className={`${inputClass} appearance-none pr-8 bg-white cursor-pointer`}
+                aria-invalid={!!fieldErrors.contactingFor}
+                aria-describedby={fieldErrors.contactingFor ? "contactingFor-error" : undefined}
+                className={`${getInputClass(!!fieldErrors.contactingFor)} appearance-none pr-8 bg-white cursor-pointer`}
               >
                 <option value="" disabled>
                   Select an option
@@ -275,6 +352,11 @@ export default function GetHelpForm() {
                 ▼
               </div>
             </div>
+            {fieldErrors.contactingFor && (
+              <p id="contactingFor-error" role="alert" className="mt-1 text-xs font-medium text-red-600">
+                {fieldErrors.contactingFor}
+              </p>
+            )}
           </div>
 
           <div>
@@ -288,7 +370,9 @@ export default function GetHelpForm() {
                 required
                 value={formData.lookingFor}
                 onChange={handleChange}
-                className={`${inputClass} appearance-none pr-8 bg-white cursor-pointer`}
+                aria-invalid={!!fieldErrors.lookingFor}
+                aria-describedby={fieldErrors.lookingFor ? "lookingFor-error" : undefined}
+                className={`${getInputClass(!!fieldErrors.lookingFor)} appearance-none pr-8 bg-white cursor-pointer`}
               >
                 <option value="" disabled>
                   Select an option
@@ -306,6 +390,11 @@ export default function GetHelpForm() {
                 ▼
               </div>
             </div>
+            {fieldErrors.lookingFor && (
+              <p id="lookingFor-error" role="alert" className="mt-1 text-xs font-medium text-red-600">
+                {fieldErrors.lookingFor}
+              </p>
+            )}
           </div>
         </div>
 
@@ -322,18 +411,29 @@ export default function GetHelpForm() {
             placeholder="A brief, general description of the need, task, or challenge is plenty to begin."
             value={formData.description}
             onChange={handleChange}
-            className={`${inputClass} resize-y`}
+            aria-invalid={!!fieldErrors.description}
+            aria-describedby={
+              fieldErrors.description
+                ? "description-error description-hint"
+                : "description-hint"
+            }
+            className={`${getInputClass(!!fieldErrors.description)} resize-y`}
           />
-          <p className="mt-1.5 text-xs text-slate-500">
+          {fieldErrors.description && (
+            <p id="description-error" role="alert" className="mt-1 text-xs font-medium text-red-600">
+              {fieldErrors.description}
+            </p>
+          )}
+          <p id="description-hint" className="mt-1.5 text-xs text-slate-500">
             A short description of the need or challenge is enough. Please keep it general.
           </p>
         </div>
 
         {/* Row 5: Best Contact Method */}
-        <div>
-          <label htmlFor="bestContactMethod" className={labelClass}>
+        <fieldset className="border-0 p-0 m-0">
+          <legend className={labelClass}>
             Best contact method <span className="text-red-600">*</span>
-          </label>
+          </legend>
           <div className="mt-2 flex flex-wrap gap-4">
             {BEST_CONTACT_OPTIONS.map((method) => (
               <label
@@ -346,13 +446,21 @@ export default function GetHelpForm() {
                   value={method}
                   checked={formData.bestContactMethod === method}
                   onChange={handleChange}
+                  aria-describedby={fieldErrors.bestContactMethod ? "bestContactMethod-error" : undefined}
+                  aria-invalid={!!fieldErrors.bestContactMethod}
+                  aria-describedby={fieldErrors.bestContactMethod ? "bestContactMethod-error" : undefined}
                   className="h-4 w-4 border-slate-300 text-[#1260d6] focus:ring-[#1260d6]"
                 />
                 <span>{method}</span>
               </label>
             ))}
           </div>
-        </div>
+          {fieldErrors.bestContactMethod && (
+            <p id="bestContactMethod-error" role="alert" className="mt-1 text-xs font-medium text-red-600">
+              {fieldErrors.bestContactMethod}
+            </p>
+          )}
+        </fieldset>
 
         {/* Primary CTA Submit Button */}
         <div className="pt-2">
@@ -369,4 +477,3 @@ export default function GetHelpForm() {
     </div>
   );
 }
-

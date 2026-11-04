@@ -1,6 +1,7 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Image from "next/image";
-import { ArrowDown, ArrowRight, FileBadge } from "lucide-react";
+import Link from "next/link";
+import { ArrowDown, FileBadge } from "lucide-react";
 import TimelineReveal from "./timeline-reveal";
 import styles from "./page.module.css";
 import workshop from "./history-images/14_Big_Wednesday_Team.jpg";
@@ -14,11 +15,21 @@ import assembly from "./history-images/04_Eli_Bike_Assembly.jpg";
 
 export const metadata: Metadata = { title: "Our History | H.O.P.E.", description: "From 3D-printed hands to a broader engineering mission. Explore the people, projects, and milestones that shaped H.O.P.E." };
 
+interface Milestone {
+  period: string;
+  title: string;
+  image: typeof fair | null;
+  alt: string;
+  color: string;
+  description: string;
+  href?: string;
+}
+
 // Photographs illustrate milestones; their placement does not date the photographs.
-const milestones = [
-  { period: "2016", title: "Where It All Began", image: fair, alt: "H.O.P.E. members at an outdoor organization fair", color: "blue", description: "In 2016, the H.O.P.E. student organization was established at the University of South Carolina. Students began exploring how 3D printing could create prosthetic hands and upper-limb solutions for children, laying the foundation for a community of learning, collaboration, and service." },
+const milestones: Milestone[] = [
+  { period: "2016", title: "Where It All Began", image: fair, alt: "H.O.P.E. members at an outdoor organization fair", color: "blue", description: "In 2016, the H.O.P.E. student organization was established at the University of South Carolina. Students began exploring how 3D printing could create prosthetic hands and upper-limb solutions for children, laying the foundation for a community of learning, collaboration, and service.", href: "/stories/hands-on-beginnings" },
   { period: "2017", title: "Building Something That Lasts", image: null, alt: "", color: "red", description: "In 2017, H.O.P.E. Inc. was incorporated as a separate South Carolina nonprofit organization to provide greater continuity, resources, organizational support, and external relationships beyond individual student leadership cycles. The nonprofit and USC student organization developed separate but complementary roles." },
-  { period: "COVID-19", title: "Engineering Through a Crisis", image: shields, alt: "Colorful 3D-printed face-shield frames produced by H.O.P.E.", color: "purple", description: "During the COVID-19 response, H.O.P.E. members redirected their 3D-printing capabilities toward producing mask extenders and face-shield components. Working alongside a University of South Carolina professor and graduate students, members applied their design and fabrication skills to a different community need." },
+  { period: "COVID-19", title: "Engineering Through a Crisis", image: shields, alt: "Colorful 3D-printed face-shield frames produced by H.O.P.E.", color: "purple", description: "During the COVID-19 response, H.O.P.E. members redirected their 3D-printing capabilities toward producing mask extenders and face-shield components. Working alongside a University of South Carolina professor and graduate students, members applied their design and fabrication skills to a different community need.", href: "/stories/ppe-response" },
   { period: "Today", title: "A Broader Engineering Mission", image: team, alt: "H.O.P.E. members with their organization’s project display", color: "blue", description: "Today, H.O.P.E. continues building on its roots through experimental prosthetic devices, task-specific assistive technologies, adaptive designs, accessibility solutions, student training, community service, and partnerships with other institutions and organizations." },
 ];
 function SectionLabel({ children }: { children: React.ReactNode }) { return <p className={styles.label}><span aria-hidden="true" />{children}</p>; }
@@ -48,22 +59,21 @@ export default function HistoryPage() {
     <section id="timeline" className={styles.timelineSection} aria-labelledby="timeline-title"><div className={styles.container}>
       <SectionLabel>Our timeline</SectionLabel><h2 id="timeline-title">Key moments in H.O.P.E.’s journey.</h2>
       <p className={styles.timelineIntro}>From a student organization to a broader engineering mission, here are some of the milestones that have shaped our work, our community, and our impact.</p>
-      <TimelineReveal><ol className={styles.timeline}>{milestones.map(({ period, title, image, alt, color, description }) => <li key={period} className={`${styles.milestone} ${styles[color]}`}>
+      <TimelineReveal><ol className={styles.timeline}>{milestones.map(({ period, title, image, alt, color, description, href }) => <li key={period} className={`${styles.milestone} ${styles[color]}`}>
         <span className={styles.marker} aria-hidden="true" />
-        <div className={styles.milestoneVisual}>{image ? <Image src={image} alt={alt} unoptimized={image === shields} fill sizes="(max-width: 850px) 85vw, 42vw" className={styles.cover} /> : <div className={styles.nonprofit}><FileBadge size={106} strokeWidth={1.25} aria-hidden="true" /><div><h3>A stronger foundation<br />for a bigger impact.</h3><p>H.O.P.E. Inc. was established to expand our reach, resources, and long-term sustainability.</p></div></div>}</div>
-        <div className={styles.milestoneCopy}><p className={styles.period}>{period}</p><h3>{title}</h3><p>{description}</p></div>
+        <div className={styles.milestoneVisual}>{image ? (href ? <Link href={href} aria-label={`${title} story`} className={styles.milestoneImageLink}><Image src={image} alt={alt} unoptimized={image === shields} fill sizes="(max-width: 850px) 85vw, 42vw" className={styles.cover} /></Link> : <Image src={image} alt={alt} unoptimized={image === shields} fill sizes="(max-width: 850px) 85vw, 42vw" className={styles.cover} />) : <div className={styles.nonprofit}><FileBadge size={106} strokeWidth={1.25} aria-hidden="true" /><div><h3>A stronger foundation<br />for a bigger impact.</h3><p>H.O.P.E. Inc. was established to expand our reach, resources, and long-term sustainability.</p></div></div>}</div>
+        <div className={styles.milestoneCopy}><p className={styles.period}>{period}</p><h3>{href ? <Link href={href} className={styles.milestoneLink}>{title}</Link> : title}</h3><p>{description}</p></div>
       </li>)}</ol></TimelineReveal>
     </div></section>
     <section className={styles.featured} aria-labelledby="featured-title"><div className={`${styles.wideContainer} ${styles.featuredInner}`}>
-      <div className={styles.featuredCopy}><SectionLabel>Featured story · 2017–2018</SectionLabel><h2 id="featured-title">Engineering for the Individual</h2><h3>Eli’s Bike Arm</h3>
+      <div className={styles.featuredCopy}><SectionLabel>Featured story · 2017–2018</SectionLabel><h2 id="featured-title">Engineering for the Individual</h2><h3><Link href="/stories/elis-bike-arm" className={styles.storyLink}>Eli’s Bike Arm</Link></h3>
         <p>As H.O.P.E.’s capabilities grew, students began developing more customized solutions. Eli’s Bike Arm became an early example of task-specific engineering, adding a point of contact and counterforce to help Eli ride his bicycle.</p>
         <p>Research began in 2017, with a prototype fitted in spring 2018. Continued development included a telescoping arm socket. Through iterative design and testing, Eli was able to ride the adapted bicycle through his neighborhood.</p>
         <aside className={styles.callout}><Dinosaur /><div><h4>A design with personality.</h4><p>Its shape resembled a dinosaur arm, leading to the nickname “Elijasaur.”</p></div></aside>
       </div>
-      <div className={styles.storyPhotos}><Image src={eli} alt="Eli smiling on his adapted bicycle with the custom bike arm attached" sizes="(max-width: 850px) 90vw, 45vw" className={styles.mainStoryPhoto} />
-        <div className={styles.detailPhotos}><Image src={detail} alt="Detail of the colorful custom bike-arm attachment" sizes="(max-width: 850px) 44vw, 23vw" /><Image src={assembly} alt="Bike-arm components and tools laid out for assembly" sizes="(max-width: 850px) 44vw, 23vw" /></div>
+      <div className={styles.storyPhotos}><Link href="/stories/elis-bike-arm" aria-label="Eli smiling on his adapted bicycle with the custom bike arm attached" className={styles.photoLink}><Image src={eli} alt="Eli smiling on his adapted bicycle with the custom bike arm attached" sizes="(max-width: 850px) 90vw, 45vw" className={styles.mainStoryPhoto} /></Link>
+        <div className={styles.detailPhotos}><Link href="/stories/elis-bike-arm" aria-label="Detail of the colorful custom bike-arm attachment" className={styles.photoLink}><Image src={detail} alt="Detail of the colorful custom bike-arm attachment" sizes="(max-width: 850px) 44vw, 23vw" /></Link><Link href="/stories/elis-bike-arm" aria-label="Bike-arm components and tools laid out for assembly" className={styles.photoLink}><Image src={assembly} alt="Bike-arm components and tools laid out for assembly" sizes="(max-width: 850px) 44vw, 23vw" /></Link></div>
       </div>
     </div></section>
   </main>;
 }
-
