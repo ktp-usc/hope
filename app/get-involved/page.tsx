@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
+
 
 export const metadata: Metadata = {
     title: "Get Involved | HOPE Inc.",
@@ -79,7 +78,6 @@ function ExternalLink({ className, children, href = GARNET_GATE_URL }: { classNa
 export default function GetInvolvedPage() {
     return (
         <div className="min-h-screen bg-paper text-ink">
-            <Header />
             <main>
                 <section className="mx-auto max-w-[1240px] px-6 pb-16 pt-10 lg:px-10 lg:pb-24 lg:pt-16">
                     <p className="text-sm font-extrabold uppercase tracking-[0.14em] text-hope">Get involved</p>
@@ -177,7 +175,6 @@ export default function GetInvolvedPage() {
                 </section>
 
             </main>
-            <Footer />
         </div>
     );
 }
