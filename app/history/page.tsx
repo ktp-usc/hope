@@ -64,10 +64,6 @@ export default function HistoryPage() {
         <div className={styles.detailPhotos}><Image src={detail} alt="Detail of the colorful custom bike-arm attachment" sizes="(max-width: 850px) 44vw, 23vw" /><Image src={assembly} alt="Bike-arm components and tools laid out for assembly" sizes="(max-width: 850px) 44vw, 23vw" /></div>
       </div>
     </div></section>
-    <section className={styles.cta} aria-labelledby="next-title"><div className={`${styles.wideContainer} ${styles.ctaInner}`}>
-      <div><SectionLabel>What’s next</SectionLabel><h2 id="next-title">Be part of what comes next.</h2><p>H.O.P.E.’s story continues through the students, volunteers, partners, and supporters who help turn ideas into real-world impact.</p></div>
-      <div className={styles.buttons}><button className={styles.button} disabled title="Get Involved page coming soon">Get Involved <ArrowRight size={18} aria-hidden="true" /></button><button className={`${styles.button} ${styles.outlineButton}`} disabled title="Support H.O.P.E. page coming soon">Support H.O.P.E. <ArrowRight size={18} aria-hidden="true" /></button></div>
-    </div><Accents /></section>
   </main>;
 }
 

@@ -16,7 +16,6 @@ export default function PartnersAndCollaborationsPage() {
             <PartnersHero />
             <FeaturedAffiliation />
             <InstitutionalPartners />
-            <PartnershipCTA />
         </main>
     );
 }
