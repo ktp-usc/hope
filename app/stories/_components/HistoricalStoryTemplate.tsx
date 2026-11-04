@@ -1,7 +1,6 @@
 ﻿import Image, { type ImageProps } from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ImageIcon } from "lucide-react";
-import Footer from "@/components/footer";
 import styles from "./HistoricalStoryTemplate.module.css";
 
 /** Real photographs require original dimensions and accessible alt text. */
@@ -83,6 +82,5 @@ export default function HistoricalStoryTemplate({
         </section>
       </article>
     </main>
-    <Footer />
   </>;
 }
