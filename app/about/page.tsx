@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { ArrowDown, ArrowUpRight, Handshake, Settings, Wrench } from "lucide-react";
 import styles from "./page.module.css";
-import workshopImage from "./about-images/Workshop image.png";
-import presentDayImage from "./about-images/Present day image.png";
+import workshopImage from "./about-images/13_Creativibe_Display_Team.jpg";
+import presentDayImage from "./about-images/11_First_HOPE_Printer_Build.jpg";
 
 export const metadata: Metadata = {
   title: "About H.O.P.E.",
@@ -42,14 +42,14 @@ export default function AboutPage() {
           <h1 id="about-title">About<br />H.O.P.E.</h1>
           <p>H.O.P.E. is a student-powered engineering community turning practical needs into practical solutions. From experimental prosthetics to custom assistive technologies, we bring students together to design, build, and make a difference.</p>
           <div className={styles.heroActions}>
-            <a className={styles.button} href="#history">Explore our history <ArrowUpRight size={17} /></a>
+            <a className={styles.button} href="/history">Explore our history <ArrowUpRight size={17} /></a>
             <a className={styles.scrollLink} href="#purpose">Scroll to learn more <ArrowDown size={17} /></a>
           </div>
         </div>
         <div className={styles.heroPhoto}>
           <Image
             src={workshopImage}
-            alt="Students collaborating on prosthetic engineering and hands-on design."
+            alt="H.O.P.E. members with their engineering project display."
             fill
             sizes="(max-width: 700px) 100vw, 45vw"
             className={styles.panelImage}
@@ -99,7 +99,7 @@ export default function AboutPage() {
         <div className={styles.presentPhoto}>
           <Image
             src={presentDayImage}
-            alt="Hands-on engineering workspace with prosthetic components, tools, and prototypes."
+            alt="Students gathered around a 3D printer during a hands-on H.O.P.E. workshop."
             fill
             sizes="(max-width: 700px) 90vw, (max-width: 1440px) 44vw, 630px"
             className={styles.panelImage}
@@ -137,21 +137,6 @@ export default function AboutPage() {
               <p>Leads the university-based student organization, where students organize, train, recruit, and carry out much of H.O.P.E.’s hands-on project work.</p>
             </article>
           </section>
-        </div>
-      </section>
-
-      <section className={styles.takePart} aria-labelledby="take-part-title">
-        <div className={`${styles.container} ${styles.takePartInner}`}>
-          <div className={styles.takePartCopy}><span className={styles.eyebrow}>Take part</span>
-            <h2 id="take-part-title">Help move<br />H.O.P.E. forward.</h2>
-            <div className={styles.takePartActions}><p>Every project begins with people willing to contribute. Whether you’re a student, community partner, professional, or supporter, there are opportunities to help H.O.P.E. turn engineering skills into meaningful solutions.</p>
-              <div className={styles.buttons}>
-                <button className={`${styles.button} ${styles.yellowButton}`} disabled title="Support HOPE page coming soon">Support HOPE <ArrowUpRight size={17} /></button>
-                <button className={styles.button} disabled title="Get involved page coming soon">Get involved <ArrowUpRight size={17} /></button>
-              </div>
-            </div>
-          </div>
-          <div className={styles.handIllustration} aria-hidden="true"><HandMark outline /><div className={styles.palmLines}><span /><span /><span /></div><span className={styles.palmAccent} /></div>
         </div>
       </section>
     </main>
