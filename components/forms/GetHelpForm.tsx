@@ -448,7 +448,6 @@ export default function GetHelpForm() {
                   onChange={handleChange}
                   aria-describedby={fieldErrors.bestContactMethod ? "bestContactMethod-error" : undefined}
                   aria-invalid={!!fieldErrors.bestContactMethod}
-                  aria-describedby={fieldErrors.bestContactMethod ? "bestContactMethod-error" : undefined}
                   className="h-4 w-4 border-slate-300 text-[#1260d6] focus:ring-[#1260d6]"
                 />
                 <span>{method}</span>
