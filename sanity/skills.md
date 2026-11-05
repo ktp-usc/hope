@@ -1,4 +1,4 @@
-# Agent skill: Sanity CMS (The Hive)
+# Agent skill: Sanity CMS (HOPE)
 
 Use this when editing Sanity schemas, GROQ queries, Studio structure, or wiring CMS data into Next.js App Router pages. For human onboarding and Studio/Vision walkthroughs, see [developing-with-sanity.md](./developing-with-sanity.md).
 
@@ -71,7 +71,7 @@ Also:
 
 - Prefer `export const dynamic = "force-dynamic"` on CMS pages when matching existing routes.
 - Catch fetch failures and fall back to static/`site-copy` when that page already does.
-- Keep `<SanityLive />` in the site layout (already wired via `sanity/lib/live.ts`).
+- Render `<SanityLive />` (from `sanity/lib/live.ts`) when a page uses `sanityFetch`, rather than assuming it is already present in the site layout.
 - Shared chrome (nav/footer) uses `navbarSettingsQuery` / `siteSettingsQuery` from the site layout.
 
 ## Schema / Studio changes
