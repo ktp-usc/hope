@@ -21,12 +21,12 @@ Studio: `/studio` after `npm run dev`. Test GROQ in Studio → Vision before har
 
 ## Core model
 
-- **Pages** (`_type == "page"`): `title`, unique `slug`, optional `description`, `sections[]`, optional `landingPopup` (slug `landing` only).
-- **Singletons**: `navbarSettings`, `siteSettings` (fixed document ids in structure).
-- **Reusable docs**: `partnerLogo`, `teamMember` (and any others registered in schema).
-- **Sections**: typed objects in `page.sections` (`sectionHero`, `sectionSupportHero`, …). Field names must match `pageSections.ts` exactly.
+No schema types are currently established in the repository (`schema.types` in `sanity/schemaTypes/index.ts` is empty).
 
-Preferred page slugs (see `page.ts`): `landing`, `support`, `awareness`, `invest-in-the-hive`, `about`, `events`, plus other routes that own a page document.
+When creating the initial schema types:
+- Define the needed document and object types under `sanity/schemaTypes/`.
+- Register all created schema types in the schema type registry (`sanity/schemaTypes/index.ts`) by adding them to `schema.types`.
+- Document new schemas and their established field structures here as they are added to the repository.
 
 ## Localization
 
