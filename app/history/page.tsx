@@ -12,6 +12,8 @@ import team from "./history-images/13_Creativibe_Display_Team.jpg";
 import eli from "./history-images/02_Eli_On_Bicycle.jpg";
 import detail from "./history-images/01_Eli_Bike_Arm_Detail.jpg";
 import assembly from "./history-images/04_Eli_Bike_Assembly.jpg";
+import MediaMilestones from "@/components/about/MediaMilestones";
+import { mediaMilestones } from "./media-milestones";
 
 export const metadata: Metadata = { title: "Our History | H.O.P.E.", description: "From 3D-printed hands to a broader engineering mission. Explore the people, projects, and milestones that shaped H.O.P.E." };
 
@@ -75,5 +77,6 @@ export default function HistoryPage() {
         <div className={styles.detailPhotos}><Link href="/stories/elis-bike-arm" aria-label="Detail of the colorful custom bike-arm attachment" className={styles.photoLink}><Image src={detail} alt="Detail of the colorful custom bike-arm attachment" sizes="(max-width: 850px) 44vw, 23vw" /></Link><Link href="/stories/elis-bike-arm" aria-label="Bike-arm components and tools laid out for assembly" className={styles.photoLink}><Image src={assembly} alt="Bike-arm components and tools laid out for assembly" sizes="(max-width: 850px) 44vw, 23vw" /></Link></div>
       </div>
     </div></section>
+    <MediaMilestones milestones={mediaMilestones} />
   </main>;
 }

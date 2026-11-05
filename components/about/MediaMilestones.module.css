@@ -1,0 +1,42 @@
+.section { background: white; color: #080e32; padding-block: 44px 64px; scroll-margin-top: 24px; font-family: var(--font-manrope), Arial, sans-serif; }
+.container { width: 91%; max-width: 1400px; margin-inline: auto; }
+.header { margin-bottom: 40px; }
+.header h2 { font-size: clamp(32px, 3.3vw, 50px); line-height: 1.12; letter-spacing: -1px; font-weight: 800; }
+.header p { color: #293957; font-size: clamp(18px, 1.5vw, 23px); line-height: 1.45; margin-top: 8px; }
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: stretch; gap: 30px 34px; }
+.card { --card-accent: #1260d9; position: relative; display: flex; flex-direction: column; min-width: 0; border: 1px solid #d4dbe7; border-radius: 20px; overflow: hidden; background: white; box-shadow: 0 5px 10px rgb(17 24 46 / 6%); }
+.card::before { content: ""; position: absolute; inset: -1px auto -1px -1px; width: 11px; background: var(--card-accent); pointer-events: none; z-index: 1; }
+.card:nth-child(2) { --card-accent: #f8cd53; }
+.card:nth-child(3) { --card-accent: #e94e26; }
+.cardContent { display: flex; flex-direction: column; flex: 1; padding: 28px 32px 32px 46px; }
+.metadata { display: flex; justify-content: space-between; align-items: baseline; gap: 10px 18px; margin-bottom: 20px; font-size: 20px; line-height: 1.4; }
+.category { font-weight: 600; }
+.date { flex-shrink: 0; border-bottom: 3px solid #f8cd53; padding-bottom: 4px; font-size: inherit; font-weight: 700; }
+.card h3 { font-size: clamp(26px, 2.1vw, 32px); line-height: 1.18; letter-spacing: -.5px; font-weight: 800; overflow-wrap: anywhere; }
+.card .cardContent > p { font-size: 20px; line-height: 1.4; margin-top: 18px; }
+.imageContainer { position: relative; aspect-ratio: 2; background: #f4f7fa; }
+.image { object-fit: cover; }
+.sourceLink { display: inline-flex; align-self: flex-start; align-items: center; gap: 12px; min-height: 68px; padding-top: 24px; margin-top: auto; font-size: 22px; font-weight: 700; color: #003d9e; text-decoration: underline; text-underline-offset: 4px; }
+.sourceLink svg { width: 24px; height: 24px; flex-shrink: 0; }
+.sourceLink + .sourceLink { min-height: 44px; padding-top: 0; margin-top: 18px; }
+.sourceLink:focus-visible { outline: 3px solid #11182e; outline-offset: 4px; border-radius: 3px; }
+@media (hover: hover) { .sourceLink:hover { color: #11182e; } }
+@media (max-width: 1100px) {
+  .grid { gap: 24px; }
+  .cardContent { padding: 26px 24px 28px 34px; }
+  .metadata { font-size: 17px; }
+  .card .cardContent > p { font-size: 18px; }
+  .sourceLink { font-size: 18px; }
+}
+@media (max-width: 700px) {
+  .section { padding-block: 36px 42px; }
+  .container { width: 90%; }
+  .header { margin-bottom: 28px; }
+  .header h2 { letter-spacing: -.6px; }
+  .grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .cardContent { padding: 22px 22px 24px 30px; }
+  .metadata { font-size: 16px; margin-bottom: 16px; }
+  .card h3 { font-size: 24px; }
+  .card .cardContent > p { font-size: 17px; }
+  .sourceLink { font-size: 17px; gap: 8px; }
+}
