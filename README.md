@@ -1,4 +1,25 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# HOPE Project
+
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app) and integrated with [Sanity CMS](https://www.sanity.io).
+
+## Environment Variables
+
+Copy `.env.example` to `.env.local` and set the required variables:
+
+```bash
+cp .env.example .env.local
+```
+
+### Configuration Variables
+
+| Variable | Required | Description | Example / Default |
+| --- | --- | --- | --- |
+| `NEXT_PUBLIC_SANITY_PROJECT_ID` | **Yes** | Sanity project ID, validated by `sanity/env.ts` on build/runtime | `a1pyoa63` |
+| `NEXT_PUBLIC_SANITY_DATASET` | **Yes** | Sanity dataset name | `production` |
+| `NEXT_PUBLIC_SANITY_API_VERSION` | No | Sanity API version date (`YYYY-MM-DD`) | `2026-11-05` |
+| `NEXT_PUBLIC_DONATIONS_ENABLED` | No | Feature flag to enable or disable donation workflows | `false` |
+
+> **Important Deployment Note:** `NEXT_PUBLIC_SANITY_PROJECT_ID` and `NEXT_PUBLIC_SANITY_DATASET` must be configured in every deployment environment (e.g. Vercel project environment variables). `sanity/env.ts` asserts their presence at build time to prevent running or deploying with broken CMS integrations.
 
 ## Getting Started
 
@@ -16,21 +37,18 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Sanity Studio is accessible at `http://localhost:3000/studio`.
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+To learn more about Next.js and Sanity, take a look at the following resources:
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- [Sanity Documentation](https://www.sanity.io/docs) - learn about Sanity CMS schemas and queries.
+- [Agent Skill: Sanity CMS](./sanity/skills.md) - repository guidelines for Sanity CMS integration.
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Ensure that all required environment variables (`NEXT_PUBLIC_SANITY_PROJECT_ID` and `NEXT_PUBLIC_SANITY_DATASET`) are set in your Vercel Project Settings under **Environment Variables** before deploying.
