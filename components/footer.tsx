@@ -14,6 +14,11 @@ const NEXT_STEP_LINKS = [
   { label: "Contact", href: "/contact" },
 ];
 
+const LEGAL_LINKS = [
+  { label: "Privacy", href: "/privacy" },
+  { label: "Accessibility", href: "/accessibility" },
+];
+
 const linkClass =
   "rounded text-sm text-[#12303f] hover:underline underline-offset-4 " +
   "focus-visible:outline-2 focus-visible:outline-offset-2 " +
@@ -114,6 +119,18 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} HOPE &middot; Hands On Prosthetic
             Engineering
           </p>
+          <ul className="flex gap-6">
+            {LEGAL_LINKS.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className="rounded hover:underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#12303f]"
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </footer>

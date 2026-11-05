@@ -9,7 +9,6 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
         {children}
       </span>
     </div>
-    //PR test
   );
 }
 
