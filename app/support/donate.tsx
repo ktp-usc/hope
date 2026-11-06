@@ -29,66 +29,67 @@ const VENMO_HANDLE = "@HandsOnHOPENGO";
 const VENMO_URL = "https://account.venmo.com/u/HandsOnHOPENGO";
 const CONTACT_EMAIL = "aturner@handsonhope.ngo";
 
-const pill =
-    "inline-flex items-center gap-2.5 rounded-full border-2 px-7 py-[17px] text-base font-extrabold transition-colors focus-visible:outline-2 focus-visible:outline-offset-4";
-
 function DonationWidget() {
-    const card = "rounded-[28px] border border-line bg-white p-8 shadow-[0_2px_4px_rgba(16,39,67,0.04),0_24px_48px_-16px_rgba(16,39,67,0.14)] sm:p-10";
     return (
-        <div className="grid w-full gap-5">
-            <section aria-labelledby="paypal-heading" className={card}>
-                <h2 id="paypal-heading" className="font-display text-4xl leading-[1.1] tracking-[-0.02em]">
-                    PayPal Giving Fund
+        <section
+            aria-labelledby="donation-heading"
+            className="w-full rounded-[28px] border border-line bg-white p-7 shadow-[0_2px_4px_rgba(16,39,67,0.04),0_24px_48px_-16px_rgba(16,39,67,0.14)] sm:p-9"
+        >
+            <div className="border-b border-line pb-5">
+                <span className="text-xs font-bold uppercase tracking-wider text-hope">Direct Giving</span>
+                <h2 id="donation-heading" className="mt-1 font-display text-3xl leading-[1.1] tracking-[-0.02em] sm:text-4xl">
+                    Make a Donation
                 </h2>
-                <p className="mt-3 font-semibold">Hands On Prosthetic Engineering - HOPE</p>
-                <p className="mt-3 text-[17px] leading-7 text-quiet">0% charity fees, so your whole gift reaches our work.</p>
-                <a
-                    href={PAYPAL_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`${pill} mt-7 border-hope bg-hope text-white hover:border-hope-deep hover:bg-hope-deep focus-visible:outline-hope`}
-                >
-                    Donate with PayPal
-                    <ArrowRight aria-hidden className="size-[18px]" />
-                    <span className="sr-only">(opens in a new tab)</span>
-                </a>
-            </section>
-            <section aria-labelledby="venmo-heading" className={card}>
-                <h2 id="venmo-heading" className="font-display text-3xl leading-[1.1] tracking-[-0.02em]">
-                    Venmo Charity
-                </h2>
-                <div className="mt-4 flex items-center gap-6">
-                    <div
-                        role="img"
-                        aria-label="QR code coming soon"
-                        className="grid size-24 shrink-0 place-items-center rounded-xl border-2 border-dashed border-line text-center text-xs font-semibold text-quiet"
+            </div>
+
+            <div className="mt-6 space-y-4">
+                {/* PayPal Giving Fund */}
+                <div className="rounded-2xl border border-line bg-paper/60 p-5 transition-colors hover:border-hope/40">
+                    <div className="flex items-start justify-between gap-2">
+                        <div>
+                            <h3 className="font-display text-xl tracking-[-0.01em]">PayPal Giving Fund</h3>
+                            <p className="mt-1 text-xs text-quiet">Hands On Prosthetic Engineering - HOPE</p>
+                        </div>
+                        <span className="shrink-0 rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-bold text-emerald-700">
+                            0% charity fees
+                        </span>
+                    </div>
+                    <a
+                        href={PAYPAL_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-4 flex w-full items-center justify-center gap-2 rounded-full border-2 border-hope bg-hope px-6 py-3.5 text-sm font-extrabold text-white transition-colors hover:border-hope-deep hover:bg-hope-deep focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-hope"
                     >
-                        QR code
-                        <br />
-                        coming soon
-                    </div>
-                    <div>
-                        <p className="font-extrabold">{VENMO_HANDLE}</p>
-                        <a
-                            href={VENMO_URL}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="mt-2 inline-block text-[15px] font-bold text-hope underline underline-offset-4 hover:text-hope-deep"
-                        >
-                            Give on Venmo
-                            <span className="sr-only"> (opens in a new tab)</span>
-                        </a>
-                    </div>
+                        Donate with PayPal
+                        <ArrowRight aria-hidden className="size-4" />
+                        <span className="sr-only">(opens in a new tab)</span>
+                    </a>
                 </div>
-            </section>
-            <p className="text-[15px] leading-6 text-quiet">
-                Employer matching or grant checks? Email{" "}
-                <a href={`mailto:${CONTACT_EMAIL}`} className="font-bold text-hope underline underline-offset-4 hover:text-hope-deep">
-                    {CONTACT_EMAIL}
-                </a>
-                .
-            </p>
-        </div>
+
+                {/* Venmo Charity */}
+                <div className="rounded-2xl border border-line bg-paper/60 p-5 transition-colors hover:border-[#008cff]/40">
+                    <div className="flex items-start justify-between gap-2">
+                        <div>
+                            <h3 className="font-display text-xl tracking-[-0.01em]">Venmo Charity</h3>
+                            <p className="mt-1 text-xs text-quiet">Direct app or web profile donation</p>
+                        </div>
+                        <span className="shrink-0 rounded-full bg-sky-50 px-2.5 py-1 text-xs font-bold text-[#008cff]">
+                            {VENMO_HANDLE}
+                        </span>
+                    </div>
+                    <a
+                        href={VENMO_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-4 flex w-full items-center justify-center gap-2 rounded-full border-2 border-[#008cff] bg-[#008cff] px-6 py-3.5 text-sm font-extrabold text-white transition-colors hover:border-[#0074de] hover:bg-[#0074de] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#008cff]"
+                    >
+                        Donate with Venmo
+                        <ArrowRight aria-hidden className="size-4" />
+                        <span className="sr-only">(opens in a new tab)</span>
+                    </a>
+                </div>
+            </div>
+        </section>
     );
 }
 
