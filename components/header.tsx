@@ -72,7 +72,7 @@ export default function Header() {
         </Link>
 
         {/* Desktop navigation */}
-        <nav aria-label="Main" className="hidden items-center gap-8 md:flex">
+        <nav aria-label="Main" className="hidden items-center gap-8 xl:flex">
           {NAV_LINKS.map((link) => (
             <Link key={link.href} href={link.href} className={linkClass}>
               {link.label}
@@ -87,7 +87,7 @@ export default function Header() {
         {/* Mobile menu toggle */}
         <button
           type="button"
-          className="rounded p-2 text-[#12303f] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#12303f] md:hidden"
+          className="rounded p-2 text-[#12303f] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#12303f] xl:hidden"
           aria-expanded={menuOpen}
           aria-controls="mobile-nav"
           aria-label={menuOpen ? "Close menu" : "Open menu"}
@@ -117,7 +117,7 @@ export default function Header() {
         <nav
           id="mobile-nav"
           aria-label="Mobile"
-          className="flex flex-col items-start gap-4 border-t border-black/10 px-6 py-4 md:hidden"
+          className="flex flex-col items-start gap-4 border-t border-black/10 px-6 py-4 xl:hidden"
         >
           {NAV_LINKS.map((link) => (
             <Link
