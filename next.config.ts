@@ -1,12 +1,15 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  async redirects() {
+  /**
+   * Rewrites /donate to /support so requests to /donate serve the support page
+   * without creating an HTTP redirect loop with cached redirects.
+   */
+  async rewrites() {
     return [
       {
-        source: "/support",
-        destination: "/donate",
-        permanent: true,
+        source: "/donate",
+        destination: "/support",
       },
     ];
   },
