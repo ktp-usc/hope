@@ -29,6 +29,9 @@ const VENMO_HANDLE = "@HandsOnHOPENGO";
 const VENMO_URL = "https://account.venmo.com/u/HandsOnHOPENGO";
 const CONTACT_EMAIL = "aturner@handsonhope.ngo";
 
+/**
+ * Renders direct donation channels including PayPal Giving Fund and Venmo Charity.
+ */
 function DonationWidget() {
     return (
         <section
@@ -68,7 +71,7 @@ function DonationWidget() {
 
                 {/* Venmo Charity */}
                 <div className="rounded-2xl border border-line bg-paper/60 p-5 transition-colors hover:border-[#008cff]/40">
-                    <div className="flex items-start justify-between gap-2">
+                    <div className="flex flex-wrap items-start justify-between gap-2">
                         <div>
                             <h3 className="font-display text-xl tracking-[-0.01em]">Venmo Charity</h3>
                             <p className="mt-1 text-xs text-quiet">Direct app or web profile donation</p>
@@ -93,6 +96,12 @@ function DonationWidget() {
     );
 }
 
+/**
+ * Renders the Support & Donate page layout.
+ *
+ * @param props - Component properties.
+ * @param props.enabled - When true, displays donation widgets; otherwise displays the support inquiry form.
+ */
 export default function Donate({ enabled }: { enabled: boolean }) {
     return (
         <div className="min-h-screen bg-paper text-ink">

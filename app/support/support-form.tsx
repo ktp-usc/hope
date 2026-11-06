@@ -11,6 +11,10 @@ const interestOptions = [
     { value: "other", label: "Other inquiry" },
 ] as const;
 
+/**
+ * Inquiry form allowing users to submit interest in supporting HOPE through
+ * equipment, materials, expertise, or workplace giving.
+ */
 export default function SupportForm() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -20,6 +24,11 @@ export default function SupportForm() {
 
     const valid = name.trim().length > 0 && email.trim().includes("@") && message.trim().length > 0;
 
+    /**
+     * Handles support form submission and displays the confirmation state when valid.
+     *
+     * @param e - Form submission event.
+     */
     function onSubmit(e: React.FormEvent) {
         e.preventDefault();
         if (valid) {
@@ -27,6 +36,9 @@ export default function SupportForm() {
         }
     }
 
+    /**
+     * Resets form values and returns the form to the entry state.
+     */
     function onReset() {
         setName("");
         setEmail("");
