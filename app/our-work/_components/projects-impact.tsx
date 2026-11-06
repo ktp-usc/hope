@@ -8,7 +8,7 @@ import printedHandImg from "@/public/images/projects/08_HOPE_Printed_Hand.png";
 const projects = [
   {
     title: "Eli's Bike Arm — Designing for the Ride",
-    slug: "eli-bike-arm",
+    slug: "elis-bike-arm",
     category: "Adaptive Device",
     status: "Iterative Engineering",
     image: eliArmImg,
@@ -18,7 +18,7 @@ const projects = [
   },
   {
     title: "When HOPE Shifted Its 3D Printers to PPE",
-    slug: "covid-ppe",
+    slug: "ppe-response",
     category: "Community Response",
     status: "Small-Batch Fabrication",
     image: ppeFramesImg,
@@ -28,7 +28,7 @@ const projects = [
   },
   {
     title: "Where HOPE's Hands-On Work Began",
-    slug: "early-hands",
+    slug: "hands-on-beginnings",
     category: "Prosthetic Exploration",
     status: "Foundational Roots",
     image: printedHandImg,
