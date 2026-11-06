@@ -1,14 +1,12 @@
-import styles from "../page.module.css";
-
 export default function WhatWeDo() {
   return (
-    <section className={styles.work} aria-labelledby="what-we-do-title">
-      <div className={`${styles.container} ${styles.workGrid}`}>
+    <section className="bg-[#fbf9f4] py-20 lg:py-24" aria-labelledby="what-we-do-title">
+      <div className="mx-auto w-[calc(100%-48px)] max-w-[1280px] grid gap-10 md:grid-cols-[1fr_1.2fr] md:gap-12">
         <div>
-          <p className={styles.label}>What we do</p>
-          <h2 id="what-we-do-title">Engineering around a practical need.</h2>
+          <p className="w-fit rounded-[40px] bg-[#102743] px-4 py-1.5 text-xs leading-[1.3] font-bold tracking-[0.5px] text-white uppercase">What we do</p>
+          <h2 id="what-we-do-title" className="mt-5 [font-family:var(--font-dm-serif),Georgia,serif] text-[clamp(32px,3.5vw,48px)] leading-[1.15] font-normal tracking-[-0.3px] text-[#102743]">Engineering around a practical need.</h2>
         </div>
-        <div className={styles.workCopy}>
+        <div className="grid max-w-[680px] gap-5 text-base text-[#475569] [&_p]:leading-[1.7]">
           <p>
             HOPE develops experimental prosthetic devices and other assistive
             technologies, ranging from custom, task-specific solutions to adaptive designs.

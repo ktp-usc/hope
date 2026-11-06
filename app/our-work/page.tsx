@@ -3,7 +3,6 @@ import OurWorkHero from "./_components/our-work-hero";
 import WhatWeDo from "./_components/what-we-do";
 import ProjectsImpact from "./_components/projects-impact";
 import ProjectProcess from "./_components/project-process";
-import styles from "./page.module.css";
 
 export const metadata: Metadata = {
   title: "Our Work | HOPE",
@@ -13,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function OurWorkPage() {
   return (
-    <main className={styles.page}>
+    <main className="bg-white [font-family:var(--font-manrope),-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif] text-base leading-[1.6] text-[#102743]">
       <OurWorkHero />
       <WhatWeDo />
       <ProjectsImpact />
