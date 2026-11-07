@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { ArrowDown, ArrowUpRight, Handshake, Settings, Wrench } from "lucide-react";
+import Link from "next/link";
+import { ArrowDown, ArrowRight, ArrowUpRight, Handshake, Settings, Wrench } from "lucide-react";
 import styles from "./page.module.css";
 import workshopImage from "./about-images/13_Creativibe_Display_Team.jpg";
 import presentDayImage from "./about-images/11_First_HOPE_Printer_Build.jpg";
@@ -92,6 +93,14 @@ export default function AboutPage() {
               <span className={styles.number}>{String(index + 1).padStart(2, "0")}</span>
             </li>)}
           </ol>
+          <div className={styles.historyActions}>
+            <Link className={`${styles.button} ${styles.yellowButton}`} href="/history">
+              Explore Full HOPE History &amp; Archive <ArrowRight size={17} aria-hidden="true" />
+            </Link>
+            <Link className={`${styles.button} ${styles.historySecondaryButton}`} href="/alumni">
+              Alumni &amp; Legacy Directory <ArrowRight size={17} aria-hidden="true" />
+            </Link>
+          </div>
         </section>
       </div>
 
