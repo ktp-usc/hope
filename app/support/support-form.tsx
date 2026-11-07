@@ -14,6 +14,7 @@ const interestOptions = [
 /**
  * Inquiry form allowing users to submit interest in supporting HOPE through
  * equipment, materials, expertise, or workplace giving.
+ * To be connected to the email intake API in a subsequent ticket.
  */
 export default function SupportForm() {
     const [name, setName] = useState("");
@@ -54,7 +55,7 @@ export default function SupportForm() {
         >
             {done ? (
                 <div role="status" className="flex min-h-[420px] flex-col items-center justify-center text-center">
-                    <h2 className="font-display text-4xl tracking-[-0.02em]">Thank you.</h2>
+                    <h2 className="font-display text-4xl tracking-[-0.02em] text-ink">Thank you.</h2>
                     <p className="mt-3 max-w-[20rem] leading-7 text-quiet text-pretty">
                         We appreciate your willingness to support H.O.P.E. Our team will review your message and reach out shortly.
                     </p>
@@ -68,7 +69,7 @@ export default function SupportForm() {
                 </div>
             ) : (
                 <>
-                    <h2 className="font-display text-3xl tracking-[-0.02em] sm:text-4xl">Support H.O.P.E.</h2>
+                    <h2 className="font-display text-3xl tracking-[-0.02em] text-ink sm:text-4xl">Support H.O.P.E.</h2>
                     <p className="mt-2 text-sm text-quiet">
                         Direct donations are temporarily paused, but there are many vital ways to help. Let us know how you can contribute.
                     </p>
@@ -145,10 +146,18 @@ export default function SupportForm() {
                     >
                         Send support inquiry
                     </Button>
-                    {/* <p className="mt-4 text-center text-xs text-quiet">Our team responds within 2-3 business days</p> */}
+
+                    <p className="mt-4 text-center text-xs text-quiet">
+                        Prefer direct email? Reach our Logistics lead at{" "}
+                        <a
+                            href="mailto:aturner@handsonhope.ngo?subject=Supporting%20HOPE%20Inquiry"
+                            className="text-quiet transition-colors hover:text-hope hover:underline decoration-1 underline-offset-2"
+                        >
+                            aturner@handsonhope.ngo
+                        </a>
+                    </p>
                 </>
             )}
         </form>
     );
 }
-
