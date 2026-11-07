@@ -21,7 +21,11 @@ Studio: `/studio` after `npm run dev`. Test GROQ in Studio → Vision before har
 
 ## Core model
 
-No schema types are currently established in the repository (`schema.types` in `sanity/schemaTypes/index.ts` is empty).
+KAN-11 adds the `leader` document in `sanity/schemas/leader.ts`, exported by
+`sanity/schemas/index.ts` and registered through `sanity/schemaTypes/index.ts`.
+It stores name, title, organization affiliation, plain-text bio, optional headshot,
+and display order. See `sanity/leadership-setup.md` for the query, fallback, and
+draft-only seeding workflow. Other content types are not yet established.
 
 When creating the initial schema types:
 - Define the needed document and object types under `sanity/schemaTypes/`.

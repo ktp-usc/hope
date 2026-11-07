@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { ArrowDown, ArrowUpRight, Handshake, Settings, Wrench } from "lucide-react";
 import styles from "./page.module.css";
+import { getLeadership } from "@/sanity/lib/leadership";
 import workshopImage from "./about-images/13_Creativibe_Display_Team.jpg";
 import presentDayImage from "./about-images/11_First_HOPE_Printer_Build.jpg";
 
@@ -19,21 +20,18 @@ const milestones = [
   { title: "Current partnerships & operations", description: "Today, H.O.P.E. continues its work in experimental prosthetics, adaptive technologies, accessibility solutions, and student-led engineering. Collaborations with universities, nonprofits, and community partners help expand its capabilities and opportunities." },
 ];
 
-// Role summaries from the working content packet, not individual biographies.
-const leaders = [
-  { name: "Abby Herschman", role: "Chair, H.O.P.E. Inc. Board of Directors", description: "Provides board leadership and governance oversight for H.O.P.E. Inc., supporting the nonprofit’s long-term mission and organizational continuity." },
-  { name: "Andrew Super", role: "Vice Chair, H.O.P.E. Inc. Board of Directors", description: "Serves as Vice Chair of the Board, contributing to nonprofit oversight, organizational continuity, and support for H.O.P.E.’s mission." },
-  { name: "Ashley Turner", role: "Board Director, Logistics", description: "Serves on the H.O.P.E. Inc. Board of Directors with a focus on logistics and organizational support." },
-  { name: "Matthew Yvon", role: "Chief Executive Officer, H.O.P.E. Inc.", description: "Leads H.O.P.E. Inc.’s executive operations, helping coordinate the nonprofit’s resources, activities, and organizational development." },
-];
-
 function HandMark({ outline = false }: { outline?: boolean }) {
   return <div aria-hidden="true" className={`${styles.handMark} ${outline ? styles.outline : ""}`}>
     <span /><span /><span /><span />
   </div>;
 }
 
-export default function AboutPage() {
+export const revalidate = 60;
+
+export default async function AboutPage() {
+  const leaders = await getLeadership();
+  const nonprofitLeaders = leaders.filter((leader) => leader.affiliation !== "hope-student-org");
+  const studentLeaders = leaders.filter((leader) => leader.affiliation === "hope-student-org");
   return (
     <main className={styles.page}>
       <section className={styles.hero} aria-labelledby="about-title">
@@ -122,20 +120,29 @@ export default function AboutPage() {
           <span className={styles.label}>Leadership</span>
           <div className={styles.sectionHeading}><h2 id="leadership-title">The people helping<br />shape H.O.P.E.</h2><p>H.O.P.E. combines student-driven leadership with long-term nonprofit oversight. Its Board of Directors provides continuity and governance, while executive and student leaders guide daily operations, projects, and organizational development.</p></div>
           <div className={styles.leaderGrid}>
-            {leaders.map(({ name, role, description }, index) => <article className={styles.leaderCard} key={name}>
-              <div className={styles.headshot} role="img" aria-label={`Headshot placeholder for ${name}`}>
-                <span className={styles.photoBadge}><i className={index % 2 ? styles.red : ""} />Headshot forthcoming</span>
+            {nonprofitLeaders.map(({ _id, name, title, bio, headshotUrl }, index) => <article className={styles.leaderCard} key={_id}>
+              <div className={`${styles.headshot} relative overflow-hidden`}>
+                {headshotUrl ? (
+                  <Image src={headshotUrl} alt={`Portrait of ${name}`} fill sizes="(max-width: 480px) 90vw, (max-width: 1100px) 44vw, 23vw" className="object-cover" unoptimized />
+                ) : (
+                  <span className={styles.photoBadge}><i className={index % 2 ? styles.red : ""} />Photo Pending</span>
+                )}
               </div>
-              <div className={styles.leaderCopy}><h3>{name}</h3><p className={styles.leaderRole}>{role}</p><p>{description}</p></div>
+              <div className={styles.leaderCopy}><h3>{name}</h3><p className={styles.leaderRole}>{title}</p><p>{bio}</p></div>
             </article>)}
           </div>
           <section className={styles.studentLeadership} aria-labelledby="student-leadership-title">
             <h3 id="student-leadership-title">Student Organization Leadership</h3>
-            <article className={styles.studentCard}>
-              <h4>Trinity Oglesby</h4>
-              <p className={styles.leaderRole}>President, H.O.P.E. Student Organization at USC</p>
-              <p>Leads the university-based student organization, where students organize, train, recruit, and carry out much of H.O.P.E.’s hands-on project work.</p>
-            </article>
+            {studentLeaders.map(({ _id, name, title, bio, headshotUrl }) => (
+              <article className={styles.studentCard} key={_id}>
+                {headshotUrl ? (
+                  <Image src={headshotUrl} alt={`Portrait of ${name}`} width={80} height={80} className="mb-4 rounded-xl object-cover" unoptimized />
+                ) : <span className={`${styles.photoBadge} mb-4`}>Photo Pending</span>}
+                <h4>{name}</h4>
+                <p className={styles.leaderRole}>{title}</p>
+                <p>{bio}</p>
+              </article>
+            ))}
           </section>
         </div>
       </section>
