@@ -32,6 +32,33 @@ const supportWays = [
 ];
 
 /**
+ * Determines contrasting text color for custom hex background.
+ */
+function getContrastTextColor(hexColor?: string): string {
+  if (!hexColor) return "text-white";
+  const hex = hexColor.replace(/^#/, "");
+  let r = 0;
+  let g = 0;
+  let b = 0;
+  if (hex.length === 3) {
+    r = parseInt(hex[0] + hex[0], 16);
+    g = parseInt(hex[1] + hex[1], 16);
+    b = parseInt(hex[2] + hex[2], 16);
+  } else if (hex.length === 6) {
+    r = parseInt(hex.slice(0, 2), 16);
+    g = parseInt(hex.slice(2, 4), 16);
+    b = parseInt(hex.slice(4, 6), 16);
+  } else {
+    return "text-white";
+  }
+  if (Number.isNaN(r) || Number.isNaN(g) || Number.isNaN(b)) {
+    return "text-white";
+  }
+  const yiq = (r * 299 + g * 587 + b * 114) / 1000;
+  return yiq >= 128 ? "text-[#102743]" : "text-white";
+}
+
+/**
  * Returns Tailwind class mappings for different brand color themes.
  */
 function getThemeStyles(theme?: string, customColor?: string) {
@@ -73,10 +100,11 @@ function getThemeStyles(theme?: string, customColor?: string) {
       };
     case "custom":
       if (customColor) {
+        const textColor = getContrastTextColor(customColor);
         return {
           cardHover: "hover:border-black/30",
           badge: "bg-slate-100 text-slate-800",
-          button: "text-white focus-visible:outline-black",
+          button: `${textColor} focus-visible:outline-black`,
           buttonStyle: {
             backgroundColor: customColor,
             borderColor: customColor,

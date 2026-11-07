@@ -17,7 +17,7 @@ interface SiteChromeProps {
  */
 export default function SiteChrome({ children }: SiteChromeProps) {
   const pathname = usePathname();
-  const isStudio = pathname?.startsWith("/studio");
+  const isStudio = pathname === "/studio" || pathname?.startsWith("/studio/");
 
   if (isStudio) {
     return <>{children}</>;

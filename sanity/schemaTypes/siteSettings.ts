@@ -89,6 +89,19 @@ export const siteSettings = defineType({
               type: "string",
               description: "Required only if 'Custom Hex Color' theme is selected (e.g., #635bff).",
               hidden: ({ parent }) => parent?.colorTheme !== "custom",
+              validation: (Rule) =>
+                Rule.custom((value, context) => {
+                  const parent = context.parent as { colorTheme?: string } | undefined;
+                  if (parent?.colorTheme === "custom") {
+                    if (!value) {
+                      return "Custom color is required when 'Custom Hex Color' is selected.";
+                    }
+                    if (!/^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.test(value)) {
+                      return "Must be a valid hex color code (e.g. #635bff).";
+                    }
+                  }
+                  return true;
+                }),
             }),
             defineField({
               name: "enabled",

@@ -53,6 +53,31 @@ test("siteSettings schema defines donationsToggle and donationMethods array", ()
   assert.equal(methodsField.type, "array");
   assert.equal(methodsField.title, "Donation Methods");
 
+  // Verify customColor validation on donationMethod
+  const methodMember = methodsField.of.find((member) => member.name === "donationMethod");
+  assert.ok(methodMember, "Missing donationMethod member");
+  const customColorField = methodMember.fields.find((f) => f.name === "customColor");
+  assert.ok(customColorField, "Missing customColor field");
+  assert.ok(typeof customColorField.validation === "function", "customColor must have validation rule");
+  const ruleMock = { custom: (fn) => fn };
+  const validateCustomColor = customColorField.validation(ruleMock);
+  assert.equal(
+    validateCustomColor(undefined, { parent: { colorTheme: "custom" } }),
+    "Custom color is required when 'Custom Hex Color' is selected."
+  );
+  assert.equal(
+    validateCustomColor("invalid-hex", { parent: { colorTheme: "custom" } }),
+    "Must be a valid hex color code (e.g. #635bff)."
+  );
+  assert.equal(
+    validateCustomColor("#635bff", { parent: { colorTheme: "custom" } }),
+    true
+  );
+  assert.equal(
+    validateCustomColor(undefined, { parent: { colorTheme: "hope-blue" } }),
+    true
+  );
+
   // Verify announcement banner and legacy fields are removed
   const fieldNames = siteSettings.fields.map((f) => f.name);
   assert.ok(!fieldNames.includes("announcementBannerEnabled"));
@@ -75,9 +100,26 @@ test("GROQ query projects donations toggle, donationMethods, and orders by _upda
 });
 
 test("getSiteSettings falls back to empty donationMethods when dataset is empty or offline", async () => {
-  const settings = await getSiteSettings();
-  assert.equal(settings.donationsEnabled, false);
-  assert.deepEqual(settings.donationMethods, []);
+  const prevDonations = process.env.DONATIONS_ENABLED;
+  const prevNextDonations = process.env.NEXT_PUBLIC_DONATIONS_ENABLED;
+  delete process.env.DONATIONS_ENABLED;
+  delete process.env.NEXT_PUBLIC_DONATIONS_ENABLED;
+  try {
+    const settings = await getSiteSettings();
+    assert.equal(settings.donationsEnabled, false);
+    assert.deepEqual(settings.donationMethods, []);
+  } finally {
+    if (prevDonations !== undefined) {
+      process.env.DONATIONS_ENABLED = prevDonations;
+    } else {
+      delete process.env.DONATIONS_ENABLED;
+    }
+    if (prevNextDonations !== undefined) {
+      process.env.NEXT_PUBLIC_DONATIONS_ENABLED = prevNextDonations;
+    } else {
+      delete process.env.NEXT_PUBLIC_DONATIONS_ENABLED;
+    }
+  }
 });
 
 test("getSiteSettings preserves active donation methods from Sanity while excluding inactive ones", async () => {
