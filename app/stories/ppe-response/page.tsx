@@ -1,9 +1,9 @@
-import type { Metadata } from "next";
 import HistoricalStoryTemplate from "../_components/HistoricalStoryTemplate";
 import heroImage from "./images/09_HOPE_Face_Shield_Frames.png";
 import shippingImage from "./images/15_Face_Shields_Boxed_For_Shipping.jpg";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "When HOPE Shifted Its 3D Printers to PPE | H.O.P.E. Stories", description: "During the COVID-19 response, HOPE members shifted part of their 3D-printing work toward personal protective equipment." };
+export const metadata = pageMetadata("When HOPE Shifted Its 3D Printers to PPE", "During the COVID-19 response, HOPE members shifted part of their 3D-printing work toward personal protective equipment.", "/stories/ppe-response");
 
 export default function StoryPage() {
   return <HistoricalStoryTemplate

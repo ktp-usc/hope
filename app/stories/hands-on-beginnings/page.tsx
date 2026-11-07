@@ -1,9 +1,9 @@
-import type { Metadata } from "next";
 import HistoricalStoryTemplate from "../_components/HistoricalStoryTemplate";
 import heroImage from "./images/11_First_HOPE_Printer_Build.jpg";
 import handImage from "./images/08_HOPE_Printed_Hand.png";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Where HOPE’s Hands-On Work Began | H.O.P.E. Stories", description: "3D-printed prosthetic hands were at the center of HOPE’s early work." };
+export const metadata = pageMetadata("Where HOPE’s Hands-On Work Began", "3D-printed prosthetic hands were at the center of HOPE’s early work.", "/stories/hands-on-beginnings");
 
 export default function StoryPage() {
   return <HistoricalStoryTemplate

@@ -1,12 +1,8 @@
-import type { Metadata } from "next";
 import { Clock3, ArrowRight, CheckCircle } from "lucide-react";
 import GetHelpForm from "@/components/forms/GetHelpForm";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Get Help | H.O.P.E. - Hands on Prosthetic Engineering",
-  description:
-    "Connect with HOPE to discuss prosthetic, assistive, adaptive, and accessibility engineering needs.",
-};
+export const metadata = pageMetadata("Get Help", "Connect with HOPE to discuss prosthetic, assistive, adaptive, and accessibility engineering needs.", "/get-help");
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (

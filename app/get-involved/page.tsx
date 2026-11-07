@@ -1,12 +1,8 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-    title: "Get Involved | HOPE Inc.",
-    description:
-        "HOPE brings together students from many different backgrounds to work on real projects, develop practical skills, and help run the organization.",
-};
+export const metadata = pageMetadata("Get Involved", "HOPE brings together students from many different backgrounds to work on real projects, develop practical skills, and help run the organization.", "/get-involved");
 
 // Verified H.O.P.E. page on Garnet Gate (USC). It also lists the chapter's contact details.
 const GARNET_GATE_URL = "https://garnetgate.sa.sc.edu/organization/HOPE";

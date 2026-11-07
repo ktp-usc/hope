@@ -1,11 +1,7 @@
-import type { Metadata } from "next";
 import Donate from "./donate";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-    title: "Support HOPE | HOPE Inc.",
-    description:
-        "Give through the PayPal Giving Fund or Venmo, or support H.O.P.E. with equipment, materials, expertise, and mentorship.",
-};
+export const metadata = pageMetadata("Support HOPE", "Give through the PayPal Giving Fund or Venmo, or support H.O.P.E. with equipment, materials, expertise, and mentorship.", "/support");
 
 // Toggle donations with DONATIONS_ENABLED (fallback to NEXT_PUBLIC_DONATIONS_ENABLED); enabled only when set to "true".
 // force-dynamic so the flag is read at request time (no rebuild needed to flip it).

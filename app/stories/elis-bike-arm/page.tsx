@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
 import HistoricalStoryTemplate from "../_components/HistoricalStoryTemplate";
 import heroImage from "./images/02_Eli_On_Bicycle.jpg";
 import detailImage from "./images/01_Eli_Bike_Arm_Detail.jpg";
 import assemblyImage from "./images/04_Eli_Bike_Assembly.jpg";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Eli’s Bike Arm — Designing for the Ride | H.O.P.E. Stories", description: "Eli’s Bike Arm started as a custom engineering challenge: add an arm to the bicycle that Eli could use as another point of contact and press against for counterforce while riding." };
+export const metadata = pageMetadata("Eli’s Bike Arm: Designing for the Ride", "Eli’s Bike Arm started as a custom engineering challenge: add an arm to the bicycle that Eli could use as another point of contact and press against for counterforce while riding.", "/stories/elis-bike-arm");
 
 export default function StoryPage() {
   return <HistoricalStoryTemplate

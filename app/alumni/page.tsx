@@ -1,15 +1,12 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import AlumniReconnectForm from "@/components/forms/AlumniReconnectForm";
 import headerImage from "@/public/images/campus-community.jpg";
 import { ContributorDirectory, FormerPresidents } from "./_components/alumni-rosters";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Alumni & Legacy | H.O.P.E.",
-  description: "Reconnect with HOPE, help preserve our shared history, and recognize the people who helped build Hands on Prosthetic Engineering.",
-};
+export const metadata = pageMetadata("Alumni & Legacy", "Reconnect with HOPE, help preserve our shared history, and recognize the people who helped build Hands on Prosthetic Engineering.", "/alumni");
 
 export default function AlumniPage() {
   return <main className="bg-white text-ink">

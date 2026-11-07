@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowDown, FileBadge } from "lucide-react";
@@ -12,8 +11,9 @@ import team from "./history-images/13_Creativibe_Display_Team.jpg";
 import eli from "./history-images/02_Eli_On_Bicycle.jpg";
 import detail from "./history-images/01_Eli_Bike_Arm_Detail.jpg";
 import assembly from "./history-images/04_Eli_Bike_Assembly.jpg";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Our History | H.O.P.E.", description: "From 3D-printed hands to a broader engineering mission. Explore the people, projects, and milestones that shaped H.O.P.E." };
+export const metadata = pageMetadata("Our History", "From 3D-printed hands to a broader engineering mission. Explore the people, projects, and milestones that shaped H.O.P.E.", "/history");
 
 interface Milestone {
   period: string;

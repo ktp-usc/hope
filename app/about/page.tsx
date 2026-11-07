@@ -1,14 +1,11 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import { ArrowDown, ArrowUpRight, Handshake, Settings, Wrench } from "lucide-react";
 import styles from "./page.module.css";
 import workshopImage from "./about-images/13_Creativibe_Display_Team.jpg";
 import presentDayImage from "./about-images/11_First_HOPE_Printer_Build.jpg";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "About H.O.P.E.",
-  description: "Hands on Prosthetic Engineering: our purpose, history, and the people helping shape H.O.P.E.",
-};
+export const metadata = pageMetadata("About H.O.P.E.", "Hands on Prosthetic Engineering: our purpose, history, and the people helping shape H.O.P.E.", "/about");
 
 const milestones = [
   { title: "Origins", description: "H.O.P.E. began at the University of South Carolina in 2016, when students came together to explore 3D-printed prosthetic hands and upper-limb solutions for children. Early projects drew on designs and resources shared through the open-source prosthetics community." },
