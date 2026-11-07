@@ -29,7 +29,7 @@ export default function SupportForm() {
             </div>
 
             <p className="mt-6 text-center text-xs text-quiet">
-                Prefer direct email? Reach our Logistics lead at{" "}
+                Prefer direct email? Reach out at{" "}
                 <a
                     href="mailto:aturner@handsonhope.ngo?subject=Supporting%20HOPE%20Inquiry"
                     className="text-quiet transition-colors hover:text-hope hover:underline decoration-1 underline-offset-2"
