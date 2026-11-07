@@ -195,3 +195,15 @@
   :global(html):has(.page) { scroll-behavior: smooth; }
   .page section[id] { scroll-margin-top: 24px; }
 }
+
+
+.historyActions {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 48px;
+}
+
+.historySecondaryButton {
+  border: 1px solid #121212;
+}
