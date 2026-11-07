@@ -25,33 +25,12 @@ export interface SiteSettings {
   donationMethods: DonationMethod[];
 }
 
-export const INITIAL_DEFAULT_METHODS: DonationMethod[] = [
-  {
-    title: "PayPal Giving Fund",
-    note: "Hands On Prosthetic Engineering - HOPE",
-    url: "https://www.paypal.com/us/fundraiser/charity/2442369",
-    buttonLabel: "Donate with PayPal",
-    badgeText: "0% charity fees",
-    colorTheme: "hope-blue",
-    enabled: true,
-  },
-  {
-    title: "Venmo Charity",
-    note: "Direct app or web profile donation",
-    url: "https://account.venmo.com/u/HandsOnHOPENGO",
-    buttonLabel: "Donate with Venmo",
-    badgeText: "@HandsOnHOPENGO",
-    colorTheme: "venmo-blue",
-    enabled: true,
-  },
-];
-
 export const DEFAULT_SITE_SETTINGS: SiteSettings = {
   donationsEnabled: false,
-  donationMethods: INITIAL_DEFAULT_METHODS,
+  donationMethods: [],
 };
 
-export const siteSettingsQuery = `*[_type == "siteSettings" && _id in ["siteSettings", "drafts.siteSettings"]][0]{
+export const siteSettingsQuery = `*[_type == "siteSettings" && _id in ["siteSettings", "drafts.siteSettings"]] | order(_updatedAt desc)[0]{
   donationsEnabled,
   donationMethods[]{
     title,
@@ -67,7 +46,8 @@ export const siteSettingsQuery = `*[_type == "siteSettings" && _id in ["siteSett
 
 /**
  * Fetches the singleton siteSettings document from Sanity CMS with a 30-second ISR cache.
- * Provides safe default fallbacks if Sanity is unpopulated or unreachable.
+ * When the donationMethods array is empty in Sanity, it strictly returns an empty array ([])
+ * without synthesizing default payment cards.
  */
 export async function getSiteSettings(): Promise<SiteSettings> {
   try {
@@ -91,7 +71,7 @@ export async function getSiteSettings(): Promise<SiteSettings> {
           envDonations !== undefined
             ? envDonations === "true"
             : DEFAULT_SITE_SETTINGS.donationsEnabled,
-        donationMethods: INITIAL_DEFAULT_METHODS,
+        donationMethods: [],
       };
     }
 
@@ -102,7 +82,7 @@ export async function getSiteSettings(): Promise<SiteSettings> {
           : DEFAULT_SITE_SETTINGS.donationsEnabled,
       donationMethods: Array.isArray(data.donationMethods)
         ? data.donationMethods.filter((m) => m && m.enabled !== false && m.url)
-        : INITIAL_DEFAULT_METHODS,
+        : [],
     };
   } catch (error) {
     console.error("Failed to fetch site settings from Sanity, using defaults:", error);
@@ -114,7 +94,7 @@ export async function getSiteSettings(): Promise<SiteSettings> {
         envDonations !== undefined
           ? envDonations === "true"
           : DEFAULT_SITE_SETTINGS.donationsEnabled,
-      donationMethods: INITIAL_DEFAULT_METHODS,
+      donationMethods: [],
     };
   }
 }

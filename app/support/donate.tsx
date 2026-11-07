@@ -168,9 +168,21 @@ function DonationCards({ methods }: { methods: DonationMethod[] }) {
             <PaymentCard key={`${method.title}-${idx}`} method={method} />
           ))
         ) : (
-          <p className="text-sm text-quiet">
-            No donation methods are currently configured. Please check back soon or reach out to our team.
-          </p>
+          <div className="rounded-2xl border border-line bg-paper/60 p-6 text-center">
+            <p className="font-display text-xl text-ink">
+              No current ways to donate.
+            </p>
+            <p className="mt-2 text-sm leading-6 text-quiet">
+              Direct giving methods are currently being updated. Please reach out to{" "}
+              <a
+                href="mailto:aturner@handsonhope.ngo?subject=HOPE%20Donation%20Inquiry"
+                className="font-semibold text-hope underline underline-offset-2 hover:text-hope-deep"
+              >
+                aturner@handsonhope.ngo
+              </a>{" "}
+              to discuss ways to contribute.
+            </p>
+          </div>
         )}
       </div>
     </section>
