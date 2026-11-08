@@ -123,8 +123,8 @@ export default function AboutPage() {
           <div className={styles.sectionHeading}><h2 id="leadership-title">The people helping<br />shape H.O.P.E.</h2><p>H.O.P.E. combines student-driven leadership with long-term nonprofit oversight. Its Board of Directors provides continuity and governance, while executive and student leaders guide daily operations, projects, and organizational development.</p></div>
           <div className={styles.leaderGrid}>
             {leaders.map(({ name, role, description }, index) => <article className={styles.leaderCard} key={name}>
-              <div className={styles.headshot} role={name === "Andrew Super" ? undefined : "img"} aria-label={name === "Andrew Super" ? undefined : `Headshot placeholder for ${name}`}>
-                {name === "Andrew Super" ? <Image src="/images/alumni/16_Andrew_Super_Headshot.jpg" alt="Andrew Super" fill sizes="(max-width: 700px) 90vw, (max-width: 1100px) 45vw, 22vw" className="object-contain" /> : <span className={styles.photoBadge}><i className={index % 2 ? styles.red : ""} />Headshot forthcoming</span>}
+              <div className={styles.headshot} role={(name === "Andrew Super" || name === "Matthew Yvon") ? undefined : "img"} aria-label={(name === "Andrew Super" || name === "Matthew Yvon") ? undefined : `Headshot placeholder for ${name}`}>
+                {(name === "Andrew Super" || name === "Matthew Yvon") ? <Image src={name === "Andrew Super" ? "/images/alumni/16_Andrew_Super_Headshot.jpg" : "/images/alumni/17_Matthew_Yvon_Headshot.jpg"} alt={name === "Andrew Super" ? "Andrew Super" : "Matthew Yvon, Chief Executive Officer of H.O.P.E. Inc."} fill sizes="(max-width: 700px) 90vw, (max-width: 1100px) 45vw, 22vw" className="object-contain" /> : <span className={styles.photoBadge}><i className={index % 2 ? styles.red : ""} />Headshot forthcoming</span>}
               </div>
               <div className={styles.leaderCopy}><h3>{name}</h3><p className={styles.leaderRole}>{role}</p><p>{description}</p></div>
             </article>)}

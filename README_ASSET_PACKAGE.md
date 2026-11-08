@@ -9,4 +9,4 @@
 
 This is a **source asset package, not an implemented website change**. To use, extract into the root of the existing HOPE repository, preserving the `public/` paths. Keep `references/` outside `public` so supporting documentation and reference images are not publicly served by default.
 
-Known missing items: HOPE Inc. palm-facing hand logo, HOPE Student Org hand/P logo, leadership headshots 16 and 17. These may exist in other shared Drive folders or in the repository, but they were not among the uploaded files. Per the README, website publication and final page crops/captions require HOPE approval. The external P01 assembled shield image is on hold and excluded.
+Outstanding branding: verified distinct HOPE Inc. palm-facing hand and HOPE Student Org hand/P originals. Leadership headshots #16 (Andrew Super) and #17 (Matthew Yvon) are now available in the repository and integrated into their existing About profiles. They were not included in the initial package. Other leadership headshots remain outstanding. Per the README, website publication and final page crops/captions require HOPE approval. The external P01 assembled shield image is on hold and excluded.

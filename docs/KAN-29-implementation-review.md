@@ -47,7 +47,7 @@ The MIX full official source is used in its existing partner card, with contain 
 
 ## Outstanding requirements
 
-Distinct official HOPE entity marks and their approved mapping remain unverified; the separate Student Org hand/P source was not found. Matthew Yvon #17 and other leadership headshots remain missing. Existing USC/MUSC/KTP/e-NABLE imagery was preserved; this package does not establish approval for every existing partner asset. No live Sanity credentials/configuration are supplied, so remote asset loading and CMS branding availability cannot be verified. Do not infer a project ID from README examples. Final publication requires HOPE approval.
+Distinct official HOPE entity marks and their approved mapping remain unverified; the separate Student Org hand/P source was not found. Matthew Yvon?s official #17 headshot is now supplied and integrated into his existing About leadership profile using Next.js Image, responsive sizing and contain fit. Abby Herschman and Ashley Turner headshots remain outstanding. Existing USC/MUSC/KTP/e-NABLE imagery was preserved; this package does not establish approval for every existing partner asset. No live Sanity credentials/configuration are supplied, so remote asset loading and CMS branding availability cannot be verified. Do not infer a project ID from README examples. Final publication requires HOPE approval.
 
 ## Verification
 
@@ -66,3 +66,9 @@ Run browser checks with a server on port 3100 and HOPE_PLAYWRIGHT_PATH set to a 
 ## Proposed PR description
 
 Integrate all 15 curated HOPE images across existing project, history, outreach and story placements, add the official full MIX logo, and preserve source assets and established branding. Correct image descriptions and responsive containment, enable local shield-frame optimization, and allow only the configured Sanity CDN image namespace. Publication approval and distinct official entity marks remain outstanding. See verification results above.
+
+## Matthew Yvon headshot update
+
+Integrated `public/images/alumni/17_Matthew_Yvon_Headshot.jpg` into Matthew's existing About card. The official original is preserved unchanged. Responsive fill/contain sizing matches Andrew's existing treatment; descriptive alt text identifies Matthew and his role. Layout, copy, Andrew's profile and the remaining placeholders are unchanged. Final publication remains subject to HOPE approval.
+
+Headshot-update verification: lint passes with the existing GetHelpForm accessibility warning; TypeScript and all 11 unit tests pass; git diff --check passes. Edge checks at 375, 768 and 1440px confirmed Matthew's optimized image loads with contain fit, Andrew's image remains present, the other two placeholders remain, and no horizontal overflow occurs. Visually inspected the mobile portrait slot. No production build rerun for this image-only update; the previously verified missing-Sanity environment blocker remains.
