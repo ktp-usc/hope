@@ -45,7 +45,7 @@ function StoryFigure({ image, hero = false }: { image: StoryImage; hero?: boolea
       preload={hero}
       unoptimized={image.unoptimized}
       className={hero ? styles.heroPhoto : styles.supportingPhoto}
-      style={{ objectPosition: image.focalPosition ?? "center", objectFit: "cover", position: "absolute", inset: 0, width: "100%", height: "100%" }}
+      style={{ objectPosition: image.focalPosition ?? "center", objectFit: hero ? "cover" : "contain", position: "absolute", inset: 0, width: "100%", height: "100%" }}
     />}
     </div>
     {image.caption && <figcaption>{image.caption}</figcaption>}

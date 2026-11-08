@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import HistoricalStoryTemplate from "../_components/HistoricalStoryTemplate";
 import heroImage from "./images/02_Eli_On_Bicycle.jpg";
 import detailImage from "./images/01_Eli_Bike_Arm_Detail.jpg";
+import jointImage from "@/public/images/projects/03_Eli_Bike_Joint.jpg";
 import assemblyImage from "./images/04_Eli_Bike_Assembly.jpg";
 
 export const metadata: Metadata = { title: "Eli’s Bike Arm — Designing for the Ride | H.O.P.E. Stories", description: "Eli’s Bike Arm started as a custom engineering challenge: add an arm to the bicycle that Eli could use as another point of contact and press against for counterforce while riding." };
@@ -19,6 +20,7 @@ export default function StoryPage() {
       "The project shows the iterative side of HOPE’s work: understanding a specific need, designing around it, fitting and testing prototypes, and continuing to refine the solution through real-world use."
 ]}
     supportingImages={[
+      { src: jointImage, width: jointImage.width, height: jointImage.height, alt: "Red, green and yellow bike-arm joint and socket resting on a wooden table" },
       { src: detailImage, width: detailImage.width, height: detailImage.height, alt: "Close view of the custom bike-arm attachment on Eli’s bicycle" },
       { src: assemblyImage, width: assemblyImage.width, height: assemblyImage.height, alt: "Bike-arm components and tools arranged on a wooden table" },
     ]}

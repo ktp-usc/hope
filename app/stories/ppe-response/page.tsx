@@ -10,7 +10,7 @@ export default function StoryPage() {
     title={"When HOPE Shifted Its 3D Printers to PPE"}
     introduction={"During the COVID-19 response, HOPE members shifted part of their 3D-printing work toward personal protective equipment."}
     heroBackground="blue"
-    heroImage={{ src: heroImage, width: heroImage.width, height: heroImage.height, alt: "Stacks of colorful 3D-printed face-shield frames around a HOPE sign", unoptimized: true }}
+    heroImage={{ src: heroImage, width: heroImage.width, height: heroImage.height, alt: "Stacks of colorful 3D-printed face-shield frames around a HOPE sign" }}
     paragraphs={[
       "Working alongside a University of South Carolina professor and graduate students, HOPE students produced mask extenders and face-shield components using the same design, printing, and fabrication skills they had developed through other projects.",
       "The effort showed how HOPE members could adapt their technical skills to a different kind of need. Students used the equipment and experience available to them to contribute to the COVID-19 response while continuing the hands-on learning that is central to HOPE.",

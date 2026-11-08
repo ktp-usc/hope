@@ -45,7 +45,7 @@ export default function HistoryPage() {
         <p>What began as a student effort to create 3D-printed prosthetic hands has grown into a broader mission of hands-on engineering, practical problem-solving, and community impact. Explore the people, projects, and milestones that shaped H.O.P.E.</p>
         <a className={`${styles.button} ${styles.blueButton}`} href="#timeline">Explore our history <ArrowDown size={18} aria-hidden="true" /></a><Accents />
       </div>
-      <div className={styles.heroVisual}><Image src={workshop} alt="H.O.P.E. students gathered around engineering equipment in a workshop" fill preload sizes="(max-width: 850px) 100vw, 50vw" className={styles.cover} /></div>
+      <div className={styles.heroVisual}><Image src={workshop} alt="H.O.P.E. members gathered around a project display at Big Wednesday" fill preload sizes="(max-width: 850px) 100vw, 50vw" className={styles.cover} /></div>
     </section>
     <section className={`${styles.container} ${styles.introduction}`} aria-labelledby="intro-title">
       <div><SectionLabel>Where it started</SectionLabel><h2 id="intro-title">From 3D-printed hands to a broader engineering mission.</h2>
@@ -61,7 +61,7 @@ export default function HistoryPage() {
       <p className={styles.timelineIntro}>From a student organization to a broader engineering mission, here are some of the milestones that have shaped our work, our community, and our impact.</p>
       <TimelineReveal><ol className={styles.timeline}>{milestones.map(({ period, title, image, alt, color, description, href }) => <li key={period} className={`${styles.milestone} ${styles[color]}`}>
         <span className={styles.marker} aria-hidden="true" />
-        <div className={styles.milestoneVisual}>{image ? (href ? <Link href={href} aria-label={`${title} story`} className={styles.milestoneImageLink}><Image src={image} alt={alt} unoptimized={image === shields} fill sizes="(max-width: 850px) 85vw, 42vw" className={styles.cover} /></Link> : <Image src={image} alt={alt} unoptimized={image === shields} fill sizes="(max-width: 850px) 85vw, 42vw" className={styles.cover} />) : <div className={styles.nonprofit}><FileBadge size={106} strokeWidth={1.25} aria-hidden="true" /><div><h3>A stronger foundation<br />for a bigger impact.</h3><p>H.O.P.E. Inc. was established to expand our reach, resources, and long-term sustainability.</p></div></div>}</div>
+        <div className={styles.milestoneVisual}>{image ? (href ? <Link href={href} aria-label={`${title} story`} className={styles.milestoneImageLink}><Image src={image} alt={alt} fill sizes="(max-width: 850px) 85vw, 42vw" className={styles.cover} /></Link> : <Image src={image} alt={alt} fill sizes="(max-width: 850px) 85vw, 42vw" className={styles.cover} />) : <div className={styles.nonprofit}><FileBadge size={106} strokeWidth={1.25} aria-hidden="true" /><div><h3>A stronger foundation<br />for a bigger impact.</h3><p>H.O.P.E. Inc. was established to expand our reach, resources, and long-term sustainability.</p></div></div>}</div>
         <div className={styles.milestoneCopy}><p className={styles.period}>{period}</p><h3>{href ? <Link href={href} className={styles.milestoneLink}>{title}</Link> : title}</h3><p>{description}</p></div>
       </li>)}</ol></TimelineReveal>
     </div></section>

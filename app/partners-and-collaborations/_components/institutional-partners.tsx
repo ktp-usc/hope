@@ -30,7 +30,7 @@ const partners: InstitutionalPartner[] = [
         url: "https://sc.edu/",
     },
     {
-        logo: "/images/partners/mix.png",
+        logo: "/images/partners/the-mix-full.jpg",
         logoAlt: "The MIX logo",
         type: "ENTREPRENEURSHIP & INNOVATION",
         name: "The Midlands Innovation X-Change (The MIX)",
@@ -82,7 +82,7 @@ export default function InstitutionalPartners() {
                         >
                             <div>
                                 {/* Partner logo */}
-                                <div className="relative mb-6 h-16 w-full max-w-[220px]">
+                                <div className={`relative mb-6 w-full max-w-[220px] ${partner.logo.includes("the-mix-full") ? "h-40" : "h-16"}`}>
                                     <Image
                                         src={partner.logo}
                                         alt={partner.logoAlt}

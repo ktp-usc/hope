@@ -85,7 +85,7 @@
 .sectionHeading > h2 { flex-shrink: 0; }
 .leaderGrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 55px; }
 .leaderCard { overflow: hidden; background: white; border-radius: 20px; box-shadow: 0 12px 22px #00000008; }
-.headshot { height: 275px; background: #d7eaf7; padding: 22px; }
+.headshot { position: relative; overflow: hidden; height: 275px; background: #d7eaf7; padding: 22px; }
 .headshot .photoBadge { font-size: 10px; padding: 6px 10px; }
 .leaderCopy { padding: 25px 24px; min-height: 150px; }
 .leaderCopy h3 { font-size: 25px; font-weight: 400; margin-bottom: 16px; }

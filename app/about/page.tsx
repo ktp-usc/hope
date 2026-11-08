@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { ArrowDown, ArrowUpRight, Handshake, Settings, Wrench } from "lucide-react";
 import styles from "./page.module.css";
-import workshopImage from "./about-images/13_Creativibe_Display_Team.jpg";
-import presentDayImage from "./about-images/11_First_HOPE_Printer_Build.jpg";
+import workshopImage from "@/public/images/projects/13_Creativibe_Display_Team.jpg";
+import presentDayImage from "@/public/images/projects/14_Big_Wednesday_Team.jpg";
 
 export const metadata: Metadata = {
   title: "About H.O.P.E.",
@@ -99,7 +99,7 @@ export default function AboutPage() {
         <div className={styles.presentPhoto}>
           <Image
             src={presentDayImage}
-            alt="Students gathered around a 3D printer during a hands-on H.O.P.E. workshop."
+            alt="H.O.P.E. members gathered around a project display at Big Wednesday."
             fill
             sizes="(max-width: 700px) 90vw, (max-width: 1440px) 44vw, 630px"
             className={styles.panelImage}
@@ -123,8 +123,8 @@ export default function AboutPage() {
           <div className={styles.sectionHeading}><h2 id="leadership-title">The people helping<br />shape H.O.P.E.</h2><p>H.O.P.E. combines student-driven leadership with long-term nonprofit oversight. Its Board of Directors provides continuity and governance, while executive and student leaders guide daily operations, projects, and organizational development.</p></div>
           <div className={styles.leaderGrid}>
             {leaders.map(({ name, role, description }, index) => <article className={styles.leaderCard} key={name}>
-              <div className={styles.headshot} role="img" aria-label={`Headshot placeholder for ${name}`}>
-                <span className={styles.photoBadge}><i className={index % 2 ? styles.red : ""} />Headshot forthcoming</span>
+              <div className={styles.headshot} role={name === "Andrew Super" ? undefined : "img"} aria-label={name === "Andrew Super" ? undefined : `Headshot placeholder for ${name}`}>
+                {name === "Andrew Super" ? <Image src="/images/alumni/16_Andrew_Super_Headshot.jpg" alt="Andrew Super" fill sizes="(max-width: 700px) 90vw, (max-width: 1100px) 45vw, 22vw" className="object-contain" /> : <span className={styles.photoBadge}><i className={index % 2 ? styles.red : ""} />Headshot forthcoming</span>}
               </div>
               <div className={styles.leaderCopy}><h3>{name}</h3><p className={styles.leaderRole}>{role}</p><p>{description}</p></div>
             </article>)}
