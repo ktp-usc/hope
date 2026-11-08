@@ -59,7 +59,7 @@ export default function ContactPage() {
 
             <section className="mx-auto max-w-7xl px-6 py-12 sm:py-16" aria-labelledby="pathways-title">
                 <div className="mb-7 max-w-2xl">
-                    <h2 className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl" id="pathways-title">Looking for something specific?</h2>
+                    <h2 className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl" id="pathways-title">Other options For You:</h2>
                 </div>
                 <div className="grid gap-4 md:grid-cols-3">
                     {pathways.map(({ title, description, href, action, icon: Icon, secondaryHref, secondaryAction }) => (
