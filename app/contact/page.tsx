@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, GraduationCap, HandHeart, Handshake } from "lucide-react";
 import GeneralContactForm from "@/components/forms/GeneralContactForm";
@@ -37,7 +38,17 @@ const pathways = [
 export default function ContactPage() {
     return (
         <main className="min-h-screen bg-[#f5f2e9] text-[#121212]">
-            <section className="bg-[#f8cd53] px-6 py-16 text-[#121212] sm:py-20">
+            <section className="relative bg-[#f9d46b] px-6 pb-16 pt-28 text-[#121212] sm:pb-20 sm:pt-32">
+                <Link className="absolute right-0 top-0 rounded focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#121212]" href="/" aria-label="H.O.P.E. home">
+                    <Image
+                        src="/hope-logo.png"
+                        alt="H.O.P.E. — Hands on Prosthetic Engineering"
+                        width={946}
+                        height={571}
+                        className="h-auto w-28 sm:w-36"
+                        priority
+                    />
+                </Link>
                 <div className="mx-auto max-w-7xl">
                     <h1 className="max-w-3xl text-4xl font-bold tracking-tight sm:text-6xl">Let’s start a conversation.</h1>
                     <p className="mt-6 max-w-2xl text-lg leading-8 text-[#121212]/80">
