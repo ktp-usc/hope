@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowDown, ArrowUpRight, Handshake, Settings, Wrench } from "lucide-react";
 import styles from "./page.module.css";
 import workshopImage from "./about-images/Workshop image.png";
@@ -111,7 +112,7 @@ export default function AboutPage() {
           <span className={styles.label}>Present day</span>
           <h2 id="present-title">Partnerships &amp;<br />operations</h2><p>H.O.P.E. operates through two distinct but closely coordinated organizations: H.O.P.E. Inc., an independent 501(c)(3) nonprofit, and the H.O.P.E. student organization at the University of South Carolina. Together, they connect student-led engineering with long-term organizational support and community partnerships.</p>
           <div className={styles.presentDetails}>
-            <article><h3>Partnerships <Handshake size={24} /></h3><p>H.O.P.E. collaborates with universities, nonprofits, and community organizations to expand opportunities for engineering, education, and service. Its relationships include the University of South Carolina and e-NABLE. An institutional collaboration with the Medical University of South Carolina is still developing. Its historical relationship with the former USC/Columbia Technology Incubator connects it to the Midlands Innovation X-Change; an active formal partnership has not been confirmed.</p></article>
+            <article><h3>Partnerships <Handshake size={24} /></h3><p>H.O.P.E. collaborates with universities, nonprofits, and community organizations to expand opportunities for engineering, education, and service. Its relationships include the University of South Carolina and e-NABLE. An institutional collaboration with the Medical University of South Carolina is still developing. Its historical relationship with the former USC/Columbia Technology Incubator connects it to the Midlands Innovation X-Change; an active formal partnership has not been confirmed.</p><Link className="mt-4 inline-flex font-semibold text-slate-900 underline decoration-amber-500 decoration-2 underline-offset-4 hover:text-slate-600" href="/contact">Ask about a partnership or other support</Link></article>
             <article><h3>Operations <Settings size={24} /></h3><p>H.O.P.E. Inc. provides nonprofit oversight, funding, resources, and external partnerships, while the USC student organization coordinates much of the hands-on design, prototyping, manufacturing, recruitment, and training. Each organization maintains its own governance and responsibilities.</p></article>
           </div>
         </div>
