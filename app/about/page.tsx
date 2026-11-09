@@ -4,6 +4,8 @@ import { ArrowDown, ArrowUpRight, Handshake, Settings, Wrench } from "lucide-rea
 import styles from "./page.module.css";
 import workshopImage from "./about-images/13_Creativibe_Display_Team.jpg";
 import presentDayImage from "./about-images/11_First_HOPE_Printer_Build.jpg";
+import StudentOrgModule from "@/components/about/StudentOrgModule";
+import TransparencyModule from "@/components/about/TransparencyModule";
 
 export const metadata: Metadata = {
   title: "About H.O.P.E.",
@@ -117,6 +119,9 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Dual-Organization Module */}
+      <StudentOrgModule garnetGateUrl="https://garnetgate.sa.sc.edu/organization/hope" />
+
       <section id="leadership" className={styles.leadership} aria-labelledby="leadership-title">
         <div className={styles.container}>
           <span className={styles.label}>Leadership</span>
@@ -139,6 +144,9 @@ export default function AboutPage() {
           </section>
         </div>
       </section>
+
+      {/* Transparency Module */}
+      <TransparencyModule />
     </main>
   );
 }
