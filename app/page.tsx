@@ -235,7 +235,7 @@ export default function Home() {
               stability needed to ride his bicycle through his neighborhood.&rdquo;
             </p>
             <div className="mt-6">
-              <PrimaryButton href="/our-work">Read More</PrimaryButton>
+              <PrimaryButton href="/stories/elis-bike-arm">Read More</PrimaryButton>
             </div>
           </div>
         </div>
