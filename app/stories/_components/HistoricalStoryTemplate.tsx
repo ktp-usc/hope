@@ -1,4 +1,4 @@
-﻿import Image, { type ImageProps } from "next/image";
+import Image, { type ImageProps } from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ImageIcon } from "lucide-react";
 import styles from "./HistoricalStoryTemplate.module.css";
@@ -28,8 +28,9 @@ export interface HistoricalStoryTemplateProps {
   introduction: string;
   heroImage?: StoryImage;
   heroBackground?: "yellow" | "blue";
-  paragraphs: readonly string[];
+  paragraphs?: readonly string[];
   supportingImages?: readonly StoryImage[];
+  children?: React.ReactNode;
 }
 
 function StoryFigure({ image, hero = false }: { image: StoryImage; hero?: boolean }) {
@@ -54,7 +55,14 @@ function StoryFigure({ image, hero = false }: { image: StoryImage; hero?: boolea
 
 /** One reusable story page; navigation stays in the shared layout. */
 export default function HistoricalStoryTemplate({
-  title, date, introduction, heroImage = {}, heroBackground = "yellow", paragraphs, supportingImages = [],
+  title,
+  date,
+  introduction,
+  heroImage = {},
+  heroBackground = "yellow",
+  paragraphs,
+  supportingImages = [],
+  children,
 }: HistoricalStoryTemplateProps) {
   return <>
     <main className={`${styles.story} ${heroBackground === "blue" ? styles.blue : styles.yellow}`}>
@@ -73,7 +81,7 @@ export default function HistoricalStoryTemplate({
         <section className={`${styles.narrative} ${supportingImages.length ? "" : styles.withoutImages}`} aria-label="The Story">
           <div className={styles.storyCopy}>
             <h2><span aria-hidden="true" />The Story</h2>
-            {paragraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
+            {children ? children : paragraphs?.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
             <Link className={styles.historyLink} href="/history"><ArrowLeft size={18} aria-hidden="true" />Back to H.O.P.E.&apos;s History</Link>
           </div>
           {supportingImages.length > 0 && <div className={styles.supportingImages}>
