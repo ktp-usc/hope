@@ -4,6 +4,8 @@ import Link from "next/link";
 import { ArrowDown, ArrowRight, ArrowUpRight, Handshake, Settings, Wrench } from "lucide-react";
 import workshopImage from "./about-images/13_Creativibe_Display_Team.jpg";
 import presentDayImage from "./about-images/11_First_HOPE_Printer_Build.jpg";
+import StudentOrgModule from "@/components/about/StudentOrgModule";
+import TransparencyModule from "@/components/about/TransparencyModule";
 
 export const metadata: Metadata = {
   title: "About H.O.P.E.",
@@ -125,6 +127,9 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Dual-Organization Module */}
+      <StudentOrgModule garnetGateUrl="https://garnetgate.sa.sc.edu/organization/hope" />
+
       <section id="leadership" className="bg-white pt-[105px] pb-[120px] [@media(max-width:700px)]:py-[65px]" aria-labelledby="leadership-title">
         <div className="mx-auto w-[90%] max-w-[1296px]">
           <span className="inline-block rounded-[30px] bg-[#121212] px-[13px] py-[6px] text-[11px] leading-[1.3] font-bold text-white uppercase">Leadership</span>
@@ -147,6 +152,9 @@ export default function AboutPage() {
           </section>
         </div>
       </section>
+
+      {/* Transparency Module */}
+      <TransparencyModule />
     </main>
   );
 }

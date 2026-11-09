@@ -21,9 +21,13 @@ Studio: `/studio` after `npm run dev`. Test GROQ in Studio → Vision before har
 
 ## Core model
 
-No schema types are currently established in the repository (`schema.types` in `sanity/schemaTypes/index.ts` is empty).
+### `partner` (document, `sanity/schemaTypes/partner.ts`)
 
-When creating the initial schema types:
+Fields: `name` (string, required), `category` (string: `primary-network` | `institutional` | `incubator` | `community`, required), `description` (text), `logo` (image), `websiteUrl` (url), `order` (number, ascending).
+
+Query: `sanity/queries/partners.ts` (`partnersQuery`, `Partner`). Consumed by `app/partners-and-collaborations/page.tsx`, which shows the `primary-network` partner as the featured card and falls back to `_components/fallback-partners.ts` if Sanity returns nothing.
+
+When creating further schema types:
 - Define the needed document and object types under `sanity/schemaTypes/`.
 - Register all created schema types in the schema type registry (`sanity/schemaTypes/index.ts`) by adding them to `schema.types`.
 - Document new schemas and their established field structures here as they are added to the repository.
