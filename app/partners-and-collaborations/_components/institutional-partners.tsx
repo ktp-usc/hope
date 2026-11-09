@@ -1,12 +1,14 @@
 import Image from "next/image";
-import type { Partner } from "@/sanity/queries/partners";
+import type { Partner, PartnerCategory } from "@/sanity/queries/partners";
 
-const CATEGORY_LABELS: Record<string, string> = {
+const CATEGORY_LABELS: Record<PartnerCategory, string> = {
+    "primary-network": "Primary Network",
     institutional: "Institutional Partner",
     incubator: "Entrepreneurship & Innovation",
     community: "Community Partner",
 };
 
+/** Grid of institutional, incubator, and community partner cards. */
 export default function InstitutionalPartners({ partners }: { partners: Partner[] }) {
     return (
         <section className="border-t border-slate-200/80 bg-slate-50/70 py-14">

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { Partner } from "@/sanity/queries/partners";
 
+/** Highlighted card for the primary-network partner, rendered from its Sanity record. */
 export default function FeaturedAffiliation({ partner }: { partner: Partner }) {
     return (
         <section className="mx-auto w-full max-w-6xl px-6 pb-14 lg:px-8">
@@ -30,13 +31,9 @@ export default function FeaturedAffiliation({ partner }: { partner: Partner }) {
                         </div>
                     )}
 
-                    <h2 className="text-4xl font-normal text-[#1B2D4C]">
-                        e-NABLE
+                    <h2 className="mb-5 text-4xl font-normal text-[#1B2D4C]">
+                        {partner.name}
                     </h2>
-
-                    <p className="mb-5 text-xs uppercase font-medium tracking-wide text-slate-600">
-                        Enable the Future
-                    </p>
 
                     <h3 className="mb-4 text-xl font-medium text-[#1B2D4C]">
                         A global network. A local commitment.
@@ -52,9 +49,9 @@ export default function FeaturedAffiliation({ partner }: { partner: Partner }) {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 text-sm font-semibold text-[#1B2D4C] hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1B2D4C]"
-                        aria-label="Explore Enable the Future (opens in a new tab)"
+                        aria-label={`Explore ${partner.name} (opens in a new tab)`}
                     >
-                        Explore Enable the Future
+                        Explore {partner.name}
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="16"
