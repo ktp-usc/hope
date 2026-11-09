@@ -1,10 +1,33 @@
 "use client";
 
+import React from "react";
 import { usePathname } from "next/navigation";
-import type { ReactNode } from "react";
+import Header from "./header";
+import Footer from "./footer";
 
-/** Renders the site header/footer around children, except inside the Sanity Studio. */
-export default function SiteChrome({ header, footer, children }: { header: ReactNode; footer: ReactNode; children: ReactNode }) {
-    if (usePathname().startsWith("/studio")) return <>{children}</>;
-    return <>{header}{children}{footer}</>;
+interface SiteChromeProps {
+  children: React.ReactNode;
+}
+
+/**
+ * Client chrome wrapper for main website layout.
+ * When an editor accesses the embedded Sanity Studio (/studio),
+ * Header and Footer are suppressed so the Studio authoring interface
+ * can occupy the full viewport.
+ */
+export default function SiteChrome({ children }: SiteChromeProps) {
+  const pathname = usePathname();
+  const isStudio = pathname === "/studio" || pathname?.startsWith("/studio/");
+
+  if (isStudio) {
+    return <>{children}</>;
+  }
+
+  return (
+    <>
+      <Header />
+      {children}
+      <Footer />
+    </>
+  );
 }
