@@ -2,7 +2,7 @@
 import fs from 'node:fs';
 import { pathToFileURL } from 'node:url';
 const { chromium } = await import(process.env.HOPE_PLAYWRIGHT_PATH ? pathToFileURL(`${process.env.HOPE_PLAYWRIGHT_PATH}/index.mjs`).href : 'playwright');
-const browser = await chromium.launch({ channel: 'msedge', headless: true });
+const browser = await chromium.launch({ headless: true });
 const base = process.env.HOPE_REVIEW_URL || 'http://localhost:3100';
 const output = '.next/brand-review';
 fs.mkdirSync(output, { recursive: true });
