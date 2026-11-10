@@ -16,7 +16,7 @@ type NavItem = Leaf | Group;
 function buildNavItems(stories: NavStory[]): NavItem[] {
   return [
     {
-      label: "Who we are",
+      label: "Who We Are",
       children: [
         { label: "About HOPE", href: "/about" },
         { label: "History & Archive", href: "/history" },
