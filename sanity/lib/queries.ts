@@ -98,3 +98,11 @@ export async function getSiteSettings(): Promise<SiteSettings> {
     };
   }
 }
+
+export const leadersQuery = `
+  *[_type == "leader" && !(_id in path("drafts.**")) && !(_id in path("versions.**"))]
+  | order(coalesce(order, 0) asc, name asc, _id asc) {
+    _id, name, title, affiliation, bio, "order": coalesce(order, 0),
+    headshot { asset, crop, hotspot, "assetUrl": asset->url }
+  }
+`

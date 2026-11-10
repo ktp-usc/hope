@@ -1,3 +1,4 @@
+import { getLeadership } from "@/sanity/lib/leadership";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -21,21 +22,18 @@ const milestones = [
   { title: "Current partnerships & operations", description: "Today, H.O.P.E. continues its work in experimental prosthetics, adaptive technologies, accessibility solutions, and student-led engineering. Collaborations with universities, nonprofits, and community partners help expand its capabilities and opportunities." },
 ];
 
-// Role summaries from the working content packet, not individual biographies.
-const leaders = [
-  { name: "Abby Herschman", role: "Chair, H.O.P.E. Inc. Board of Directors", description: "Provides board leadership and governance oversight for H.O.P.E. Inc., supporting the nonprofit’s long-term mission and organizational continuity." },
-  { name: "Andrew Super", role: "Vice Chair, H.O.P.E. Inc. Board of Directors", description: "Serves as Vice Chair of the Board, contributing to nonprofit oversight, organizational continuity, and support for H.O.P.E.’s mission." },
-  { name: "Ashley Turner", role: "Board Director, Logistics", description: "Serves on the H.O.P.E. Inc. Board of Directors with a focus on logistics and organizational support." },
-  { name: "Matthew Yvon", role: "Chief Executive Officer, H.O.P.E. Inc.", description: "Leads H.O.P.E. Inc.’s executive operations, helping coordinate the nonprofit’s resources, activities, and organizational development." },
-];
-
 function HandMark({ outline = false }: { outline?: boolean }) {
   return <div aria-hidden="true" className={`flex h-[110px] [align-items:end] gap-[7px] [&>span]:h-[75%] [&>span]:w-[33px] [&>span]:rounded-[30px_30px_4px_4px] [&>span]:bg-[var(--yellow)] [&>span:nth-child(2)]:h-full [&>span:nth-child(3)]:h-[87%] [&>span:nth-child(4)]:h-[64%] [&>span:nth-child(4)]:bg-[var(--red)] ${outline ? "h-[135px]! gap-[12px]! [&>span]:w-[43px]! [&>span]:border-[5px] [&>span]:border-[#121212] [&>span]:bg-transparent! [&>span]:rounded-[30px_30px_3px_3px]! [@media(max-width:1100px)]:gap-[7px]! [@media(max-width:1100px)]:[&>span]:w-[35px]!" : ""}`}>
     <span /><span /><span /><span />
   </div>;
 }
 
-export default function AboutPage() {
+export const revalidate = 60;
+
+export default async function AboutPage() {
+  const leaders = await getLeadership();
+  const nonprofitLeaders = leaders.filter((leader) => leader.affiliation !== "hope-student-org");
+  const studentLeaders = leaders.filter((leader) => leader.affiliation === "hope-student-org");
   return (
     <main className="[--yellow:#f8cd53] [--blue:#458fd2] [--cream:#f5f2e9] [--red:#e95c36] bg-white text-[#121212] [font-family:Arial,Helvetica,sans-serif] text-[18px] leading-[1.4] [&_h1]:leading-[1.04] [&_h2]:leading-[1.04] [&_h3]:leading-[1.04] [&_h2]:text-[clamp(36px,3.75vw,56px)] [&_h2]:font-bold [&_h2]:tracking-[-0.8px] [&_h3]:font-bold [&_a:focus-visible]:outline-[3px] [&_a:focus-visible]:outline-solid [&_a:focus-visible]:outline-[#121212] [&_a:focus-visible]:outline-offset-[6px] [&_button:focus-visible]:outline-[3px] [&_button:focus-visible]:outline-solid [&_button:focus-visible]:outline-[#121212] [&_button:focus-visible]:outline-offset-[6px] [&_section]:min-w-0 [&_article]:min-w-0 [@media(max-width:700px)]:text-[16px] motion-safe:[html:has(&)]:scroll-smooth motion-safe:[&_section[id]]:scroll-mt-[24px]">
       <section className="grid grid-cols-[55%_45%] min-h-[780px] [@media(max-width:1100px)]:min-h-[650px] [@media(max-width:700px)]:grid-cols-[1fr]" aria-labelledby="about-title">
@@ -135,20 +133,22 @@ export default function AboutPage() {
           <span className="inline-block rounded-[30px] bg-[#121212] px-[13px] py-[6px] text-[11px] leading-[1.3] font-bold text-white uppercase">Leadership</span>
           <div className="mt-[22px] flex items-end justify-between gap-[32px] [&>p]:max-w-[460px] [&>p]:flex-[1] [&>p]:text-[16px] [&>h2]:shrink-0 [@media(max-width:1100px)]:[&>p]:pr-0 [@media(max-width:850px)]:flex-col [@media(max-width:850px)]:items-start [@media(max-width:850px)]:[&>h2]:shrink [@media(max-width:700px)]:gap-[25px]"><h2 id="leadership-title">The people helping<br />shape H.O.P.E.</h2><p>H.O.P.E. combines student-driven leadership with long-term nonprofit oversight. Its Board of Directors provides continuity and governance, while executive and student leaders guide daily operations, projects, and organizational development.</p></div>
           <div className="mt-[55px] grid grid-cols-[repeat(4,1fr)] gap-[20px] [@media(max-width:1100px)]:grid-cols-[repeat(2,1fr)] [@media(max-width:700px)]:mt-[35px] [@media(max-width:700px)]:gap-[16px] [@media(max-width:600px)]:grid-cols-[1fr]">
-            {leaders.map(({ name, role, description }, index) => <article className="overflow-hidden rounded-[20px] bg-white [box-shadow:0_12px_22px_#00000008]" key={name}>
-              <div className="h-[275px] bg-[#d7eaf7] p-[22px] [&>span]:px-[10px] [&>span]:py-[6px] [&>span]:text-[10px] [@media(max-width:700px)]:h-[210px] [@media(max-width:700px)]:p-[12px] [@media(max-width:700px)]:[&>span]:gap-[5px] [@media(max-width:600px)]:h-[230px]! [@media(max-width:600px)]:p-[20px]!" role="img" aria-label={`Headshot placeholder for ${name}`}>
-                <span className="inline-flex items-center gap-[6px] rounded-[30px] bg-white px-[12px] py-[7px] text-[11px] font-bold uppercase [&_i]:h-[6px] [&_i]:w-[6px] [&_i]:rounded-[50%] [&_i]:bg-[var(--blue)]"><i className={index % 2 ? "bg-[var(--red)]!" : ""} />Headshot forthcoming</span>
+            {nonprofitLeaders.map(({ _id, name, title, bio, headshotUrl }, index) => <article className="overflow-hidden rounded-[20px] bg-white [box-shadow:0_12px_22px_#00000008]" key={_id}>
+              <div className="relative overflow-hidden h-[275px] bg-[#d7eaf7] p-[22px] [&>span]:px-[10px] [&>span]:py-[6px] [&>span]:text-[10px] [@media(max-width:700px)]:h-[210px] [@media(max-width:700px)]:p-[12px] [@media(max-width:700px)]:[&>span]:gap-[5px] [@media(max-width:600px)]:h-[230px]! [@media(max-width:600px)]:p-[20px]!">
+                {headshotUrl ? <Image src={headshotUrl} alt={`Portrait of ${name}`} fill sizes="(max-width: 600px) 90vw, (max-width: 1100px) 44vw, 23vw" className="object-cover" /> : <span className="inline-flex items-center gap-[6px] rounded-[30px] bg-white px-[12px] py-[7px] text-[11px] font-bold uppercase [&_i]:h-[6px] [&_i]:w-[6px] [&_i]:rounded-[50%] [&_i]:bg-[var(--blue)]"><i className={index % 2 ? "bg-[var(--red)]!" : ""} />Photo Pending</span>}
               </div>
-              <div className="min-h-[150px] px-[24px] py-[25px] [&>h3]:mb-[16px] [&>h3]:text-[25px] [&>h3]:font-normal! [&>p]:text-[16px] [@media(max-width:700px)]:px-[16px] [@media(max-width:700px)]:py-[20px] [@media(max-width:700px)]:[&>h3]:text-[21px] [@media(max-width:600px)]:p-[24px]!"><h3>{name}</h3><p className="mb-[16px] font-bold">{role}</p><p>{description}</p></div>
+              <div className="min-h-[150px] px-[24px] py-[25px] [&>h3]:mb-[16px] [&>h3]:text-[25px] [&>h3]:font-normal! [&>p]:text-[16px] [@media(max-width:700px)]:px-[16px] [@media(max-width:700px)]:py-[20px] [@media(max-width:700px)]:[&>h3]:text-[21px] [@media(max-width:600px)]:p-[24px]!"><h3>{name}</h3><p className="mb-[16px] font-bold">{title}</p><p>{bio}</p></div>
             </article>)}
           </div>
           <section className="mt-[45px] [&>h3]:mb-[24px] [&>h3]:text-[27px]" aria-labelledby="student-leadership-title">
             <h3 id="student-leadership-title">Student Organization Leadership</h3>
-            <article className="max-w-[640px] rounded-[20px] bg-white px-[24px] py-[25px] [box-shadow:0_12px_22px_#00000008] [&>h4]:mb-[16px] [&>h4]:text-[25px] [&>h4]:leading-[1.1] [&>h4]:font-normal [&>p]:text-[16px]">
-              <h4>Trinity Oglesby</h4>
-              <p className="mb-[16px] font-bold">President, H.O.P.E. Student Organization at USC</p>
-              <p>Leads the university-based student organization, where students organize, train, recruit, and carry out much of H.O.P.E.’s hands-on project work.</p>
-            </article>
+            {studentLeaders.map(({ _id, name, title, bio, headshotUrl }) => <article className="max-w-[640px] rounded-[20px] bg-white px-[24px] py-[25px] [box-shadow:0_12px_22px_#00000008] [&>h4]:mb-[16px] [&>h4]:text-[25px] [&>h4]:leading-[1.1] [&>h4]:font-normal [&>p]:text-[16px]" key={_id}>
+              {headshotUrl ? <Image src={headshotUrl} alt={`Portrait of ${name}`} width={80} height={80} className="mb-4 rounded-xl object-cover" /> : <span className="mb-4 inline-block rounded-[30px] bg-[#121212] px-[13px] py-[6px] text-[11px] leading-[1.3] font-bold text-white uppercase">Photo Pending</span>}
+              <h4>{name}</h4>
+              <p className="mb-[16px] font-bold">{title}</p>
+              <p>{bio}</p>
+            </article>)}
+
           </section>
         </div>
       </section>
