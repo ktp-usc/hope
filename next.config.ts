@@ -1,8 +1,18 @@
 import type { NextConfig } from "next";
 
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
+const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET;
+
 const nextConfig: NextConfig = {
   images: {
-    remotePatterns: [{ protocol: "https", hostname: "cdn.sanity.io" }],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn.sanity.io",
+        port: "",
+        pathname: projectId && dataset ? `/images/${projectId}/${dataset}/**` : "/**",
+      },
+    ],
   },
   /**
    * Rewrites /donate to /support so requests to /donate serve the support page

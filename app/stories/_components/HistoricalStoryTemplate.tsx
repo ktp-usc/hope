@@ -81,11 +81,11 @@ function StoryFigure({ image, hero = false }: { image: StoryImage; hero?: boolea
             className={
               hero
                 ? "absolute inset-0 h-full w-full object-cover"
-                : "block h-auto w-full rounded-[18px] object-cover"
+                : "block h-auto w-full rounded-[18px] object-contain"
             }
             style={{
               objectPosition: image.focalPosition ?? "center",
-              objectFit: "cover",
+              objectFit: hero ? "cover" : "contain",
               position: hero ? "absolute" : undefined,
               inset: hero ? 0 : undefined,
               width: "100%",

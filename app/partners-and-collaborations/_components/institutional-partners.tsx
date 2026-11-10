@@ -43,7 +43,7 @@ export default function InstitutionalPartners({ partners }: { partners: Partner[
                             <div>
                                 {/* Partner logo */}
                                 {partner.logoUrl && (
-                                    <div className="relative mb-6 h-16 w-full max-w-[220px]">
+                                    <div className={`relative mb-6 w-full max-w-[220px] ${partner.logoUrl.includes("the-mix-full") ? "h-36" : "h-16"}`}>
                                         <Image
                                             src={partner.logoUrl}
                                             alt={`${partner.name} logo`}

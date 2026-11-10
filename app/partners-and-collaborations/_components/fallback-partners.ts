@@ -36,7 +36,7 @@ export const fallbackPartners: Partner[] = [
         description:
             "HOPE’s history includes support from the University of South Carolina’s entrepreneurship and innovation ecosystem. HOPE previously worked through the USC/Columbia Technology Incubator, which has since transitioned into The Midlands Innovation X-Change (The MIX), continuing entrepreneurial-support, mentorship, and resources for developing ventures.",
         websiteUrl: "https://themixsc.org/",
-        logoUrl: "/images/partners/mix.png",
+        logoUrl: "/images/partners/the-mix-full.jpg",
     },
     {
         _id: "fallback-ktp",
