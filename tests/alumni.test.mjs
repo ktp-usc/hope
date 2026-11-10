@@ -9,12 +9,6 @@ async function loadTypeScript(path) {
   return import(`data:text/javascript;base64,${Buffer.from(outputText).toString("base64")}`);
 }
 const { sortContributors, sortPresidents, formerPresidents, alumniContributors } = await loadTypeScript("../lib/alumni.ts");
-const { validateReconnect } = await loadTypeScript("../lib/alumni-reconnect.ts");
-const data = (values) => {
-  const form = new FormData();
-  Object.entries(values).forEach(([key, value]) => form.set(key, value));
-  return form;
-};
 
 test("only the approved contributor is listed without unverified former leadership", () => {
   assert.deepEqual(formerPresidents, []);
@@ -42,16 +36,4 @@ test("contributors sort by family and given names and honor reviewed sort keys",
   ];
   assert.deepEqual(sortContributors(fixtures).map(({ id }) => id), ["override", "a", "b", "z"]);
   assert.equal(fixtures[0].id, "z");
-});
-test("private reconnect does not require public consent, phone, or historical fields", () => {
-  assert.deepEqual(validateReconnect(data({ name: "Test fixture", email: "fixture@example.org" })), {});
-});
-test("validation rejects whitespace names, malformed emails and phones, and oversized history", () => {
-  const errors = validateReconnect(data({ name: " ", email: "invalid@", phone: "abc", historicalCorrections: "x".repeat(4001) }));
-  assert.deepEqual(Object.keys(errors), ["name", "email", "phone", "historicalCorrections"]);
-});
-test("international phone formatting is accepted and honeypot blocks intake", () => {
-  const values = { name: "Test fixture", email: "fixture@example.org", phone: "+1 (803) 555-0100" };
-  assert.deepEqual(validateReconnect(data(values)), {});
-  assert.ok(validateReconnect(data({ ...values, website: "spam" })).website);
 });

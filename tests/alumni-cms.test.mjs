@@ -55,6 +55,8 @@ async function renderAlumniPage(getAlumniDirectory) {
   const page = loadModule('../app/alumni/page.tsx', {
     '@/sanity/lib/alumni': { getAlumniDirectory }, './_components/alumni-rosters': rosters,
     // Unrelated form and button internals are outside this integration test.
+    '@/components/contact/EmailContact': () => createElement('div', { 'data-testid': 'email-contact' }),
+    '@/sanity/lib/contact-emails': { getContactEmails: async () => ({ alumni: { to: 'alumni@example.com', subject: 'Reconnect' } }) },
     '@/components/forms/AlumniReconnectForm': () => createElement('form', { 'aria-label': 'Alumni reconnect form' }),
     '@/components/ui/button': { Button: ({ children }) => createElement('div', null, children) },
     '@/public/images/campus-community.jpg': { src: '/images/campus-community.jpg', width: 1200, height: 800 },

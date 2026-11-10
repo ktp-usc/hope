@@ -1,3 +1,4 @@
+import { contactPurposes, contactLabels, isContactRecipient } from "../../lib/contact-email";
 import { defineType, defineField, defineArrayMember } from "sanity";
 
 /**
@@ -10,6 +11,27 @@ export const siteSettings = defineType({
   title: "Site Settings",
   type: "document",
   fields: [
+    defineField({ name: 'contactEmails', title: 'Contact Email Templates', type: 'array',
+      description: 'Optional. Missing purposes use approved website defaults. Changes take effect after publishing.',
+      validation: rule => rule.custom(items => {
+        const purposes = (items ?? []).map(item => (item as { purpose?: string }).purpose);
+        return new Set(purposes).size === purposes.length || 'Each contact purpose may appear only once.';
+      }),
+      of: [defineArrayMember({ type: 'object', name: 'contactEmail', title: 'Email Template',
+        fields: [
+          defineField({ name: 'purpose', title: 'Contact Purpose', type: 'string',
+            options: { list: contactPurposes.map(value => ({ value, title: contactLabels[value] })) },
+            validation: rule => rule.required().custom(value => !value || contactPurposes.includes(value as typeof contactPurposes[number]) || 'Choose a listed contact purpose.') }),
+          defineField({ name: 'recipient', title: 'Recipient Email', type: 'string',
+            validation: rule => rule.required().custom(value => isContactRecipient(value) || 'Enter one plain email address, without a mailto prefix or extra headers.') }),
+          defineField({ name: 'subject', title: 'Email Subject', type: 'string',
+            validation: rule => rule.required().max(200).custom(value => !value || !/[\r\n\x00-\x1f\x7f]/.test(value) || 'Use a single line without control characters.') }),
+          defineField({ name: 'body', title: 'Prefilled Email Body', type: 'text', rows: 8,
+            description: 'Use prompts such as [ENTER NAME]. Do not enter personal information here.',
+            validation: rule => rule.required().max(2000).custom(value => !value || !/[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]/.test(value) || 'Remove unsupported control characters.') }),
+        ], preview: { select: { title: 'purpose', subtitle: 'recipient' } },
+      })],
+    }),
     defineField({
       name: "donationsEnabled",
       title: "Donations Toggle",

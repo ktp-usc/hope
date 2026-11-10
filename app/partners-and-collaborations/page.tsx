@@ -5,6 +5,7 @@ import PartnersHero from "./_components/partners-hero";
 import FeaturedAffiliation from "./_components/featured-affiliation";
 import InstitutionalPartners from "./_components/institutional-partners";
 import { fallbackPartners } from "./_components/fallback-partners";
+import PartnershipCTA from "./_components/partnership-cta";
 
 export const metadata: Metadata = {
     title: "Partners & Collaborations | H.O.P.E.",
@@ -35,6 +36,7 @@ export default async function PartnersAndCollaborationsPage() {
             <PartnersHero />
             {featured && <FeaturedAffiliation partner={featured} />}
             <InstitutionalPartners partners={others} />
+            <PartnershipCTA />
             <SanityLive />
         </main>
     );
