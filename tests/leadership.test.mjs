@@ -146,8 +146,9 @@ test('Studio preserves main schemas and registers leader with headshot and displ
   const registry = loadModule('../sanity/schemaTypes/index.ts', {
     './siteSettings': { siteSettings: { name: 'siteSettings' } }, './partner': { partner: { name: 'partner' } },
     '../schemas/leader': { leader: { name: 'leader' } },
+    '../schemas/alumniMember': { alumniMember: { name: 'alumniMember' } },
   });
-  assert.deepEqual(registry.schema.types.map(x => x.name), ['siteSettings', 'partner', 'leader']);
+  assert.deepEqual(registry.schema.types.map(x => x.name), ['siteSettings', 'partner', 'leader', 'alumniMember']);
   const { leader } = loadModule('../sanity/schemas/leader.ts', { sanity: { defineType: x => x, defineField: x => x } });
   assert.deepEqual(leader.fields.map(x => x.name), ['name','title','affiliation','bio','headshot','order']);
   assert.equal(leader.fields.find(x => x.name === 'headshot').options.hotspot, true);
