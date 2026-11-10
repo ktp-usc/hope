@@ -97,6 +97,25 @@ export async function getSiteSettings(): Promise<SiteSettings> {
   }
 }
 
+export const leadersQuery = `
+  *[_type == "leader" && !(_id in path("drafts.**")) && !(_id in path("versions.**"))]
+  | order(coalesce(order, 0) asc, name asc, _id asc) {
+    _id, name, title, affiliation, bio, "order": coalesce(order, 0),
+    headshot { asset, crop, hotspot, "assetUrl": asset->url }
+  }
+`;
+
+// Public directory reads exclude drafts and scheduled release versions.
+export const alumniMembersQuery = `
+  *[_type == "alumniMember" && !(_id in path("drafts.**")) && !(_id in path("versions.**"))]
+  | order(lower(name) asc, _id asc) {
+    _id, name, yearsActive, isFormerPresident, presidentTerm,
+    isExecutiveLeader, roleOrContribution, linkedInUrl,
+    headshot { asset, crop, hotspot, alt, "assetUrl": asset->url }
+  }
+`;
+
+
 /* ==========================================================================
    Project Stories: Schemas, Types, GROQ Queries, and Fallback Data
    ========================================================================== */
