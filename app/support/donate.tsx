@@ -1,6 +1,7 @@
 import React from "react";
 import { ArrowRight } from "lucide-react";
-import SupportForm from "./support-form";
+import EmailContact from "@/components/contact/EmailContact";
+import { contactMailto, type ContactEmail, type ContactEmails } from "@/lib/contact-email";
 import type { SiteSettings, DonationMethod } from "@/sanity/lib/queries";
 
 const supportWays = [
@@ -172,7 +173,7 @@ function PaymentCard({ method }: { method: DonationMethod }) {
 /**
  * Direct Giving section containing interchangeable and customizable payment cards.
  */
-function DonationCards({ methods }: { methods: DonationMethod[] }) {
+function DonationCards({ methods, email }: { methods: DonationMethod[]; email: ContactEmail }) {
   return (
     <section
       aria-labelledby="donation-heading"
@@ -203,10 +204,10 @@ function DonationCards({ methods }: { methods: DonationMethod[] }) {
             <p className="mt-2 text-sm leading-6 text-quiet">
               Direct giving methods are currently being updated. Please reach out to{" "}
               <a
-                href="mailto:aturner@handsonhope.ngo?subject=HOPE%20Donation%20Inquiry"
+                href={contactMailto(email)}
                 className="font-semibold text-hope underline underline-offset-2 hover:text-hope-deep"
               >
-                aturner@handsonhope.ngo
+                {email.recipient}
               </a>{" "}
               to discuss ways to contribute.
             </p>
@@ -221,7 +222,7 @@ function DonationCards({ methods }: { methods: DonationMethod[] }) {
  * Renders the Support & Donate page layout.
  * Pure Tailwind CSS implementation with zero external CSS modules.
  */
-export default function Donate({ settings }: { settings: SiteSettings }) {
+export default function Donate({ settings, contactEmails }: { settings: SiteSettings; contactEmails: ContactEmails }) {
   const enabled = settings.donationsEnabled;
 
   return (
@@ -256,9 +257,9 @@ export default function Donate({ settings }: { settings: SiteSettings }) {
           </div>
 
           {enabled ? (
-            <DonationCards methods={settings.donationMethods} />
+            <DonationCards methods={settings.donationMethods} email={contactEmails["donation-inquiry"]} />
           ) : (
-            <SupportForm />
+            <div className="mx-auto w-full max-w-[460px]"><EmailContact email={contactEmails.support} title="Support H.O.P.E." description="Direct donations are temporarily paused, but there are many vital ways to help. Let us know how you can contribute equipment, materials, expertise, or workplace giving." buttonLabel="Open support inquiry email" /></div>
           )}
         </section>
 

@@ -1,14 +1,25 @@
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import courtneyImage from "@/public/images/projects/05_Courtney_Finger_Adaptation.jpg";
 import stethoscopeImage from "@/public/images/projects/06_3D_Printed_Stethoscope.jpg";
 import openerImage from "@/public/images/projects/07_Hand_Bottle_Opener_Adaptation.jpg";
+import type { ProjectStoryCard } from "@/sanity/lib/queries";
 import eliArmImg from "@/public/images/projects/01_Eli_Bike_Arm_Detail.jpg";
 import ppeFramesImg from "@/public/images/projects/09_HOPE_Face_Shield_Frames.png";
 import printedHandImg from "@/public/images/projects/08_HOPE_Printed_Hand.png";
 
-const projects = [
+interface ProjectDisplayItem {
+  title: string;
+  slug: string;
+  category: string;
+  status: string;
+  image: StaticImageData | string;
+  alt: string;
+  summary: string;
+}
+
+const defaultProjects: ProjectDisplayItem[] = [
   {
     title: "Eli's Bike Arm — Designing for the Ride",
     slug: "elis-bike-arm",
@@ -41,7 +52,28 @@ const projects = [
   },
 ];
 
-export default function ProjectsImpact() {
+interface ProjectsImpactProps {
+  stories?: ProjectStoryCard[];
+}
+
+/**
+ * Displays curated project case studies on the /our-work page,
+ * rendering cards for active, foundational, and milestone engineering initiatives.
+ */
+export default function ProjectsImpact({ stories }: ProjectsImpactProps) {
+  const displayProjects: ProjectDisplayItem[] =
+    stories && stories.length > 0
+      ? stories.map((s) => ({
+          title: s.title,
+          slug: s.slug,
+          category: s.category || "Project Case Study",
+          status: s.status || "Active",
+          image: s.imageUrl || eliArmImg,
+          alt: s.alt || s.title,
+          summary: s.summary,
+        }))
+      : defaultProjects;
+
   return (
     <section
       id="projects-impact"
@@ -51,8 +83,15 @@ export default function ProjectsImpact() {
       <div className="mx-auto w-[calc(100%-48px)] max-w-[1280px]">
         <div className="mb-12 grid gap-6 lg:grid-cols-[1.3fr_1fr] lg:items-end lg:gap-16">
           <div>
-            <p className="w-fit rounded-[40px] bg-[#102743] px-4 py-1.5 text-xs leading-[1.3] font-bold tracking-[0.5px] text-white uppercase">Projects &amp; Impact</p>
-            <h2 id="projects-impact-title" className="mt-5 [font-family:var(--font-dm-serif),Georgia,serif] text-[clamp(32px,3.5vw,48px)] leading-[1.15] font-normal tracking-[-0.3px] text-[#102743]">Practical needs turned into working solutions.</h2>
+            <p className="w-fit rounded-[40px] bg-[#102743] px-4 py-1.5 text-xs font-bold tracking-[0.5px] text-white uppercase leading-[1.3]">
+              Projects &amp; Impact
+            </p>
+            <h2
+              id="projects-impact-title"
+              className="mt-5 [font-family:var(--font-dm-serif),Georgia,serif] text-[clamp(32px,3.5vw,48px)] font-normal tracking-[-0.3px] text-[#102743] leading-[1.15]"
+            >
+              Practical needs turned into working solutions.
+            </h2>
           </div>
           <p className="max-w-[640px] text-[17px] leading-[1.6] text-[#475569]">
             Every project begins with a specific person, challenge, or community need.
@@ -61,24 +100,36 @@ export default function ProjectsImpact() {
         </div>
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project) => (
-            <article key={project.slug} className="flex flex-col overflow-hidden rounded-2xl border border-[#dce5ef] bg-white [transition:transform_0.2s_ease,box-shadow_0.2s_ease,border-color_0.2s_ease] hover:[transform:translateY(-4px)] hover:border-[#cbd5e1] hover:shadow-[0_16px_32px_-4px_rgba(16,39,67,0.1)]">
+          {displayProjects.map((project) => (
+            <article
+              key={project.slug}
+              className="flex flex-col overflow-hidden rounded-2xl border border-[#dce5ef] bg-white [transition:transform_0.2s_ease,box-shadow_0.2s_ease,border-color_0.2s_ease] hover:border-[#cbd5e1] hover:shadow-[0_16px_32px_-4px_rgba(16,39,67,0.1)] hover:[transform:translateY(-4px)]"
+            >
               <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#f1f5f9]">
                 <Image
                   src={project.image}
                   alt={project.alt}
+                  fill
                   className="block h-full w-full object-cover"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
-                <span className="absolute top-3.5 left-3.5 rounded-[20px] bg-[rgba(16,39,67,0.88)] px-2.5 py-1 text-[11px] font-bold tracking-[0.5px] text-white uppercase backdrop-blur-[4px]">{project.category}</span>
+                <span className="absolute top-3.5 left-3.5 rounded-[20px] bg-[rgba(16,39,67,0.88)] px-2.5 py-1 text-[11px] font-bold tracking-[0.5px] text-white uppercase backdrop-blur-[4px]">
+                  {project.category}
+                </span>
               </div>
               <div className="flex grow flex-col p-6">
-                <span className="mb-2 text-[11px] font-extrabold tracking-[0.6px] text-[#1260d6] uppercase">{project.status}</span>
-                <h3 className="mb-3 text-[clamp(20px,2.2vw,26px)] leading-[1.25] font-bold text-[#102743]">{project.title}</h3>
-                <p className="mb-6 grow text-sm leading-[1.6] text-[#475569]">{project.summary}</p>
+                <span className="mb-2 text-[11px] font-extrabold tracking-[0.6px] text-[#1260d6] uppercase">
+                  {project.status}
+                </span>
+                <h3 className="mb-3 text-[clamp(20px,2.2vw,26px)] font-bold text-[#102743] leading-[1.25]">
+                  {project.title}
+                </h3>
+                <p className="mb-6 grow text-sm leading-[1.6] text-[#475569]">
+                  {project.summary}
+                </p>
                 <Link
                   href={`/stories/${project.slug}`}
-                  className="inline-flex items-center gap-1.5 text-sm leading-[1.6] font-bold text-[#102743] no-underline [transition:color_0.15s_ease] hover:text-[#1260d6]"
+                  className="inline-flex items-center gap-1.5 text-sm font-bold text-[#102743] no-underline leading-[1.6] [transition:color_0.15s_ease] hover:text-[#1260d6]"
                   aria-label={`Read the full case study: ${project.title}`}
                 >
                   Read full story <ArrowUpRight size={16} aria-hidden="true" />
@@ -103,4 +154,3 @@ export default function ProjectsImpact() {
     </section>
   );
 }
-

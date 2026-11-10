@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import test from "node:test";
 import ts from "typescript";
+import * as contactHelpers from "../lib/contact-email.ts";
 
 function loadTypeScript(relPath, mocks = {}) {
   const fileUrl = new URL(relPath, import.meta.url);
@@ -28,7 +29,7 @@ function loadTypeScript(relPath, mocks = {}) {
   return mod.exports;
 }
 
-const { siteSettings } = loadTypeScript("../sanity/schemaTypes/siteSettings.ts");
+const { siteSettings } = loadTypeScript("../sanity/schemaTypes/siteSettings.ts", { "../../lib/contact-email": contactHelpers });
 const {
   DEFAULT_SITE_SETTINGS,
   siteSettingsQuery,

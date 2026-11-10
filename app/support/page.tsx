@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getContactEmails } from "@/sanity/lib/contact-emails";
 import Donate from "./donate";
 import { getSiteSettings } from "@/sanity/lib/queries";
 
@@ -17,7 +18,7 @@ export const revalidate = 30;
  * and renders the Support & Donate page.
  */
 export default async function DonatePage() {
-  const settings = await getSiteSettings();
+  const [settings, contactEmails] = await Promise.all([getSiteSettings(), getContactEmails()]);
 
-  return <Donate settings={settings} />;
+  return <Donate settings={settings} contactEmails={contactEmails} />;
 }
