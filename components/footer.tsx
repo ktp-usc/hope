@@ -4,6 +4,7 @@ import Link from "next/link";
 // Update the hrefs to match your real routes.
 const EXPLORE_LINKS = [
   { label: "Alumni & Legacy", href: "/alumni" },
+  { label: "History", href: "/history" },
   { label: "About", href: "/about" },
   { label: "Our Work", href: "/our-work" },
   { label: "Partners & Collaborations", href: "/partners-and-collaborations" },

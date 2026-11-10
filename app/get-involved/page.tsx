@@ -159,7 +159,7 @@ export default function GetInvolvedPage() {
                                 Students do not have to be at USC to start a conversation with HOPE. Students, colleges, universities, and technical schools can contact HOPE about contributing, collaborating, or exploring opportunities.
                             </p>
                             <div className="mt-8">
-                                <Link href="/contact" className={`${pill} border-hope bg-white text-hope hover:bg-hope hover:text-white focus-visible:outline-hope`}>
+                                <Link href="/contact#students-outside-usc" className={`${pill} border-hope bg-white text-hope hover:bg-hope hover:text-white focus-visible:outline-hope`}>
                                     Connect with HOPE
                                     <ArrowRight aria-hidden className="size-[18px]" />
                                 </Link>

@@ -1,55 +1,15 @@
 import Image from "next/image";
+import type { Partner, PartnerCategory } from "@/sanity/queries/partners";
 
-interface InstitutionalPartner {
-    name: string;
-    type: string;
-    description: string;
-    logo: string;
-    logoAlt: string;
-    url: string;
-}
+const CATEGORY_LABELS: Record<PartnerCategory, string> = {
+    "primary-network": "Primary Network",
+    institutional: "Institutional Partner",
+    incubator: "Entrepreneurship & Innovation",
+    community: "Community Partner",
+};
 
-// Information for each institutional partner from Content Packet Section 6
-const partners: InstitutionalPartner[] = [
-    {
-        logo: "/images/partners/musc.png",
-        logoAlt: "Medical University of South Carolina logo",
-        type: "INSTITUTIONAL COLLABORATION",
-        name: "Medical University of South Carolina (MUSC)",
-        description:
-            "HOPE is developing an institutional collaboration with the Medical University of South Carolina focused on opportunities where engineering, digital design, 3D printing, and healthcare education can intersect. Current work includes supporting students in learning CAD and additive-manufacturing skills that can be applied to assistive and rehabilitation-related challenges.",
-        url: "https://web.musc.edu/",
-    },
-    {
-        logo: "/images/partners/usc.png",
-        logoAlt: "University of South Carolina logo",
-        type: "CAMPUS & ACADEMIC PARTNERSHIP",
-        name: "University of South Carolina",
-        description:
-            "The University of South Carolina is home to the HOPE student organization at USC and provides the campus community where students recruit, train, organize, and carry out much of HOPE\u2019s hands-on work. HOPE Inc. and the student organization are separate organizations that collaborate closely.",
-        url: "https://sc.edu/",
-    },
-    {
-        logo: "/images/partners/mix.png",
-        logoAlt: "The MIX logo",
-        type: "ENTREPRENEURSHIP & INNOVATION",
-        name: "The Midlands Innovation X-Change (The MIX)",
-        description:
-            "HOPE\u2019s history includes support from the University of South Carolina\u2019s entrepreneurship and innovation ecosystem. HOPE previously worked through the USC/Columbia Technology Incubator, which has since transitioned into The Midlands Innovation X-Change (The MIX), continuing entrepreneurial-support, mentorship, and resources for developing ventures.",
-        url: "https://themixsc.org/",
-    },
-    {
-        logo: "/images/partners/ktp.png",
-        logoAlt: "Kappa Theta Pi logo",
-        type: "TECHNOLOGY & DEVELOPMENT PARTNER",
-        name: "Kappa Theta Pi",
-        description:
-            "Kappa Theta Pi at the University of South Carolina contributed its technology and development expertise to the redesign and development of the HOPE Inc. website. Through its nonprofit consulting program, KTP students work with nonprofit organizations on real technology projects while gaining practical project experience.",
-        url: "https://www.ktpusc.com/",
-    },
-];
-
-export default function InstitutionalPartners() {
+/** Grid of institutional, incubator, and community partner cards. */
+export default function InstitutionalPartners({ partners }: { partners: Partner[] }) {
     return (
         <section className="border-t border-slate-200/80 bg-slate-50/70 py-14">
             <div className="mx-auto max-w-6xl px-6 lg:px-8">
@@ -77,24 +37,26 @@ export default function InstitutionalPartners() {
 
                     {partners.map((partner) => (
                         <article
-                            key={partner.name}
+                            key={partner._id}
                             className="flex min-h-[320px] flex-col justify-between rounded-lg border border-slate-200/80 bg-white p-8 shadow-sm transition-colors hover:border-slate-300"
                         >
                             <div>
                                 {/* Partner logo */}
-                                <div className="relative mb-6 h-16 w-full max-w-[220px]">
-                                    <Image
-                                        src={partner.logo}
-                                        alt={partner.logoAlt}
-                                        fill
-                                        sizes="220px"
-                                        className="object-contain object-left"
-                                    />
-                                </div>
+                                {partner.logoUrl && (
+                                    <div className="relative mb-6 h-16 w-full max-w-[220px]">
+                                        <Image
+                                            src={partner.logoUrl}
+                                            alt={`${partner.name} logo`}
+                                            fill
+                                            sizes="220px"
+                                            className="object-contain object-left"
+                                        />
+                                    </div>
+                                )}
 
                                 {/* Partnership type */}
                                 <p className="mb-2 text-xs uppercase font-semibold tracking-wide text-slate-500">
-                                    {partner.type}
+                                    {partner.category ? CATEGORY_LABELS[partner.category] : null}
                                 </p>
 
                                 {/* Partner name */}
@@ -109,9 +71,10 @@ export default function InstitutionalPartners() {
                             </div>
 
                             {/* Partner external link */}
+                            {partner.websiteUrl && (
                             <div className="mt-6 border-t border-slate-100 pt-4">
                                 <a
-                                    href={partner.url}
+                                    href={partner.websiteUrl}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="inline-flex items-center gap-2 text-sm font-semibold text-[#1B2D4C] hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1B2D4C]"
@@ -135,6 +98,7 @@ export default function InstitutionalPartners() {
                                     </svg>
                                 </a>
                             </div>
+                            )}
 
                         </article>
                     ))}

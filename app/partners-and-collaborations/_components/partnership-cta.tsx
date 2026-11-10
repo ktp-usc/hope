@@ -26,7 +26,7 @@ export default function PartnershipCTA() {
 
                     {/* Right side: CTA button */}
                     <Link
-                        href="/contact"
+                        href="/contact#partnerships"
                         className="inline-flex shrink-0 items-center justify-center gap-4 self-start rounded-md bg-[#F5CA58] px-6 py-4 text-sm font-semibold text-[#1B2D4C] transition-colors hover:bg-[#E9B942] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F5CA58] md:self-center"
                     >
                         Start a conversation
