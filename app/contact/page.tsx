@@ -1,13 +1,10 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight, GraduationCap, HandHeart, Handshake, MapPin } from "lucide-react";
 import ContactCard from "./_components/contact-card";
 import { getContactEmails } from "@/sanity/lib/contact-emails";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-    title: "Contact H.O.P.E.",
-    description: "Contact H.O.P.E. with general questions, partnership ideas, and non-donation support.",
-};
+export const metadata = pageMetadata("Contact H.O.P.E.", "Contact H.O.P.E. with general questions, partnership ideas, and non-donation support.", "/contact");
 
 const pathways = [
     {

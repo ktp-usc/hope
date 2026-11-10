@@ -121,6 +121,8 @@ test('Contact page offers six configured purposes in one card and preserves the 
   const Page = load('../app/contact/page.tsx', {
     './_components/contact-card': Component, '@/lib/contact-email': helpers,
     '@/sanity/lib/contact-emails': { getContactEmails: async () => emails },
+    // Page metadata is outside what this test renders.
+    '@/lib/seo': { pageMetadata: () => ({}) },
   }).default;
   const html = renderToStaticMarkup(await Page());
   assert(!/<form|<input|<textarea/.test(html));
