@@ -98,3 +98,13 @@ export async function getSiteSettings(): Promise<SiteSettings> {
     };
   }
 }
+
+// Public directory reads exclude drafts and scheduled release versions.
+export const alumniMembersQuery = `
+  *[_type == "alumniMember" && !(_id in path("drafts.**")) && !(_id in path("versions.**"))]
+  | order(lower(name) asc, _id asc) {
+    _id, name, yearsActive, isFormerPresident, presidentTerm,
+    isExecutiveLeader, roleOrContribution, linkedInUrl,
+    headshot { asset, crop, hotspot, alt, "assetUrl": asset->url }
+  }
+`;
