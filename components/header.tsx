@@ -52,12 +52,20 @@ const menuItemClass =
   "block rounded-md px-3 py-2.5 text-sm text-[#12303f] hover:bg-[#12303f]/[0.06] " +
   "focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[#12303f]";
 
+/** Type guard: true when a nav item is a dropdown group rather than a plain link. */
 const isGroup = (item: NavItem): item is Group => "children" in item;
+
+/** True when the current pathname falls under one of the group's `activePaths`. */
 const isActiveGroup = (group: Group, pathname: string) =>
   group.activePaths.some((p) => pathname.startsWith(p));
-// Hash links can't be matched against pathname, so they never read as current.
+
+/**
+ * True when `href` is the page being viewed. Hash links can't be matched
+ * against pathname, so they never read as current.
+ */
 const isCurrent = (href: string, pathname: string) => !href.includes("#") && href === pathname;
 
+/** Small diagonal arrow shown on the Support HOPE button. Decorative (aria-hidden). */
 function ArrowIcon() {
   return (
     <svg
@@ -77,6 +85,7 @@ function ArrowIcon() {
   );
 }
 
+/** Chevron for dropdown triggers: points up when `open`, down otherwise. Decorative (aria-hidden). */
 function ChevronIcon({ open, size = 14 }: { open: boolean; size?: number }) {
   return (
     <svg
@@ -95,6 +104,7 @@ function ChevronIcon({ open, size = 14 }: { open: boolean; size?: number }) {
   );
 }
 
+/** Yellow "Support HOPE" call-to-action linking to /support; `onClick` lets the mobile menu close itself. */
 function SupportButton({ onClick }: { onClick?: () => void }) {
   return (
     <Link
@@ -108,6 +118,7 @@ function SupportButton({ onClick }: { onClick?: () => void }) {
   );
 }
 
+/** Plain nav link that sets `aria-current="page"` and a 2px underline when `href` matches `pathname`. */
 function NavLink({
   href,
   pathname,
@@ -134,8 +145,10 @@ function NavLink({
   );
 }
 
-// Desktop dropdown: opens on click/Enter/Space (never hover only), closes on
-// Escape (focus returns to the button), outside click, or tabbing out.
+/**
+ * Desktop dropdown: opens on click/Enter/Space (never hover only), closes on
+ * Escape (focus returns to the button), outside click, or tabbing out.
+ */
 function DropdownNav({ group, pathname }: { group: Group; pathname: string }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -211,6 +224,10 @@ function DropdownNav({ group, pathname }: { group: Group; pathname: string }) {
 
 const mobileRowClass = `${linkClass} flex min-h-12 w-full items-center`;
 
+/**
+ * Site header: logo, desktop nav with About/Stories dropdowns, and a mobile
+ * menu whose groups are accordions (one open at a time, Escape closes it).
+ */
 export default function Header() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
