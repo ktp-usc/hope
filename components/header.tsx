@@ -4,40 +4,35 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
+import type { NavStory } from "@/lib/nav-stories";
 
 type Child = { label: string; href: string; separated?: boolean };
 type Leaf = { label: string; href: string };
-// activePaths: pathname prefixes that mark the group itself as the current section.
-type Group = { label: string; children: Child[]; activePaths: string[] };
+type Group = { label: string; children: Child[] };
 type NavItem = Leaf | Group;
 
 // Update the hrefs to match your real routes.
-const NAV_ITEMS: NavItem[] = [
-  {
-    label: "About",
-    activePaths: ["/about", "/history", "/alumni"],
-    children: [
-      { label: "About HOPE", href: "/about" },
-      { label: "Leadership", href: "/about#leadership" },
-      { label: "History & Archive", href: "/history" },
-      { label: "Alumni & Legacy", href: "/alumni" },
-    ],
-  },
-  { label: "Our Work", href: "/our-work" },
-  {
-    label: "Stories",
-    activePaths: ["/stories/"],
-    children: [
-      { label: "Eli’s Bike Arm", href: "/stories/elis-bike-arm" },
-      { label: "COVID-19 PPE Response", href: "/stories/ppe-response" },
-      { label: "Early 3D-Printed Hands", href: "/stories/hands-on-beginnings" },
-      { label: "All projects", href: "/our-work", separated: true },
-    ],
-  },
-  { label: "Get Help", href: "/get-help" },
-  { label: "Get Involved", href: "/get-involved" },
-  { label: "Partners & Collaborations", href: "/partners-and-collaborations" },
-];
+/** Builds the nav; the Stories dropdown lists the latest `stories` (Sanity-backed) plus an "All stories" link. */
+function buildNavItems(stories: NavStory[]): NavItem[] {
+  return [
+    {
+      label: "Who we are",
+      children: [
+        { label: "About HOPE", href: "/about" },
+        { label: "History & Archive", href: "/history" },
+        { label: "Alumni & Legacy", href: "/alumni" },
+      ],
+    },
+    { label: "Our Work", href: "/our-work" },
+    {
+      label: "Stories",
+      children: [...stories, { label: "All stories", href: "/our-work", separated: true }],
+    },
+    { label: "Get Help", href: "/get-help" },
+    { label: "Get Involved", href: "/get-involved" },
+    { label: "Partners & Collaborations", href: "/partners-and-collaborations" },
+  ];
+}
 
 const SUPPORT_LINK = { label: "Support HOPE", href: "/support" };
 const CONTACT_LINK = { label: "Contact", href: "/contact" };
@@ -46,7 +41,6 @@ const linkClass =
   "rounded text-sm text-[#12303f] hover:underline underline-offset-4 " +
   "focus-visible:outline-2 focus-visible:outline-offset-2 " +
   "focus-visible:outline-[#12303f]";
-const currentClass = "underline decoration-2";
 
 const menuItemClass =
   "block rounded-md px-3 py-2.5 text-sm text-[#12303f] hover:bg-[#12303f]/[0.06] " +
@@ -54,10 +48,6 @@ const menuItemClass =
 
 /** Type guard: true when a nav item is a dropdown group rather than a plain link. */
 const isGroup = (item: NavItem): item is Group => "children" in item;
-
-/** True when the current pathname falls under one of the group's `activePaths`. */
-const isActiveGroup = (group: Group, pathname: string) =>
-  group.activePaths.some((p) => pathname.startsWith(p));
 
 /**
  * True when `href` is the page being viewed. Hash links can't be matched
@@ -118,7 +108,7 @@ function SupportButton({ onClick }: { onClick?: () => void }) {
   );
 }
 
-/** Plain nav link that sets `aria-current="page"` and a 2px underline when `href` matches `pathname`. */
+/** Plain nav link; sets `aria-current="page"` (no visual underline) when `href` matches `pathname`. */
 function NavLink({
   href,
   pathname,
@@ -138,7 +128,7 @@ function NavLink({
       href={href}
       onClick={onClick}
       aria-current={current ? "page" : undefined}
-      className={`${linkClass} ${className} ${current ? currentClass : ""}`}
+      className={`${linkClass} ${className}`}
     >
       {children}
     </Link>
@@ -146,13 +136,16 @@ function NavLink({
 }
 
 /**
- * Desktop dropdown: opens on click/Enter/Space (never hover only), closes on
- * Escape (focus returns to the button), outside click, or tabbing out.
+ * Desktop dropdown: opens when a mouse hovers it, or on click/Enter/Space for
+ * touch and keyboard users. Closes when the mouse leaves, on Escape (focus
+ * returns to the button), on an outside click, or when tabbing out.
  */
 function DropdownNav({ group, pathname }: { group: Group; pathname: string }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  // True while the menu was opened by hover, so the click that follows keeps it open instead of toggling it shut.
+  const openedByHover = useRef(false);
   const panelId = useId();
 
   useEffect(() => {
@@ -178,6 +171,17 @@ function DropdownNav({ group, pathname }: { group: Group; pathname: string }) {
     <div
       ref={ref}
       className="relative"
+      // Mouse only: touch taps are handled by onClick below.
+      onPointerEnter={(e) => {
+        if (e.pointerType !== "mouse") return;
+        openedByHover.current = true;
+        setOpen(true);
+      }}
+      onPointerLeave={(e) => {
+        if (e.pointerType !== "mouse") return;
+        openedByHover.current = false;
+        setOpen(false);
+      }}
       // relatedTarget is null when Safari doesn't focus a clicked link; ignore that case.
       onBlur={(e) => {
         if (e.relatedTarget && !e.currentTarget.contains(e.relatedTarget as Node)) setOpen(false);
@@ -188,35 +192,43 @@ function DropdownNav({ group, pathname }: { group: Group; pathname: string }) {
         type="button"
         aria-expanded={open}
         aria-controls={panelId}
-        onClick={() => setOpen((o) => !o)}
-        className={`${linkClass} inline-flex items-center gap-1 ${
-          open ? "underline" : isActiveGroup(group, pathname) ? currentClass : ""
-        }`}
+        onClick={() => {
+          if (openedByHover.current) {
+            openedByHover.current = false;
+            setOpen(true);
+          } else {
+            setOpen((o) => !o);
+          }
+        }}
+        className={`${linkClass} inline-flex items-center gap-1 ${open ? "underline" : ""}`}
       >
         {group.label}
         <ChevronIcon open={open} />
       </button>
       {open && (
-        <ul
-          id={panelId}
-          className="absolute -left-3 top-full z-50 mt-2 w-[280px] rounded-lg border border-black/10 bg-white p-2 shadow-[0_8px_24px_rgba(18,48,63,0.14)]"
-        >
-          {group.children.map((child) => (
-            <li
-              key={child.href + child.label}
-              className={child.separated ? "mt-1 border-t border-[#12303f]/10 pt-1" : undefined}
-            >
-              <Link
-                href={child.href}
-                onClick={() => setOpen(false)}
-                aria-current={isCurrent(child.href, pathname) ? "page" : undefined}
-                className={`${menuItemClass} ${isCurrent(child.href, pathname) ? "bg-[#12303f]/[0.06] font-semibold" : ""}`}
+        // pt-2 (not margin) keeps the gap hoverable so the menu doesn't close on the way down.
+        <div className="absolute -left-3 top-full z-50 pt-2">
+          <ul
+            id={panelId}
+            className="w-[280px] rounded-lg border border-black/10 bg-white p-2 shadow-[0_8px_24px_rgba(18,48,63,0.14)]"
+          >
+            {group.children.map((child) => (
+              <li
+                key={child.href + child.label}
+                className={child.separated ? "mt-1 border-t border-[#12303f]/10 pt-1" : undefined}
               >
-                {child.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
+                <Link
+                  href={child.href}
+                  onClick={() => setOpen(false)}
+                  aria-current={isCurrent(child.href, pathname) ? "page" : undefined}
+                  className={`${menuItemClass} ${isCurrent(child.href, pathname) ? "bg-[#12303f]/[0.06] font-semibold" : ""}`}
+                >
+                  {child.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
     </div>
   );
@@ -225,11 +237,13 @@ function DropdownNav({ group, pathname }: { group: Group; pathname: string }) {
 const mobileRowClass = `${linkClass} flex min-h-12 w-full items-center`;
 
 /**
- * Site header: logo, desktop nav with About/Stories dropdowns, and a mobile
+ * Site header: logo, desktop nav with Who we are/Stories dropdowns, and a mobile
  * menu whose groups are accordions (one open at a time, Escape closes it).
+ * `stories` fills the Stories dropdown.
  */
-export default function Header() {
+export default function Header({ stories }: { stories: NavStory[] }) {
   const pathname = usePathname();
+  const navItems = buildNavItems(stories);
   const [menuOpen, setMenuOpen] = useState(false);
   const [openGroup, setOpenGroup] = useState<string | null>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
@@ -263,7 +277,7 @@ export default function Header() {
 
         {/* Desktop navigation */}
         <nav aria-label="Main" className="hidden items-center gap-8 xl:flex">
-          {NAV_ITEMS.map((item) =>
+          {navItems.map((item) =>
             isGroup(item) ? (
               <DropdownNav key={item.label} group={item} pathname={pathname} />
             ) : (
@@ -314,7 +328,7 @@ export default function Header() {
           aria-label="Mobile"
           className="flex flex-col border-t border-black/10 px-6 py-2 xl:hidden"
         >
-          {NAV_ITEMS.map((item) => {
+          {navItems.map((item) => {
             if (!isGroup(item)) {
               return (
                 <NavLink
@@ -329,7 +343,7 @@ export default function Header() {
               );
             }
             const open = openGroup === item.label;
-            const listId = `mobile-group-${item.label}`;
+            const listId = `mobile-group-${item.label.replace(/\s+/g, "-").toLowerCase()}`;
             return (
               <div key={item.label}>
                 <button
@@ -337,9 +351,7 @@ export default function Header() {
                   aria-expanded={open}
                   aria-controls={listId}
                   onClick={() => setOpenGroup(open ? null : item.label)}
-                  className={`${mobileRowClass} justify-between ${
-                    open ? "font-semibold" : isActiveGroup(item, pathname) ? currentClass : ""
-                  }`}
+                  className={`${mobileRowClass} justify-between ${open ? "font-semibold" : ""}`}
                 >
                   {item.label}
                   <ChevronIcon open={open} size={16} />
@@ -353,7 +365,7 @@ export default function Header() {
                           onClick={closeMenu}
                           aria-current={isCurrent(child.href, pathname) ? "page" : undefined}
                           className={`${linkClass} flex min-h-11 items-center pl-4 ${
-                            isCurrent(child.href, pathname) ? currentClass : ""
+                            isCurrent(child.href, pathname) ? "font-semibold" : ""
                           }`}
                         >
                           {child.label}
