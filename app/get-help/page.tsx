@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Clock3, ArrowRight, CheckCircle } from "lucide-react";
-import GetHelpForm from "@/components/forms/GetHelpForm";
+import EmailContact from "@/components/contact/EmailContact";
+import { getContactEmails } from "@/sanity/lib/contact-emails";
 
 export const metadata: Metadata = {
   title: "Get Help | H.O.P.E. - Hands on Prosthetic Engineering",
@@ -19,7 +20,10 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function GetHelpPage() {
+export const revalidate = 60;
+
+export default async function GetHelpPage() {
+  const emails = await getContactEmails();
   return (
     <main className="min-h-screen bg-white text-[#1b2d4c]">
       <section className="mx-auto max-w-6xl px-6 py-12 sm:py-16 lg:py-20">
@@ -96,7 +100,7 @@ export default function GetHelpPage() {
                 </li>
                 <li className="flex items-start gap-2">
                   <ArrowRight size={16} className="mt-0.5 shrink-0 text-slate-400" />
-                  <span>Submitting a request does not guarantee that HOPE can take on the project. If a request is not a good fit, HOPE may be able to point you toward another organization, resource, or community.</span>
+                  <span>Sending an inquiry does not guarantee that HOPE can take on the project. If a request is not a good fit, HOPE may be able to point you toward another organization, resource, or community.</span>
                 </li>
               </ul>
             </div>
@@ -104,7 +108,7 @@ export default function GetHelpPage() {
 
           {/* Right Column: Intake Form */}
           <div className="lg:sticky lg:top-8">
-            <GetHelpForm />
+            <EmailContact email={emails["get-help"]} title="Email a help request" description="Tell us about the need, task, or challenge you are hoping to address." buttonLabel="Open help request email" />
           </div>
         </div>
       </section>
