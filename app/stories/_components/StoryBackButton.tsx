@@ -2,7 +2,6 @@
 
 import { useRouter } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
-import styles from "./HistoricalStoryTemplate.module.css";
 
 export default function StoryBackButton() {
   const router = useRouter();
@@ -19,7 +18,7 @@ export default function StoryBackButton() {
     <button
       type="button"
       onClick={handleBack}
-      className={styles.historyLink}
+      className="mt-9 inline-flex min-h-[46px] cursor-pointer items-center justify-center gap-2.5 rounded-[40px] border border-[#7aaff4] bg-white px-6 py-2.5 font-[inherit] text-base font-bold text-[#075bce] no-underline transition-[background-color,border-color] duration-200 hover:border-[#1665dc] hover:bg-[#e7f2ff] focus-visible:outline-3 focus-visible:outline-offset-[5px] focus-visible:outline-[#111b31] max-[800px]:mt-7 max-[400px]:px-[18px] max-[400px]:text-sm"
       aria-label="Go back to previous page"
     >
       <ArrowLeft size={18} aria-hidden="true" />
@@ -27,4 +26,3 @@ export default function StoryBackButton() {
     </button>
   );
 }
-
