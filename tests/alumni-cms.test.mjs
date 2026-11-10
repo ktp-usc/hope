@@ -130,9 +130,10 @@ test('Studio registry retains main schemas and includes alumniMember', () => {
   const studio = loadModule('../sanity/schemaTypes/index.ts', {
     './siteSettings': { siteSettings: { name: 'siteSettings' } },
     './partner': { partner: { name: 'partner' } },
+    '../schemas/leader': { leader: { name: 'leader' } },
     '../schemas/alumniMember': { alumniMember: { name: 'alumniMember' } },
   });
-  assert.deepEqual(studio.schema.types.map(({ name }) => name), ['siteSettings', 'partner', 'alumniMember']);
+  assert.deepEqual(studio.schema.types.map(({ name }) => name), ['siteSettings', 'partner', 'leader', 'alumniMember']);
 });
 
 test('empty, invalid and unavailable CMS results preserve original approved fallback', async () => {
