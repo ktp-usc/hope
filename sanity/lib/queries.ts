@@ -121,7 +121,6 @@ export interface SanityProjectStory {
   heroImage?: SanityImageWithMeta | null;
   imageUrl?: string;
   body?: unknown[];
-  featuredOnHome?: boolean;
   order?: number;
 }
 
@@ -133,7 +132,6 @@ export interface ProjectStoryCard {
   summary: string;
   imageUrl?: string;
   alt: string;
-  featuredOnHome?: boolean;
   order?: number;
 }
 
@@ -145,6 +143,7 @@ export interface FallbackStory {
   summary: string;
   introduction: string;
   heroBackground?: "yellow" | "blue";
+  order: number;
   heroImage: {
     src: string;
     alt: string;
@@ -171,6 +170,7 @@ export interface UnifiedProjectStory {
   subtitle?: string;
   summary?: string;
   projectStatus?: string;
+  order?: number;
   heroImage?: {
     src: string;
     alt: string;
@@ -196,6 +196,7 @@ export interface UnifiedProjectStory {
  * Static fallback definitions for the 3 foundational HOPE stories.
  * Preserved so that links never 404, while remaining fully editable
  * if published with matching slugs in Sanity Studio.
+ * Assigned baseline orders: 1, 2, and 3.
  */
 export const FALLBACK_PROJECT_STORIES: Record<string, FallbackStory> = {
   "elis-bike-arm": {
@@ -203,6 +204,7 @@ export const FALLBACK_PROJECT_STORIES: Record<string, FallbackStory> = {
     title: "Eli’s Bike Arm — Designing for the Ride",
     subtitle: "Adaptive Device",
     projectStatus: "Iterative Engineering",
+    order: 1,
     summary:
       "A custom-engineered support arm mounted to a bicycle, providing Eli with a stable point of contact and counterforce while riding. Researched in 2017 and fitted in spring 2018, it exemplifies HOPE's iterative design approach.",
     introduction:
@@ -241,6 +243,7 @@ export const FALLBACK_PROJECT_STORIES: Record<string, FallbackStory> = {
     title: "When HOPE Shifted Its 3D Printers to PPE",
     subtitle: "Community Response",
     projectStatus: "Small-Batch Fabrication",
+    order: 2,
     summary:
       "During the pandemic, student members partnered with USC faculty and graduate students to redirect 3D printing toward mask extenders and face-shield components, answering an urgent public health need.",
     introduction:
@@ -272,6 +275,7 @@ export const FALLBACK_PROJECT_STORIES: Record<string, FallbackStory> = {
     title: "Where HOPE’s Hands-On Work Began",
     subtitle: "Prosthetic Exploration",
     projectStatus: "Foundational Roots",
+    order: 3,
     summary:
       "HOPE's origins began with open-source pediatric prosthetic hands, student buildathons, and cost-free community fittings, building the foundational CAD and fabrication capabilities the team relies on today.",
     introduction:
@@ -311,9 +315,10 @@ export const FALLBACK_CARD_LIST: ProjectStoryCard[] = Object.values(
   summary: story.summary,
   imageUrl: story.heroImage.src,
   alt: story.heroImage.alt,
+  order: story.order,
 }));
 
-export const projectStoriesQuery = `*[_type == "projectStory"] | order(order asc, _createdAt desc){
+export const projectStoriesQuery = `*[_type == "projectStory"] | order(select(defined(order) => order, 999) asc, _createdAt desc){
   _id,
   title,
   "slug": slug.current,
@@ -322,7 +327,6 @@ export const projectStoriesQuery = `*[_type == "projectStory"] | order(order asc
   projectStatus,
   heroImage,
   "imageUrl": heroImage.asset->url,
-  featuredOnHome,
   order
 }`;
 
@@ -336,7 +340,6 @@ export const projectStoryBySlugQuery = `*[_type == "projectStory" && slug.curren
   heroImage,
   "imageUrl": heroImage.asset->url,
   body,
-  featuredOnHome,
   order
 }`;
 
@@ -344,6 +347,8 @@ export const projectStoryBySlugQuery = `*[_type == "projectStory" && slug.curren
  * Fetches project stories from Sanity Studio.
  * Preserves the 3 foundational stories (Eli's Bike Arm, COVID-19 PPE, Early 3D-Printed Hand Work)
  * so they always appear on /our-work, even before being created in Sanity or if Sanity is offline.
+ *
+ * Sorts all stories by display order ascending (defaulting un-ordered stories to 999).
  */
 export async function getProjectStories(): Promise<ProjectStoryCard[]> {
   try {
@@ -372,8 +377,7 @@ export async function getProjectStories(): Promise<ProjectStoryCard[]> {
         summary: item.summary || "",
         imageUrl: item.imageUrl,
         alt: item.heroImage?.alt || item.title,
-        featuredOnHome: item.featuredOnHome,
-        order: item.order,
+        order: typeof item.order === "number" ? item.order : undefined,
       }));
 
     // Find any foundational stories not in Sanity and append them
@@ -382,7 +386,16 @@ export async function getProjectStories(): Promise<ProjectStoryCard[]> {
       (fallback) => !sanitySlugs.has(fallback.slug)
     );
 
-    return [...sanityCards, ...missingFoundational];
+    const merged = [...sanityCards, ...missingFoundational];
+
+    // Sort all cards by order ascending (lower numbers appear first)
+    merged.sort((a, b) => {
+      const orderA = typeof a.order === "number" ? a.order : 999;
+      const orderB = typeof b.order === "number" ? b.order : 999;
+      return orderA - orderB;
+    });
+
+    return merged;
   } catch (error) {
     console.error("Failed to fetch project stories from Sanity, using fallback stories:", error);
     return FALLBACK_CARD_LIST;
@@ -418,6 +431,7 @@ export async function getProjectStoryBySlug(
         subtitle: data.subtitle,
         summary: data.summary,
         projectStatus: data.projectStatus,
+        order: data.order,
         heroBackground: "yellow",
         heroImage: data.imageUrl
           ? {
@@ -445,6 +459,7 @@ export async function getProjectStoryBySlug(
       subtitle: fallback.subtitle,
       summary: fallback.introduction || fallback.summary,
       projectStatus: fallback.projectStatus,
+      order: fallback.order,
       heroBackground: fallback.heroBackground || "yellow",
       heroImage: fallback.heroImage,
       paragraphs: fallback.paragraphs,

@@ -40,7 +40,7 @@ const {
   "./client": { client: { fetch: async () => [] } },
 });
 
-test("projectStory schema defines all required ticket fields", () => {
+test("projectStory schema defines all required ticket fields and omits featuredOnHome", () => {
   assert.equal(projectStory.name, "projectStory");
   assert.equal(projectStory.title, "Project Story");
   assert.equal(projectStory.type, "document");
@@ -53,8 +53,8 @@ test("projectStory schema defines all required ticket fields", () => {
   assert.ok(fields.includes("projectStatus"), "Missing projectStatus field");
   assert.ok(fields.includes("heroImage"), "Missing heroImage field");
   assert.ok(fields.includes("body"), "Missing body field");
-  assert.ok(fields.includes("featuredOnHome"), "Missing featuredOnHome field");
   assert.ok(fields.includes("order"), "Missing order field");
+  assert.ok(!fields.includes("featuredOnHome"), "featuredOnHome should be removed");
 
   // Validate title rule
   const titleField = projectStory.fields.find((f) => f.name === "title");
@@ -81,47 +81,55 @@ test("GROQ queries project necessary fields and conditions", () => {
   assert.ok(projectStoriesQuery.includes('_type == "projectStory"'));
   assert.ok(projectStoriesQuery.includes('"slug": slug.current'));
   assert.ok(projectStoriesQuery.includes("heroImage"));
-  assert.ok(projectStoriesQuery.includes("featuredOnHome"));
+  assert.ok(projectStoriesQuery.includes("order"));
+  assert.ok(!projectStoriesQuery.includes("featuredOnHome"));
 
   assert.ok(projectStoryBySlugQuery.includes('_type == "projectStory"'));
   assert.ok(projectStoryBySlugQuery.includes("slug.current == $slug"));
   assert.ok(projectStoryBySlugQuery.includes("body"));
+  assert.ok(!projectStoryBySlugQuery.includes("featuredOnHome"));
 });
 
-test("FALLBACK_PROJECT_STORIES contains all 3 foundational stories", () => {
+test("FALLBACK_PROJECT_STORIES contains all 3 foundational stories with baseline orders", () => {
   assert.ok(FALLBACK_PROJECT_STORIES["elis-bike-arm"], "Missing elis-bike-arm fallback");
   assert.ok(FALLBACK_PROJECT_STORIES["ppe-response"], "Missing ppe-response fallback");
   assert.ok(FALLBACK_PROJECT_STORIES["hands-on-beginnings"], "Missing hands-on-beginnings fallback");
 
+  assert.equal(FALLBACK_PROJECT_STORIES["elis-bike-arm"].order, 1);
+  assert.equal(FALLBACK_PROJECT_STORIES["ppe-response"].order, 2);
+  assert.equal(FALLBACK_PROJECT_STORIES["hands-on-beginnings"].order, 3);
+
   assert.equal(FALLBACK_CARD_LIST.length, 3);
-  const slugs = FALLBACK_CARD_LIST.map((c) => c.slug);
-  assert.ok(slugs.includes("elis-bike-arm"));
-  assert.ok(slugs.includes("ppe-response"));
-  assert.ok(slugs.includes("hands-on-beginnings"));
+  assert.equal(FALLBACK_CARD_LIST[0].slug, "elis-bike-arm");
+  assert.equal(FALLBACK_CARD_LIST[1].slug, "ppe-response");
+  assert.equal(FALLBACK_CARD_LIST[2].slug, "hands-on-beginnings");
 });
 
-test("getProjectStories returns fallback stories when Sanity is empty or offline", async () => {
+test("getProjectStories returns fallback stories in order 1, 2, 3 when Sanity is empty or offline", async () => {
   const stories = await getProjectStories();
   assert.equal(stories.length, 3);
   assert.equal(stories[0].slug, "elis-bike-arm");
+  assert.equal(stories[0].order, 1);
   assert.equal(stories[1].slug, "ppe-response");
+  assert.equal(stories[1].order, 2);
   assert.equal(stories[2].slug, "hands-on-beginnings");
+  assert.equal(stories[2].order, 3);
 });
 
-test("getProjectStories merges dynamic Sanity stories while preserving foundational stories", async () => {
+test("getProjectStories correctly positions order: 5 story AFTER the 3 foundational stories (orders 1, 2, 3)", async () => {
   const { getProjectStories: getMockStories } = loadTypeScript("../sanity/lib/queries.ts", {
     "./client": {
       client: {
         fetch: async () => [
           {
-            _id: "story-1",
-            title: "New Experimental Bionic Hand",
-            slug: "new-bionic-hand",
+            _id: "story-5",
+            title: "Future Milestone Project",
+            slug: "future-project",
             subtitle: "Research Build",
-            summary: "A cutting-edge new design.",
+            summary: "A 5th priority story.",
             projectStatus: "Active",
-            imageUrl: "https://cdn.sanity.io/new-bionic-hand.jpg",
-            order: 1,
+            imageUrl: "https://cdn.sanity.io/future-project.jpg",
+            order: 5,
           },
         ],
       },
@@ -130,14 +138,42 @@ test("getProjectStories merges dynamic Sanity stories while preserving foundatio
 
   const stories = await getMockStories();
   assert.equal(stories.length, 4, "Should contain 1 dynamic story + 3 preserved foundational stories");
-  assert.equal(stories[0].slug, "new-bionic-hand");
-  assert.equal(stories[0].imageUrl, "https://cdn.sanity.io/new-bionic-hand.jpg");
 
-  // Verify the 3 foundational stories are preserved
-  const slugs = stories.map((s) => s.slug);
-  assert.ok(slugs.includes("elis-bike-arm"));
-  assert.ok(slugs.includes("ppe-response"));
-  assert.ok(slugs.includes("hands-on-beginnings"));
+  // Foundational stories have orders 1, 2, 3; so order 5 must be in 4th position!
+  assert.equal(stories[0].slug, "elis-bike-arm");
+  assert.equal(stories[1].slug, "ppe-response");
+  assert.equal(stories[2].slug, "hands-on-beginnings");
+  assert.equal(stories[3].slug, "future-project");
+  assert.equal(stories[3].order, 5);
+});
+
+test("getProjectStories correctly positions order: 0 story BEFORE the foundational stories", async () => {
+  const { getProjectStories: getMockStories } = loadTypeScript("../sanity/lib/queries.ts", {
+    "./client": {
+      client: {
+        fetch: async () => [
+          {
+            _id: "story-top",
+            title: "Top Priority Project",
+            slug: "top-project",
+            subtitle: "Spotlight",
+            summary: "Top ranked story.",
+            projectStatus: "Active",
+            imageUrl: "https://cdn.sanity.io/top-project.jpg",
+            order: 0,
+          },
+        ],
+      },
+    },
+  });
+
+  const stories = await getMockStories();
+  assert.equal(stories.length, 4);
+  assert.equal(stories[0].slug, "top-project");
+  assert.equal(stories[0].order, 0);
+  assert.equal(stories[1].slug, "elis-bike-arm");
+  assert.equal(stories[2].slug, "ppe-response");
+  assert.equal(stories[3].slug, "hands-on-beginnings");
 });
 
 test("getProjectStoryBySlug returns static fallback data for foundational slugs when not in Sanity", async () => {
@@ -176,6 +212,7 @@ test("getProjectStoryBySlug prioritizes Sanity dynamic content over static fallb
           projectStatus: "Completed",
           heroImage: { alt: "Custom Eli photo" },
           imageUrl: "https://cdn.sanity.io/updated-eli.jpg",
+          order: 10,
           body: [{ _type: "block", children: [{ _type: "span", text: "Sanity rich text body content." }] }],
         }),
       },
@@ -188,6 +225,7 @@ test("getProjectStoryBySlug prioritizes Sanity dynamic content over static fallb
   assert.equal(story.title, "Eli’s Bike Arm — Updated Sanity Case Study");
   assert.equal(story.subtitle, "Client Updated Category");
   assert.equal(story.projectStatus, "Completed");
+  assert.equal(story.order, 10);
   assert.equal(story.heroImage.src, "https://cdn.sanity.io/updated-eli.jpg");
   assert.ok(Array.isArray(story.body));
   assert.equal(story.body.length, 1);

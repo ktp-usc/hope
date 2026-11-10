@@ -1,6 +1,6 @@
 import Image, { type ImageProps } from "next/image";
-import Link from "next/link";
-import { ArrowLeft, ImageIcon } from "lucide-react";
+import { ImageIcon } from "lucide-react";
+import StoryBackButton from "./StoryBackButton";
 import styles from "./HistoricalStoryTemplate.module.css";
 
 /** Real photographs require original dimensions and accessible alt text. */
@@ -82,7 +82,7 @@ export default function HistoricalStoryTemplate({
           <div className={styles.storyCopy}>
             <h2><span aria-hidden="true" />The Story</h2>
             {children ? children : paragraphs?.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
-            <Link className={styles.historyLink} href="/history"><ArrowLeft size={18} aria-hidden="true" />Back to H.O.P.E.&apos;s History</Link>
+            <StoryBackButton />
           </div>
           {supportingImages.length > 0 && <div className={styles.supportingImages}>
             {supportingImages.map((image, index) => <StoryFigure key={index} image={image} />)}

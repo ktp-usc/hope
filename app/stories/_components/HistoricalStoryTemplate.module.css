@@ -1,4 +1,4 @@
-﻿.story {
+.story {
   --story-yellow: #f8cd53;
   --story-blue: #1665dc;
   --story-red: #e95c36;
@@ -36,7 +36,7 @@
 .narrative > * { min-width: 0; }
 .storyCopy h2 { display: flex; align-items: center; gap: 16px; font-size: 29px; font-weight: 700; line-height: 1.2; margin-bottom: 22px; }
 .storyCopy p + p { margin-top: 20px; }
-.historyLink { display: inline-flex; justify-content: center; align-items: center; gap: 10px; border: 1px solid #7aaff4; border-radius: 40px; min-height: 46px; padding: 10px 24px; background: white; color: #075bce; font-size: 16px; font-weight: 700; text-decoration: none; margin-top: 36px; }
+.historyLink { display: inline-flex; justify-content: center; align-items: center; gap: 10px; border: 1px solid #7aaff4; border-radius: 40px; min-height: 46px; padding: 10px 24px; background: white; color: #075bce; font-size: 16px; font-weight: 700; text-decoration: none; margin-top: 36px; cursor: pointer; font-family: inherit; }
 .historyLink:focus-visible { outline: 3px solid #111b31; outline-offset: 5px; }
 .supportingImages { display: grid; gap: 14px; }
 .figure { min-width: 0; }

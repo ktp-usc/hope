@@ -89,17 +89,11 @@ export const projectStory = defineType({
       ],
     }),
     defineField({
-      name: "featuredOnHome",
-      title: "Featured on Home Page",
-      type: "boolean",
-      description: "Highlight this story on the home page featured projects section.",
-      initialValue: false,
-    }),
-    defineField({
       name: "order",
       title: "Display Order",
       type: "number",
-      description: "Display priority on /our-work. Lower numbers appear first (e.g. 1, 2, 3...).",
+      description:
+        "Display priority on /our-work. Lower numbers appear first (e.g. 1, 2, 3). Baseline foundational stories use 1, 2, and 3.",
     }),
   ],
   orderings: [
@@ -120,4 +114,3 @@ export const projectStory = defineType({
     },
   },
 });
-
