@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import AlumniReconnectForm from "@/components/forms/AlumniReconnectForm";
+import EmailContact from "@/components/contact/EmailContact";
+import { getContactEmails } from "@/sanity/lib/contact-emails";
 import headerImage from "@/public/images/campus-community.jpg";
 import { ContributorDirectory, FormerPresidents } from "./_components/alumni-rosters";
 
@@ -11,7 +12,10 @@ export const metadata: Metadata = {
   description: "Reconnect with HOPE, help preserve our shared history, and recognize the people who helped build Hands on Prosthetic Engineering.",
 };
 
-export default function AlumniPage() {
+export const revalidate = 60;
+
+export default async function AlumniPage() {
+  const emails = await getContactEmails();
   return <main className="bg-white text-ink">
     <section aria-labelledby="alumni-title" className="grid lg:min-h-[600px] lg:grid-cols-2">
       <div className="flex flex-col items-start bg-[#f8cd53] px-6 py-14 sm:px-10 lg:px-16 lg:py-20">
@@ -28,7 +32,7 @@ export default function AlumniPage() {
     <ContributorDirectory />
     <section id="reconnect" aria-labelledby="reconnect-title" className="mx-auto grid max-w-6xl gap-10 px-6 py-16 lg:grid-cols-[0.8fr_1.2fr] lg:px-8">
       <div><p className="text-xs font-bold uppercase tracking-widest text-quiet">Keep the connection</p><h2 id="reconnect-title" className="mt-3 text-4xl font-bold tracking-tight sm:text-5xl">Reconnect with HOPE</h2><p className="mt-5 leading-7 text-quiet">Your experience is part of our story. Help fill gaps in the record, share what you worked on, or let us know if you would like to mentor the next generation.</p><p className="mt-4 leading-7 text-quiet">Contact information stays private. A public listing requires your explicit consent, verification, and staff approval.</p></div>
-      <AlumniReconnectForm />
+      <EmailContact email={emails.alumni} title="Reconnect by email" description="Share an update, a correction, or your interest in mentoring. Please avoid private details about other people." buttonLabel="Open alumni reconnection email" />
     </section>
   </main>;
 }
