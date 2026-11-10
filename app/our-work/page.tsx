@@ -13,6 +13,10 @@ export const metadata: Metadata = {
 
 export const revalidate = 60;
 
+/**
+ * Our Work landing page server component featuring foundational stories,
+ * Sanity-managed projects, and the iterative engineering process.
+ */
 export default async function OurWorkPage() {
   const stories = await getProjectStories();
 

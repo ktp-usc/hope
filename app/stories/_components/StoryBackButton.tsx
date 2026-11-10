@@ -3,6 +3,9 @@
 import { useRouter } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 
+/**
+ * Client-side back button that returns to the previous history entry or falls back to /our-work.
+ */
 export default function StoryBackButton() {
   const router = useRouter();
 

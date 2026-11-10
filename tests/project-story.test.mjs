@@ -4,6 +4,9 @@ import { createRequire } from "node:module";
 import test from "node:test";
 import ts from "typescript";
 
+/**
+ * Transpiles and loads a TypeScript file in memory with optional module mocks.
+ */
 function loadTypeScript(relPath, mocks = {}) {
   const fileUrl = new URL(relPath, import.meta.url);
   const source = readFileSync(fileUrl, "utf8");
@@ -229,4 +232,73 @@ test("getProjectStoryBySlug prioritizes Sanity dynamic content over static fallb
   assert.equal(story.heroImage.src, "https://cdn.sanity.io/updated-eli.jpg");
   assert.ok(Array.isArray(story.body));
   assert.equal(story.body.length, 1);
+});
+
+test("getProjectStories uses foundational hero image when Sanity item lacks an image", async () => {
+  const { getProjectStories: getMockStories } = loadTypeScript("../sanity/lib/queries.ts", {
+    "./client": {
+      client: {
+        fetch: async () => [
+          {
+            _id: "sanity-eli-arm",
+            title: "Eli's Bike Arm",
+            slug: "elis-bike-arm",
+            order: 1,
+          },
+        ],
+      },
+    },
+  });
+
+  const stories = await getMockStories();
+  const eli = stories.find((s) => s.slug === "elis-bike-arm");
+  assert.ok(eli);
+  assert.equal(eli.imageUrl, "/images/projects/02_Eli_On_Bicycle.jpg");
+});
+
+test("getProjectStoryBySlug retains fallback paragraphs and heroImage for Sanity order-only documents", async () => {
+  const { getProjectStoryBySlug: getMockStoryBySlug } = loadTypeScript("../sanity/lib/queries.ts", {
+    "./client": {
+      client: {
+        fetch: async () => ({
+          _id: "sanity-eli-arm",
+          title: "Eli's Bike Arm",
+          slug: "elis-bike-arm",
+          order: 9,
+        }),
+      },
+    },
+  });
+
+  const story = await getMockStoryBySlug("elis-bike-arm");
+  assert.ok(story);
+  assert.equal(story.order, 9);
+  assert.equal(story.heroImage?.src, "/images/projects/02_Eli_On_Bicycle.jpg");
+  assert.ok(Array.isArray(story.paragraphs));
+  assert.ok(story.paragraphs.length > 0);
+  assert.equal(story.body, undefined);
+});
+
+test("getProjectStoryBySlug rethrows fetch error when slug has no entry in FALLBACK_PROJECT_STORIES", async () => {
+  const { getProjectStoryBySlug: getMockStoryBySlug } = loadTypeScript("../sanity/lib/queries.ts", {
+    "./client": {
+      client: {
+        fetch: async () => {
+          throw new Error("Sanity network failure");
+        },
+      },
+    },
+  });
+
+  await assert.rejects(
+    async () => {
+      await getMockStoryBySlug("dynamic-new-story");
+    },
+    { message: "Sanity network failure" }
+  );
+
+  const fallbackStory = await getMockStoryBySlug("elis-bike-arm");
+  assert.ok(fallbackStory);
+  assert.equal(fallbackStory.slug, "elis-bike-arm");
+  assert.equal(fallbackStory.isFallback, true);
 });

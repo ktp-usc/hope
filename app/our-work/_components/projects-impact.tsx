@@ -53,6 +53,10 @@ interface ProjectsImpactProps {
   stories?: ProjectStoryCard[];
 }
 
+/**
+ * Displays curated project case studies on the /our-work page,
+ * rendering cards for active, foundational, and milestone engineering initiatives.
+ */
 export default function ProjectsImpact({ stories }: ProjectsImpactProps) {
   const displayProjects: ProjectDisplayItem[] =
     stories && stories.length > 0

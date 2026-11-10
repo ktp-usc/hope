@@ -369,16 +369,19 @@ export async function getProjectStories(): Promise<ProjectStoryCard[]> {
 
     const sanityCards: ProjectStoryCard[] = data
       .filter((item) => item && item.slug)
-      .map((item) => ({
-        title: item.title,
-        slug: item.slug,
-        category: item.subtitle || "Project Case Study",
-        status: item.projectStatus || "Active",
-        summary: item.summary || "",
-        imageUrl: item.imageUrl,
-        alt: item.heroImage?.alt || item.title,
-        order: typeof item.order === "number" ? item.order : undefined,
-      }));
+      .map((item) => {
+        const fallback = FALLBACK_PROJECT_STORIES[item.slug];
+        return {
+          title: item.title,
+          slug: item.slug,
+          category: item.subtitle || "Project Case Study",
+          status: item.projectStatus || "Active",
+          summary: item.summary || "",
+          imageUrl: item.imageUrl || fallback?.heroImage.src,
+          alt: item.heroImage?.alt || fallback?.heroImage.alt || item.title,
+          order: typeof item.order === "number" ? item.order : undefined,
+        };
+      });
 
     // Find any foundational stories not in Sanity and append them
     const sanitySlugs = new Set(sanityCards.map((c) => c.slug));
@@ -424,6 +427,11 @@ export async function getProjectStoryBySlug(
     );
 
     if (data && data.title) {
+      const fallback = FALLBACK_PROJECT_STORIES[slug];
+      const hasBody = Array.isArray(data.body)
+        ? data.body.length > 0
+        : Boolean(data.body);
+
       return {
         isFallback: false,
         title: data.title,
@@ -432,7 +440,7 @@ export async function getProjectStoryBySlug(
         summary: data.summary,
         projectStatus: data.projectStatus,
         order: data.order,
-        heroBackground: "yellow",
+        heroBackground: fallback?.heroBackground || "yellow",
         heroImage: data.imageUrl
           ? {
               src: data.imageUrl,
@@ -441,11 +449,16 @@ export async function getProjectStoryBySlug(
               height: 800,
               caption: data.heroImage?.caption,
             }
-          : undefined,
+          : fallback?.heroImage,
         body: data.body,
+        paragraphs: hasBody ? undefined : fallback?.paragraphs,
+        supportingImages: fallback?.supportingImages,
       };
     }
   } catch (error) {
+    if (!FALLBACK_PROJECT_STORIES[slug]) {
+      throw error;
+    }
     console.error(`Failed to fetch story "${slug}" from Sanity, checking fallback:`, error);
   }
 

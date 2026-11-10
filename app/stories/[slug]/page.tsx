@@ -92,6 +92,9 @@ const portableTextComponents: PortableTextComponents = {
   },
 };
 
+/**
+ * Generates dynamic page metadata for the requested project story slug.
+ */
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const story = await getProjectStoryBySlug(slug);
@@ -110,6 +113,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
+/**
+ * Pre-populates static route parameters for all foundational and CMS stories.
+ */
 export async function generateStaticParams() {
   const defaultSlugs = [
     { slug: "elis-bike-arm" },
@@ -126,6 +132,10 @@ export async function generateStaticParams() {
   }
 }
 
+/**
+ * Renders the story case study page for a given slug, displaying either
+ * foundational static story content or dynamic Sanity rich-text content.
+ */
 export default async function StorySlugPage({ params }: PageProps) {
   const { slug } = await params;
   const story = await getProjectStoryBySlug(slug);

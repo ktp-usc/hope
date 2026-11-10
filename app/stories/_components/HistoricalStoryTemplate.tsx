@@ -32,6 +32,10 @@ export interface HistoricalStoryTemplateProps {
   children?: React.ReactNode;
 }
 
+/**
+ * Renders an image or placeholder figure within a story layout,
+ * supporting responsive aspect ratios and hero clipping.
+ */
 function StoryFigure({ image, hero = false }: { image: StoryImage; hero?: boolean }) {
   const placeholder = image.src === undefined;
   return (
