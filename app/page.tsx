@@ -1,5 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from "next";
+import { DEFAULT_DESCRIPTION, DEFAULT_TITLE, OG_IMAGE, SITE_NAME } from "@/lib/seo";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+  openGraph: { title: DEFAULT_TITLE, description: DEFAULT_DESCRIPTION, url: "/", siteName: SITE_NAME, type: "website", locale: "en_US", images: [OG_IMAGE] },
+};
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (

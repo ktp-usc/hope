@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -6,12 +5,10 @@ import EmailContact from "@/components/contact/EmailContact";
 import { getContactEmails } from "@/sanity/lib/contact-emails";
 import headerImage from "@/public/images/campus-community.jpg";
 import { ContributorDirectory, FormerPresidents } from "./_components/alumni-rosters";
+import { pageMetadata } from "@/lib/seo";
 import { getAlumniDirectory } from "@/sanity/lib/alumni";
 
-export const metadata: Metadata = {
-  title: "Alumni & Legacy | H.O.P.E.",
-  description: "Reconnect with HOPE, help preserve our shared history, and recognize the people who helped build Hands on Prosthetic Engineering.",
-};
+export const metadata = pageMetadata("Alumni & Legacy", "Reconnect with HOPE, help preserve our shared history, and recognize the people who helped build Hands on Prosthetic Engineering.", "/alumni");
 
 export const revalidate = 60;
 

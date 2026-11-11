@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { sanityFetch, SanityLive } from "@/sanity/lib/live";
 import { partnersQuery, type Partner } from "@/sanity/queries/partners";
 import PartnersHero from "./_components/partners-hero";
@@ -6,12 +5,9 @@ import FeaturedAffiliation from "./_components/featured-affiliation";
 import InstitutionalPartners from "./_components/institutional-partners";
 import { fallbackPartners } from "./_components/fallback-partners";
 import PartnershipCTA from "./_components/partnership-cta";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-    title: "Partners & Collaborations | H.O.P.E.",
-    description:
-        "Discover our institutional partners, academic collaborations, and global affiliation with e-NABLE supporting Hands on Prosthetic Engineering.",
-};
+export const metadata = pageMetadata("Partners & Collaborations", "Discover our institutional partners, academic collaborations, and global affiliation with e-NABLE supporting Hands on Prosthetic Engineering.", "/partners-and-collaborations");
 
 export const dynamic = "force-dynamic";
 

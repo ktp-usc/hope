@@ -54,6 +54,8 @@ async function renderAlumniPage(getAlumniDirectory) {
   const rosters = loadModule('../app/alumni/_components/alumni-rosters.tsx', { '@/lib/alumni': alumniHelpers });
   const page = loadModule('../app/alumni/page.tsx', {
     '@/sanity/lib/alumni': { getAlumniDirectory }, './_components/alumni-rosters': rosters,
+    // Page metadata is outside what this test renders.
+    '@/lib/seo': { pageMetadata: () => ({}) },
     // Unrelated form and button internals are outside this integration test.
     '@/components/contact/EmailContact': () => createElement('div', { 'data-testid': 'email-contact' }),
     '@/sanity/lib/contact-emails': { getContactEmails: async () => ({ alumni: { to: 'alumni@example.com', subject: 'Reconnect' } }) },

@@ -74,6 +74,8 @@ async function renderPage(getLeadership) {
     '@/sanity/lib/leadership': { getLeadership },
     './about-images/13_Creativibe_Display_Team.jpg': { src: '/fixture-hero.jpg', width: 1000, height: 800 },
     './about-images/11_First_HOPE_Printer_Build.jpg': { src: '/fixture-present.jpg', width: 1000, height: 800 },
+    // Page metadata is outside what this test renders.
+    '@/lib/seo': { pageMetadata: () => ({}) },
     '@/components/about/StudentOrgModule': () => createElement('section', { id: 'student-org-fixture' }, 'Existing organization module'),
     '@/components/about/TransparencyModule': () => createElement('section', { id: 'transparency-fixture' }, 'Existing transparency module'),
   });

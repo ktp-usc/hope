@@ -5,6 +5,7 @@ import { PortableText, type PortableTextComponents } from "@portabletext/react";
 import HistoricalStoryTemplate from "../_components/HistoricalStoryTemplate";
 import { getProjectStoryBySlug, getProjectStories } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/image";
+import { pageMetadata } from "@/lib/seo";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -105,12 +106,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  return {
-    title: `${story.title} | H.O.P.E. Stories`,
-    description:
-      story.summary ||
-      "A project case study from Hands on Prosthetic Engineering (H.O.P.E.)",
-  };
+  return pageMetadata(
+    story.title,
+    story.summary || "A project case study from Hands on Prosthetic Engineering (H.O.P.E.)",
+    `/stories/${slug}`,
+  );
 }
 
 /**
