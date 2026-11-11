@@ -94,9 +94,3 @@ Intended client owner/contact for every service: **aturner@handsonhope.ngo**. Th
 6. **Domain/DNS:** confirm the registrar and DNS provider, admin access, billing, and renewal. Save the existing DNS records. Add `handsonhope.ngo` and any agreed `www` alias in the correct Vercel project's domain settings. Enter **exactly the DNS record types, names, and values shown in that project's Vercel dashboard**. Dashboard access and required records: **To confirm**.
 7. Preserve existing email records, including MX, SPF, DKIM, DMARC, and email-verification records. Have the DNS administrator resolve conflicts. After the changes take effect, verify Vercel domain approval, HTTPS, the website, `/studio`, and existing email send/receive.
 
-## 6. Delivery checklist
-
-1. Review this guide with Ashley, Matthew, and Trinity against the signed-in Studio and deployed website. Check labels, images, payment destinations, approved publication, and update timing; test both donation states in a suitable review environment. **Pending**.
-2. Confirm account owners, administrator contacts, editor invitations, deployment/Studio URLs, production configuration, and every **To confirm** inventory item. **Pending**.
-3. Review the document diff and run `git diff --check` before committing.
-4. Commit `docs/CLIENT_HANDOFF_GUIDE.md` and upload the approved guide to the shared Google Drive before the client review meeting. Record the commit reference and shared document link. **Pending**. Drive folder/link, upload access, and meeting date/time: **To confirm**.
