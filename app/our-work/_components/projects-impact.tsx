@@ -1,9 +1,6 @@
 import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import courtneyImage from "@/public/images/projects/05_Courtney_Finger_Adaptation.jpg";
-import stethoscopeImage from "@/public/images/projects/06_3D_Printed_Stethoscope.jpg";
-import openerImage from "@/public/images/projects/07_Hand_Bottle_Opener_Adaptation.jpg";
 import type { ProjectStoryCard } from "@/sanity/lib/queries";
 import eliArmImg from "@/public/images/projects/01_Eli_Bike_Arm_Detail.jpg";
 import ppeFramesImg from "@/public/images/projects/09_HOPE_Face_Shield_Frames.png";
@@ -139,21 +136,6 @@ export default function ProjectsImpact({ stories }: ProjectsImpactProps) {
                 </Link>
               </div>
             </article>
-          ))}
-        </div>
-
-        <div className="mt-14 grid gap-8 md:grid-cols-3" aria-label="More HOPE project photographs">
-          {[
-            { image: courtneyImage, caption: "Courtney's finger adaptation", alt: "Courtney showing a finger-adaptation device fitted to a hand" },
-            { image: stethoscopeImage, caption: "3D-printed stethoscope", alt: "3D printer fabricating yellow stethoscope components on its build plate" },
-            { image: openerImage, caption: "Early task-specific adaptation", alt: "Two articulated 3D-printed hand assemblies, one gray and one red, on a table" },
-          ].map(({ image, caption, alt }) => (
-            <figure key={caption} className="rounded-2xl border border-slate-200/80 bg-white p-4 shadow-sm">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-[#ebf3fa]">
-                <Image src={image} alt={alt} fill sizes="(min-width: 1280px) 405px, (min-width: 768px) 30vw, 90vw" className="object-contain" />
-              </div>
-              <figcaption className="mt-3 text-sm font-medium text-[#1a273d]">{caption}</figcaption>
-            </figure>
           ))}
         </div>
       </div>

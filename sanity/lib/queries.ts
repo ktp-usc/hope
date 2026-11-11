@@ -267,7 +267,7 @@ export const FALLBACK_PROJECT_STORIES: Record<string, FallbackStory> = {
       "During the pandemic, student members partnered with USC faculty and graduate students to redirect 3D printing toward mask extenders and face-shield components, answering an urgent public health need.",
     introduction:
       "During the COVID-19 response, HOPE members shifted part of their 3D-printing work toward personal protective equipment.",
-    heroBackground: "blue",
+    heroBackground: "yellow",
     heroImage: {
       src: "/images/projects/09_HOPE_Face_Shield_Frames.png",
       alt: "Stacks of colorful 3D-printed face-shield frames around a HOPE sign",

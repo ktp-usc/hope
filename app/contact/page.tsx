@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight, GraduationCap, HandHeart, Handshake, MapPin } from "lucide-react";
+import { ArrowUpRight, GraduationCap, HandHeart, Handshake } from "lucide-react";
 import ContactCard from "./_components/contact-card";
 import { getContactEmails } from "@/sanity/lib/contact-emails";
 import { pageMetadata } from "@/lib/seo";
@@ -62,7 +62,7 @@ export default async function ContactPage() {
       </section>
 
       {/* 2. Pathways Section */}
-      <section className="bg-[#ebf3fa] px-6 py-14 sm:py-18 lg:py-22" aria-labelledby="pathways-title">
+      <section className="border-b border-slate-100 bg-white px-6 py-14 sm:py-18 lg:py-22" aria-labelledby="pathways-title">
         <div className="mx-auto max-w-6xl">
           <div className="mb-10 max-w-2xl">
             <div className="mb-3 flex items-center gap-2">
@@ -80,7 +80,7 @@ export default async function ContactPage() {
             {pathways.map(({ title, description, href, action, icon: Icon, secondaryHref, secondaryAction }) => (
               <article
                 key={title}
-                className="flex flex-col justify-between rounded-2xl border border-slate-200/80 bg-white p-7 shadow-sm transition hover:shadow-md"
+                className="flex flex-col justify-between rounded-2xl border border-slate-200/80 bg-slate-50/50 p-7 shadow-sm transition hover:shadow-md"
               >
                 <div>
                   <span className="mb-5 flex size-11 items-center justify-center rounded-xl bg-[#f7d06b] text-[#12303f] shadow-sm">
@@ -89,7 +89,7 @@ export default async function ContactPage() {
                   <h3 className="text-lg font-bold text-[#1a273d]">{title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-slate-600">{description}</p>
                 </div>
-                <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2 pt-4 border-t border-slate-100">
+                <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2 pt-4 border-t border-slate-200/60">
                   <Link
                     href={href}
                     className="inline-flex items-center gap-1 text-sm font-semibold text-[#1a273d] hover:underline underline-offset-4"
@@ -135,10 +135,6 @@ export default async function ContactPage() {
           </h2>
           <p className="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
             Whether you have a question, a partnership idea, or another way you&apos;d like to get involved, we&apos;d love to hear from you.
-          </p>
-          <p className="mt-6 flex items-center gap-2 text-sm font-medium text-slate-600">
-            <MapPin size={16} aria-hidden="true" className="text-[#1260d6]" />
-            Columbia, South Carolina
           </p>
         </div>
         <div className="min-w-0" aria-labelledby="contact-card-title">

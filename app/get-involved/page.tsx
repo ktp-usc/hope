@@ -1,5 +1,8 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
+import hopeLogo from "@/app/about/about-images/hope-logo.jpg";
+import uscLogo from "@/app/about/about-images/usc-logo.jpg";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata(
@@ -169,10 +172,21 @@ export default function GetInvolvedPage() {
           {/* USC Students Card */}
           <div className="flex flex-col justify-between rounded-2xl border border-[#d6e7f5] bg-[#ebf3fa] p-8 sm:p-10 shadow-sm">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-[#1260d6]">
-                University of South Carolina
-              </span>
-              <h3 className="mt-3 text-2xl font-bold text-[#1a273d] sm:text-3xl">USC Students</h3>
+              <div className="mb-6 flex items-center justify-between gap-4">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#1260d6]">
+                  University of South Carolina
+                </span>
+                <div className="h-14 w-14 shrink-0 overflow-hidden rounded-xl bg-white p-2 shadow-sm border border-slate-200/80 flex items-center justify-center">
+                  <Image
+                    src={uscLogo}
+                    alt="H.O.P.E. at USC logo"
+                    className="max-h-full max-w-full object-contain"
+                    width={56}
+                    height={56}
+                  />
+                </div>
+              </div>
+              <h3 className="text-2xl font-bold text-[#1a273d] sm:text-3xl">USC Students</h3>
               <p className="mt-4 text-base leading-relaxed text-slate-700">
                 For students at the University of South Carolina, the best starting point is the HOPE student organization at USC. Students can join through Garnet Gate, connect with student leadership, and attend meetings, training, and project activities.
               </p>
@@ -205,10 +219,21 @@ export default function GetInvolvedPage() {
           {/* Other Institutions Card */}
           <div className="flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-8 sm:p-10 shadow-sm">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-[#1260d6]">
-                Other Institutions
-              </span>
-              <h3 className="mt-3 text-2xl font-bold text-[#1a273d] sm:text-3xl">Students at Other Schools</h3>
+              <div className="mb-6 flex items-center justify-between gap-4">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#1260d6]">
+                  Other Institutions
+                </span>
+                <div className="h-14 w-14 shrink-0 overflow-hidden rounded-xl bg-white p-2 shadow-sm border border-slate-200/80 flex items-center justify-center">
+                  <Image
+                    src={hopeLogo}
+                    alt="H.O.P.E. Inc. logo"
+                    className="max-h-full max-w-full object-contain"
+                    width={56}
+                    height={56}
+                  />
+                </div>
+              </div>
+              <h3 className="text-2xl font-bold text-[#1a273d] sm:text-3xl">Students at Other Schools</h3>
               <p className="mt-4 text-base leading-relaxed text-slate-600">
                 Students do not have to be at USC to start a conversation with HOPE. Students, colleges, universities, and technical schools can contact HOPE about contributing, collaborating, or exploring opportunities.
               </p>
