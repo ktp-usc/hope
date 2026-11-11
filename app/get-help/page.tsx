@@ -72,7 +72,7 @@ export default async function GetHelpPage() {
                     Each project’s timeline depends on its complexity, technical
                     requirements, student availability, and HOPE’s capacity at the time.
                   </p>
-                  <p className="mt-3 text-[11px] font-medium leading-normal text-slate-500 border-t border-[#d6e7f5]/80 pt-2.5">
+                  <p className="mt-3 text-[11px] font-medium leading-normal text-slate-900 border-t border-[#d6e7f5]/80 pt-2.5">
                     We are not an emergency service. If you need immediate assistance,
                     please contact local emergency or crisis services.
                   </p>

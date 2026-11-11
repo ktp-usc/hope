@@ -60,6 +60,7 @@ export default function Footer() {
                 alt="H.O.P.E. Hands on Prosthetic Engineering"
                 width={120}
                 height={80}
+                className="h-auto w-[120px]"
               />
             </Link>
             <p className="mt-6 max-w-xs text-sm text-[#12303f]">
@@ -121,7 +122,7 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} HOPE &middot; Hands On Prosthetic
             Engineering
           </p>
-          <ul className="flex gap-6">
+          <ul className="flex flex-wrap gap-x-6 gap-y-2">
             {LEGAL_LINKS.map((link) => (
               <li key={link.href}>
                 <Link
