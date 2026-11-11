@@ -42,18 +42,18 @@ function StoryFigure({ image, hero = false }: { image: StoryImage; hero?: boolea
     <figure
       className={
         hero
-          ? "relative m-0 min-w-0 md:!-ml-[30px] md:[clip-path:polygon(0_0,100%_0,100%_100%,6%_100%)] max-[800px]:!ml-0 max-[800px]:aspect-[3/2] max-[800px]:[clip-path:none]"
+          ? "relative m-0 min-w-0 aspect-[4/3] md:aspect-auto"
           : "relative m-0 min-w-0 min-[801px]:flex min-[801px]:min-h-0 min-[801px]:flex-col"
       }
     >
       <div
         className={
           placeholder
-            ? `relative flex flex-col items-center justify-center gap-3.5 overflow-hidden rounded-[18px] bg-[linear-gradient(135deg,#cddae5,#b9c9d8)] p-7 text-center text-[#425970] ${
-                hero ? "h-full min-h-[350px] rounded-none max-[800px]:min-h-0" : "min-[801px]:flex-1 min-[801px]:min-h-0 min-[801px]:!aspect-auto"
+            ? `relative flex flex-col items-center justify-center gap-3.5 overflow-hidden rounded-2xl bg-[linear-gradient(135deg,#cddae5,#b9c9d8)] p-7 text-center text-[#425970] ${
+                hero ? "h-full min-h-[300px] md:min-h-[380px]" : "min-[801px]:flex-1 min-[801px]:min-h-0"
               }`
-            : `relative overflow-hidden ${
-                hero ? "h-full min-h-[350px] rounded-none max-[800px]:min-h-0" : "min-[801px]:flex-1 min-[801px]:min-h-0 min-[801px]:!aspect-auto"
+            : `relative overflow-hidden rounded-2xl ${
+                hero ? "h-full min-h-[300px] md:min-h-[380px]" : "min-[801px]:flex-1 min-[801px]:min-h-0"
               }`
         }
         style={{
@@ -81,7 +81,7 @@ function StoryFigure({ image, hero = false }: { image: StoryImage; hero?: boolea
             className={
               hero
                 ? "absolute inset-0 h-full w-full object-cover"
-                : "block h-auto w-full rounded-[18px] object-contain"
+                : "block h-auto w-full rounded-xl object-contain"
             }
             style={{
               objectPosition: image.focalPosition ?? "center",
@@ -98,8 +98,8 @@ function StoryFigure({ image, hero = false }: { image: StoryImage; hero?: boolea
         <figcaption
           className={
             hero
-              ? "absolute right-0 bottom-0 left-[7%] bg-[#111b31d9] px-[18px] py-2.5 text-sm text-white"
-              : "mt-2.5 text-sm text-[#415269]"
+              ? "mt-2 text-center text-xs text-[#1a273d]/75 italic"
+              : "mt-2.5 text-xs text-slate-600"
           }
         >
           {image.caption}
@@ -122,94 +122,91 @@ export default function HistoricalStoryTemplate({
 }: HistoricalStoryTemplateProps) {
   return (
     <main
-      className={`[overflow-wrap:anywhere] font-sans text-lg leading-[1.5] text-[#111b31] max-[400px]:text-[17px] ${
-        heroBackground === "blue" ? "bg-[#f3f9ff]" : "bg-[#fffdf7]"
+      className={`min-h-screen font-sans text-base leading-relaxed text-[#1a273d] ${
+        heroBackground === "blue" ? "bg-[#ebf3fa]" : "bg-white"
       }`}
     >
       <article>
         <header
-          className={`grid grid-cols-1 overflow-hidden md:grid-cols-[54%_46%] ${
-            heroBackground === "blue" ? "bg-[#d3eafb]" : "bg-[#f8cd53]"
+          className={`px-6 py-12 sm:py-16 lg:py-20 ${
+            heroBackground === "blue" ? "bg-[#d3eafb]" : "bg-[#f7d06b]"
           }`}
         >
-          <div className="relative isolate min-w-0 pt-[58px] pr-[60px] pb-[52px] pl-[max(28px,calc((100vw-min(80vw,1200px))/2))] max-[1100px]:pr-12 max-[1100px]:pl-[7%] max-[800px]:px-[7%] max-[800px]:py-10 max-[400px]:px-[5%]">
-            <p className="!mb-[22px] flex items-center gap-[15px] text-xs font-bold uppercase tracking-wider text-[#111b31]">
-              <span
-                className="inline-block h-[7px] w-[35px] shrink-0 rounded-[5px] bg-[#e95c36]"
-                aria-hidden="true"
-              />
-              H.O.P.E. Stories
-            </p>
-            <h1 className="relative m-0 max-w-[650px] text-[clamp(36px,4vw,56px)] font-bold leading-[1.08] tracking-[-0.035em] text-[#111b31] max-[400px]:text-[34px]">
-              {title}
-            </h1>
-            {date && (
-              <p className="relative m-0 !mt-[14px] text-[23px] font-medium text-[#111b31] max-[400px]:text-[21px]">
-                {date}
+          <div className="mx-auto max-w-6xl grid items-center gap-10 md:grid-cols-2 md:gap-12">
+            <div>
+              <div className="mb-3 flex items-center gap-2">
+                <span
+                  className="h-0.5 w-5 bg-[#1a273d]"
+                  aria-hidden="true"
+                />
+                <span className="text-[11px] font-bold uppercase tracking-wider text-[#1a273d]">
+                  H.O.P.E. Stories
+                </span>
+              </div>
+              <h1 className="text-3xl font-bold tracking-tight text-[#1a273d] sm:text-5xl lg:text-6xl leading-[1.12]">
+                {title}
+              </h1>
+              {date && (
+                <p className="mt-3 text-lg font-semibold text-[#1a273d]/90 sm:text-xl">
+                  {date}
+                </p>
+              )}
+              <p className="mt-5 max-w-xl text-base leading-relaxed text-[#1a273d]/85 sm:text-lg">
+                {introduction}
               </p>
-            )}
-            <p className="relative m-0 !mt-4 max-w-[570px] leading-[1.5] text-[#111b31]">
-              {introduction}
-            </p>
-            <div
-              className="pointer-events-none absolute top-[18%] right-[7%] -z-10 h-[130px] w-[58px] max-[800px]:top-[12%] max-[800px]:right-[5%] max-[800px]:opacity-60"
-              aria-hidden="true"
-            >
-              <span className="absolute h-3 w-[53px] -rotate-[42deg] rounded-[9px] bg-[#e95c36]" />
-              <span className="absolute top-[100px] -right-10 h-3 w-[42px] -rotate-[28deg] rounded-[9px] bg-[#b8b1e8]" />
-              <span className="absolute top-[122px] -right-[43px] h-3 w-[29px] rotate-[30deg] rounded-[9px] bg-[#c89ae7]" />
             </div>
-            <div
-              className="pointer-events-none absolute bottom-[55px] left-0 h-[85px] w-[55px] max-[1100px]:w-[30px] max-[1100px]:overflow-hidden max-[1100px]:opacity-50 max-[800px]:hidden"
-              aria-hidden="true"
-            >
-              <span
-                className={`absolute h-[13px] w-[60px] -translate-x-[7px] rotate-[20deg] rounded-[8px] ${
-                  heroBackground === "blue" ? "bg-[#f8cd53]" : "bg-[#1665dc]"
-                }`}
-              />
-              <span
-                className={`absolute top-[53px] h-[13px] w-[60px] -translate-x-[7px] -rotate-[32deg] rounded-[8px] ${
-                  heroBackground === "blue" ? "bg-[#f8cd53]" : "bg-[#1665dc]"
-                }`}
-              />
+            <div className="w-full">
+              <StoryFigure image={heroImage} hero />
             </div>
           </div>
-          <StoryFigure image={heroImage} hero />
         </header>
 
         <section
-          className={`mx-auto grid w-[80%] max-w-[1200px] items-start py-[42px] pb-[50px] max-[1100px]:w-[86%] max-[800px]:grid-cols-1 max-[800px]:gap-8 max-[800px]:py-[34px] max-[800px]:pb-[42px] max-[400px]:w-[90%] ${
-            supportingImages.length
-              ? "grid-cols-[1.08fr_1fr] gap-[65px] max-[1100px]:gap-[42px]"
-              : "grid-cols-1"
-          }`}
+          className="mx-auto max-w-6xl px-6 py-14 sm:py-18 lg:py-22"
           aria-label="The Story"
         >
-          <div className={`min-w-0 ${supportingImages.length ? "" : "max-w-[720px]"}`}>
-            <h2 className="m-0 mb-[22px] flex items-center gap-4 text-[29px] font-bold leading-[1.2] text-[#111b31] max-[800px]:text-[27px]">
-              <span
-                className="inline-block h-[7px] w-[35px] shrink-0 rounded-[5px] bg-[#e95c36]"
-                aria-hidden="true"
-              />
-              The Story
-            </h2>
-            {children
-              ? children
-              : paragraphs?.map((paragraph, index) => (
-                  <p key={index} className="m-0 text-[#111b31] [&+p]:mt-5">
+          <div
+            className={`grid gap-12 items-start ${
+              supportingImages.length > 0 ? "lg:grid-cols-[1.2fr_0.8fr]" : "max-w-3xl"
+            }`}
+          >
+            <div>
+              <div className="mb-3 flex items-center gap-2">
+                <span
+                  className="h-0.5 w-5 bg-[#f7d06b]"
+                  aria-hidden="true"
+                />
+                <span className="text-[11px] font-bold uppercase tracking-wider text-[#1a273d]">
+                  Case Study
+                </span>
+              </div>
+              <h2 className="text-2xl font-bold tracking-tight text-[#1a273d] sm:text-3xl mb-6">
+                The Story
+              </h2>
+              {children ? (
+                children
+              ) : (
+                paragraphs?.map((paragraph, index) => (
+                  <p key={index} className="text-base leading-relaxed text-slate-700 [&+p]:mt-5">
                     {paragraph}
                   </p>
-                ))}
-            <StoryBackButton />
-          </div>
-          {supportingImages.length > 0 && (
-            <div className="grid gap-3.5 max-[800px]:gap-[18px] min-[801px]:min-h-0 min-[801px]:self-stretch min-[801px]:[contain:size] min-[801px]:[container-type:inline-size] min-[801px]:[grid-auto-rows:minmax(0,1fr)]">
-              {supportingImages.map((image, index) => (
-                <StoryFigure key={index} image={image} />
-              ))}
+                ))
+              )}
+              <div className="mt-8">
+                <StoryBackButton />
+              </div>
             </div>
-          )}
+
+            {supportingImages.length > 0 && (
+              <div className="grid gap-6">
+                {supportingImages.map((image, index) => (
+                  <div key={index} className="rounded-2xl border border-slate-200/80 bg-white p-3 shadow-sm">
+                    <StoryFigure image={image} />
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </section>
       </article>
     </main>

@@ -1,94 +1,71 @@
 import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
 import type { Partner } from "@/sanity/queries/partners";
 
 /** Highlighted card for the primary-network partner, rendered from its Sanity record. */
 export default function FeaturedAffiliation({ partner }: { partner: Partner }) {
-    return (
-        <section className="mx-auto w-full max-w-6xl px-6 pb-14 lg:px-8">
-            <div className="grid overflow-hidden rounded-md bg-[#EBF2F8] lg:grid-cols-[1.65fr_1fr]">
+  return (
+    <section className="mx-auto w-full max-w-6xl px-6 py-12 lg:px-8">
+      <div className="grid overflow-hidden rounded-2xl border border-[#d6e7f5] bg-[#ebf3fa] lg:grid-cols-[1.65fr_1fr]">
+        {/* Left side: e-NABLE information */}
+        <div className="p-8 sm:p-10 lg:p-12">
+          <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#1260d6]">
+              Our Global Affiliation
+            </span>
+            <span className="rounded-full bg-white px-3 py-1 text-xs font-bold text-[#1a273d] shadow-sm">
+              Certified Chapter
+            </span>
+          </div>
 
-                {/* Left side: e-NABLE information */}
-                <div className="p-8 lg:p-10">
-                    <div className="mb-8 flex flex-wrap items-center justify-between gap-3">
-                        <span className="text-xs uppercase font-medium tracking-wide text-slate-600">
-                            Our Global Affiliation
-                        </span>
-
-                        <span className="text-xs font-semibold text-[#1B2D4C]">
-                            Certified chapter
-                        </span>
-                    </div>
-
-                    {partner.logoUrl && (
-                        <div className="relative mb-4 h-20 w-20">
-                            <Image
-                                src={partner.logoUrl}
-                                alt={`${partner.name} logo`}
-                                fill
-                                sizes="80px"
-                                className="object-contain object-left"
-                            />
-                        </div>
-                    )}
-
-                    <h2 className="mb-5 text-4xl font-normal text-[#1B2D4C]">
-                        {partner.name}
-                    </h2>
-
-                    <h3 className="mb-4 text-xl font-medium text-[#1B2D4C]">
-                        A global network. A local commitment.
-                    </h3>
-
-                    <p className="mb-6 max-w-xl text-sm leading-relaxed text-slate-700">
-                        {partner.description}
-                    </p>
-
-                    {partner.websiteUrl && (
-                    <a
-                        href={partner.websiteUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-sm font-semibold text-[#1B2D4C] hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1B2D4C]"
-                        aria-label={`Explore ${partner.name} (opens in a new tab)`}
-                    >
-                        Explore {partner.name}
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            aria-hidden="true"
-                        >
-                            <path d="M7 17 17 7" />
-                            <path d="M7 7h10v10" />
-                        </svg>
-                    </a>
-                    )}
-                </div>
-
-                {/* Right side: partnership image */}
-                <div className="relative flex min-h-[300px] flex-col overflow-hidden bg-[#D6E2EC]">
-                    <div className="relative flex-1 min-h-[240px]">
-                        <Image
-                            src="/images/partners/enable-workshop.png"
-                            alt="e-NABLE community workshop session with volunteers building 3D-printed prosthetic hands"
-                            fill
-                            className="object-cover"
-                            sizes="(max-width: 1024px) 100vw, 40vw"
-                        />
-                    </div>
-
-                    <div className="bg-[#1B2D4C] px-5 py-3 text-xs text-white">
-                        Shared knowledge. Hands-on possibility.
-                    </div>
-                </div>
-
+          {partner.logoUrl && (
+            <div className="relative mb-5 h-16 w-32">
+              <Image
+                src={partner.logoUrl}
+                alt={`${partner.name} logo`}
+                fill
+                sizes="128px"
+                className="object-contain object-left"
+              />
             </div>
-        </section>
-    );
+          )}
+
+          <h2 className="mb-3 text-3xl font-bold tracking-tight text-[#1a273d] sm:text-4xl">
+            {partner.name}
+          </h2>
+
+          <h3 className="mb-4 text-lg font-bold text-[#1a273d]">
+            A global network. A local commitment.
+          </h3>
+
+          <p className="mb-6 max-w-xl text-base leading-relaxed text-slate-700">
+            {partner.description}
+          </p>
+
+          {partner.websiteUrl && (
+            <a
+              href={partner.websiteUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center rounded-lg bg-[#f7d06b] px-5 py-2.5 text-sm font-semibold text-[#12303f] shadow-sm transition hover:bg-[#f3c64f] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#12303f]"
+              aria-label={`Explore ${partner.name} (opens in a new tab)`}
+            >
+              Explore {partner.name}
+              <ArrowUpRight className="ml-1.5 size-4" />
+            </a>
+          )}
+        </div>
+
+        {/* Right side: visual highlight card */}
+        <div className="flex flex-col justify-center border-t border-[#d6e7f5] bg-white/60 p-8 sm:p-10 lg:border-t-0 lg:border-l lg:border-[#d6e7f5]">
+          <h4 className="text-sm font-bold uppercase tracking-wider text-[#1260d6]">
+            Shared Open-Source Roots
+          </h4>
+          <p className="mt-3 text-sm leading-relaxed text-slate-600">
+            HOPE became an e-NABLE chapter to bring open-source 3D-printed assistive designs into hands-on student practice. Today, that connection continues through shared resources and knowledge exchange across the global community.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
 }

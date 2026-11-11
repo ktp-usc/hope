@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import EmailContact from "@/components/contact/EmailContact";
 import { contactMailto, type ContactEmail, type ContactEmails } from "@/lib/contact-email";
 import type { SiteSettings, DonationMethod } from "@/sanity/lib/queries";
@@ -8,12 +8,12 @@ const supportWays = [
   {
     title: "Sponsor equipment",
     description:
-      "Help fund the printers, scanners, tools, and fabrication equipment that bring each prosthetic to life.",
+      "Help fund 3D printers, scanners, tools, and fabrication equipment students use to design and prototype assistive solutions.",
   },
   {
     title: "Donate materials",
     description:
-      "Contribute approved components, printing materials, tools, and supplies our teams use every day.",
+      "Contribute filament, fasteners, components, tools, and supplies our student teams use in the workshop.",
   },
   {
     title: "Offer your expertise",
@@ -23,12 +23,12 @@ const supportWays = [
   {
     title: "Workplace giving",
     description:
-      "Support H.O.P.E. through matching gifts, payroll giving, or a team-led fundraising campaign.",
+      "Support HOPE through corporate matching gifts, payroll giving, or a team-led fundraising campaign.",
   },
   {
     title: "Alumni mentorship",
     description:
-      "Alumni and professionals can mentor the students who design and build each prosthetic.",
+      "Alumni and experienced makers can mentor students through design reviews, fabrication guidance, and project leadership.",
   },
 ];
 
@@ -56,7 +56,7 @@ function getContrastTextColor(hexColor?: string): string {
     return "text-white";
   }
   const yiq = (r * 299 + g * 587 + b * 114) / 1000;
-  return yiq >= 128 ? "text-[#102743]" : "text-white";
+  return yiq >= 128 ? "text-[#1a273d]" : "text-white";
 }
 
 /**
@@ -87,17 +87,17 @@ function getThemeStyles(theme?: string, customColor?: string) {
       };
     case "charcoal":
       return {
-        cardHover: "hover:border-[#102743]/50",
-        badge: "bg-slate-100 text-[#102743]",
+        cardHover: "hover:border-[#1a273d]/50",
+        badge: "bg-slate-100 text-[#1a273d]",
         button:
-          "border-[#102743] bg-[#102743] text-white hover:border-[#0b1a2d] hover:bg-[#0b1a2d] focus-visible:outline-[#102743]",
+          "border-[#1a273d] bg-[#1a273d] text-white hover:border-[#0b1a2d] hover:bg-[#0b1a2d] focus-visible:outline-[#1a273d]",
       };
     case "amber":
       return {
-        cardHover: "hover:border-[#ffd84d]/60",
+        cardHover: "hover:border-[#f7d06b]/60",
         badge: "bg-amber-50 text-amber-900",
         button:
-          "border-[#ffd84d] bg-[#ffd84d] text-[#102743] hover:border-[#f3c64f] hover:bg-[#f3c64f] focus-visible:outline-[#ffd84d]",
+          "border-[#f7d06b] bg-[#f7d06b] text-[#12303f] hover:border-[#f3c64f] hover:bg-[#f3c64f] focus-visible:outline-[#f7d06b]",
       };
     case "custom":
       if (customColor) {
@@ -137,13 +137,13 @@ function PaymentCard({ method }: { method: DonationMethod }) {
 
   return (
     <div
-      className={`rounded-2xl border border-line bg-paper/60 p-5 transition-colors ${styles.cardHover}`}
+      className={`rounded-2xl border border-slate-200 bg-white p-5 transition-colors shadow-sm ${styles.cardHover}`}
     >
       <div className="flex flex-wrap items-start justify-between gap-2">
         <div>
-          <h3 className="font-display text-xl tracking-[-0.01em] text-ink">{method.title}</h3>
+          <h3 className="text-lg font-bold text-[#1a273d]">{method.title}</h3>
           {method.note && (
-            <p className="mt-1 text-xs text-quiet">{method.note}</p>
+            <p className="mt-1 text-xs text-slate-600">{method.note}</p>
           )}
         </div>
         {method.badgeText && (
@@ -160,10 +160,10 @@ function PaymentCard({ method }: { method: DonationMethod }) {
         target="_blank"
         rel="noopener noreferrer"
         style={styles.buttonStyle}
-        className={`mt-4 flex w-full items-center justify-center gap-2 rounded-full border-2 px-6 py-3.5 text-sm font-extrabold transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 ${styles.button}`}
+        className={`mt-4 flex w-full items-center justify-center gap-2 rounded-lg border px-5 py-2.5 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 ${styles.button}`}
       >
         {method.buttonLabel || "Donate Now"}
-        <ArrowRight aria-hidden className="size-4" />
+        <ArrowUpRight aria-hidden className="size-4" />
         <span className="sr-only">(opens in a new tab)</span>
       </a>
     </div>
@@ -177,35 +177,35 @@ function DonationCards({ methods, email }: { methods: DonationMethod[]; email: C
   return (
     <section
       aria-labelledby="donation-heading"
-      className="w-full rounded-[28px] border border-line bg-white p-7 shadow-[0_2px_4px_rgba(16,39,67,0.04),0_24px_48px_-16px_rgba(16,39,67,0.14)] sm:p-9"
+      className="w-full rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm sm:p-8"
     >
-      <div className="border-b border-line pb-5">
-        <span className="text-xs font-bold uppercase tracking-wider text-hope">
+      <div className="border-b border-slate-100 pb-4">
+        <span className="text-xs font-bold uppercase tracking-wider text-[#1260d6]">
           Direct Giving
         </span>
         <h2
           id="donation-heading"
-          className="mt-1 font-display text-3xl leading-[1.1] tracking-[-0.02em] text-ink sm:text-4xl"
+          className="mt-1 text-2xl font-bold tracking-tight text-[#1a273d] sm:text-3xl"
         >
-          Make a Donation
+          Make a Contribution
         </h2>
       </div>
 
       <div className="mt-6 space-y-4">
-        {methods.length > 0 ? (
+        {methods && methods.length > 0 ? (
           methods.map((method, idx) => (
             <PaymentCard key={`${method.title}-${idx}`} method={method} />
           ))
         ) : (
-          <div className="rounded-2xl border border-line bg-paper/60 p-6 text-center">
-            <p className="font-display text-xl text-ink">
-              No current ways to donate.
+          <div className="rounded-xl border border-slate-200 bg-slate-50 p-6 text-center">
+            <p className="text-base font-semibold text-[#1a273d]">
+              No current ways to donate online.
             </p>
-            <p className="mt-2 text-sm leading-6 text-quiet">
+            <p className="mt-2 text-sm leading-6 text-slate-600">
               Direct giving methods are currently being updated. Please reach out to{" "}
               <a
                 href={contactMailto(email)}
-                className="font-semibold text-hope underline underline-offset-2 hover:text-hope-deep"
+                className="font-semibold text-[#1260d6] underline underline-offset-2 hover:text-[#0f55bd]"
               >
                 {email.recipient}
               </a>{" "}
@@ -222,80 +222,124 @@ function DonationCards({ methods, email }: { methods: DonationMethod[]; email: C
  * Renders the Support & Donate page layout.
  * Pure Tailwind CSS implementation with zero external CSS modules.
  */
-export default function Donate({ settings, contactEmails }: { settings: SiteSettings; contactEmails: ContactEmails }) {
+export default function Donate({
+  settings,
+  contactEmails,
+}: {
+  settings: SiteSettings;
+  contactEmails: ContactEmails;
+}) {
   const enabled = settings.donationsEnabled;
 
   return (
-    <div className="min-h-screen bg-paper text-ink">
-      <main>
-        <section className="mx-auto grid max-w-[1240px] gap-14 px-6 pb-16 pt-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:px-10 lg:pb-24 lg:pt-16">
-          <div className="max-w-[650px]">
-            <h1 className="font-display text-[clamp(3.25rem,7vw,6rem)] leading-[0.92] tracking-[-0.03em] text-balance text-ink">
-              Give hope.
-              <br />
-              <span className="relative inline-block text-hope">
-                Change lives.
-                <svg
-                  aria-hidden
-                  className="absolute -bottom-2 left-1 w-[96%]"
-                  viewBox="0 0 490 18"
-                  fill="none"
-                >
-                  <path
-                    d="M4 12C118 2 302 3 486 9"
-                    stroke="#FFD84D"
-                    strokeWidth="9"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              </span>
-            </h1>
-            <p className="mt-10 max-w-[34rem] text-lg leading-8 text-quiet text-pretty">
-              Your support is what allows us to provide life-changing prosthetics to those
-              in need.
-            </p>
+    <main className="min-h-screen bg-white text-[#1a273d]">
+      {/* 1. Yellow Header Banner */}
+      <section className="bg-[#f7d06b] px-6 py-12 sm:py-16 lg:py-20 text-[#1a273d]">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-3 flex items-center gap-2">
+            <span className="h-0.5 w-5 bg-[#1a273d]" />
+            <span className="text-[11px] font-bold uppercase tracking-wider text-[#1a273d]">
+              Support HOPE
+            </span>
           </div>
-
-          {enabled ? (
-            <DonationCards methods={settings.donationMethods} email={contactEmails["donation-inquiry"]} />
-          ) : (
-            <div className="mx-auto w-full max-w-[460px]"><EmailContact email={contactEmails.support} title="Support H.O.P.E." description="Direct donations are temporarily paused, but there are many vital ways to help. Let us know how you can contribute equipment, materials, expertise, or workplace giving." buttonLabel="Open support inquiry email" /></div>
-          )}
-        </section>
-
-        <section
-          aria-labelledby="support-heading"
-          className="bg-wash px-6 py-16 lg:px-10 lg:py-24"
-        >
-          <div className="mx-auto max-w-[1000px]">
-            <h2
-              id="support-heading"
-              className="font-display text-4xl leading-[1.05] tracking-[-0.02em] text-balance text-ink sm:text-5xl"
+          <h1 className="text-3xl font-bold tracking-tight text-[#1a273d] sm:text-5xl lg:text-6xl leading-[1.12]">
+            Support Practical Engineering
+          </h1>
+          <p className="mt-5 max-w-2xl text-base leading-relaxed text-[#1a273d]/85 sm:text-lg">
+            Support HOPE can include more than direct donations. Equipment, materials, professional expertise, sponsorship, alumni involvement, and organizational partnerships all help students put engineering skills to work.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a
+              href="#ways-to-support"
+              className="inline-flex items-center rounded-lg bg-[#1a273d] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#122038] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1a273d]"
             >
-              {enabled
-                ? "Other ways to support our work."
-                : "Ways to support our work."}
-            </h2>
-            <p className="mt-5 max-w-[34rem] leading-7 text-quiet text-pretty">
-              Every contribution matters. Find the way your resources, skills, or
-              workplace can help us create more life-changing prosthetics.
-            </p>
-            <ul className="mt-12 divide-y divide-ink/15 border-y border-ink/15">
-              {supportWays.map((way) => (
-                <li
-                  key={way.title}
-                  className="grid gap-2 py-6 md:grid-cols-[2fr_3fr] md:gap-10"
-                >
-                  <h3 className="text-lg font-extrabold tracking-[-0.01em] text-ink">
-                    {way.title}
-                  </h3>
-                  <p className="leading-7 text-quiet">{way.description}</p>
-                </li>
-              ))}
-            </ul>
+              Ways to Support
+              <ArrowRight className="ml-1.5 size-4" />
+            </a>
+            <a
+              href="#direct-giving"
+              className="inline-flex items-center rounded-lg border border-[#1a273d]/20 bg-white/80 px-5 py-2.5 text-sm font-semibold text-[#1a273d] shadow-sm transition hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1a273d]"
+            >
+              Direct Giving
+            </a>
           </div>
-        </section>
-      </main>
-    </div>
+        </div>
+      </section>
+
+      {/* 2. Direct Giving & Action Section */}
+      <section id="direct-giving" className="mx-auto max-w-6xl px-6 py-12 sm:py-16 lg:py-20">
+        <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+          <div>
+            <div className="mb-3 flex items-center gap-2">
+              <span className="h-0.5 w-5 bg-[#f7d06b]" />
+              <span className="text-[11px] font-bold uppercase tracking-wider text-[#1a273d]">
+                Get In Touch
+              </span>
+            </div>
+            <h2 className="text-2xl font-bold tracking-tight text-[#1a273d] sm:text-3xl lg:text-4xl">
+              Partner with our student engineers
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-slate-700">
+              You can support HOPE through equipment, materials, expertise, sponsorship, alumni involvement, and partnerships that help students put engineering skills to work. Contact us to discuss the kind of support you have in mind.
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-slate-600">
+              HOPE Inc. is an independent 501(c)(3) tax-exempt nonprofit organization. Contributions support student project materials, tools, testing, and continuous organizational capacity.
+            </p>
+          </div>
+
+          <div>
+            {enabled ? (
+              <DonationCards
+                methods={settings.donationMethods}
+                email={contactEmails["donation-inquiry"]}
+              />
+            ) : (
+              <div className="w-full">
+                <EmailContact
+                  email={contactEmails.support}
+                  title="Support HOPE Inquiry"
+                  description="Direct online donations are temporarily paused, but there are many vital ways to help. Let us know how you can contribute equipment, materials, expertise, or workplace giving."
+                  buttonLabel="Open support inquiry email"
+                />
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Other Ways to Support Our Work */}
+      <section id="ways-to-support" className="bg-[#ebf3fa] px-6 py-14 sm:py-18 lg:py-22">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-10 max-w-2xl">
+            <div className="mb-3 flex items-center gap-2">
+              <span className="h-0.5 w-5 bg-[#f7d06b]" />
+              <span className="text-[11px] font-bold uppercase tracking-wider text-[#1a273d]">
+                Contribution Pathways
+              </span>
+            </div>
+            <h2 className="text-2xl font-bold tracking-tight text-[#1a273d] sm:text-3xl lg:text-4xl">
+              Ways to support our work
+            </h2>
+            <p className="mt-3.5 text-base leading-relaxed text-slate-700">
+              Every contribution helps students learn, build, and iterate. Find the way your resources, skills, or workplace can support practical engineering.
+            </p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {supportWays.map((way) => (
+              <article
+                key={way.title}
+                className="flex flex-col justify-between rounded-2xl border border-slate-200/80 bg-white p-7 shadow-sm transition hover:shadow-md"
+              >
+                <div>
+                  <h3 className="text-lg font-bold text-[#1a273d]">{way.title}</h3>
+                  <p className="mt-2.5 text-sm leading-relaxed text-slate-600">{way.description}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }

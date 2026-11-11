@@ -6,13 +6,15 @@
 
 @theme inline {
     --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
-    --font-display: var(--font-dm-serif), ui-serif, Georgia, serif;
-    --color-ink: #102743;
+    --font-display: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+    --color-ink: #1a273d;
     --color-hope: #1260d6;
     --color-hope-deep: #0f55bd;
-    --color-sun: #ffd84d;
+    --color-sun: #f7d06b;
+    --color-sun-hover: #f3c64f;
     --color-paper: #fffefa;
-    --color-wash: #eaf2ff;
+    --color-wash: #ebf3fa;
+    --color-warm: #faf8f5;
     --color-line: #dce5ef;
     --color-quiet: #536579;
     --radius-sm: calc(var(--radius) - 4px);

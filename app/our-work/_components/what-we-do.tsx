@@ -1,12 +1,22 @@
 export default function WhatWeDo() {
   return (
-    <section className="bg-[#fbf9f4] py-20 lg:py-24" aria-labelledby="what-we-do-title">
-      <div className="mx-auto w-[calc(100%-48px)] max-w-[1280px] grid gap-10 md:grid-cols-[1fr_1.2fr] md:gap-12">
+    <section className="bg-[#faf8f5] px-6 py-14 sm:py-18 lg:py-22" aria-labelledby="what-we-do-title">
+      <div className="mx-auto max-w-6xl grid gap-10 md:grid-cols-[1fr_1.25fr] md:gap-14">
         <div>
-          <p className="w-fit rounded-[40px] bg-[#102743] px-4 py-1.5 text-xs leading-[1.3] font-bold tracking-[0.5px] text-white uppercase">What we do</p>
-          <h2 id="what-we-do-title" className="mt-5 [font-family:var(--font-dm-serif),Georgia,serif] text-[clamp(32px,3.5vw,48px)] leading-[1.15] font-normal tracking-[-0.3px] text-[#102743]">Engineering around a practical need.</h2>
+          <div className="mb-3 flex items-center gap-2">
+            <span className="h-0.5 w-5 bg-[#f7d06b]" />
+            <span className="text-[11px] font-bold uppercase tracking-wider text-[#1a273d]">
+              What we do
+            </span>
+          </div>
+          <h2
+            id="what-we-do-title"
+            className="text-3xl font-bold tracking-tight text-[#1a273d] sm:text-4xl lg:text-[42px] leading-tight"
+          >
+            Engineering around a practical need.
+          </h2>
         </div>
-        <div className="grid max-w-[680px] gap-5 text-base text-[#475569] [&_p]:leading-[1.7]">
+        <div className="space-y-4 text-base leading-relaxed text-[#1a273d]">
           <p>
             HOPE develops experimental prosthetic devices and other assistive
             technologies, ranging from custom, task-specific solutions to adaptive designs.

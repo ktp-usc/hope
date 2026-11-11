@@ -5,31 +5,38 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata("Get Help", "Connect with HOPE to discuss prosthetic, assistive, adaptive, and accessibility engineering needs.", "/get-help");
 
-function Eyebrow({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="mb-3 flex items-center gap-2">
-      <span className="h-0.5 w-5 bg-[#f7d06b]" />
-      <span className="text-[11px] font-bold uppercase tracking-wider text-[#1b2d4c]">
-        {children}
-      </span>
-    </div>
-  );
-}
-
 export const revalidate = 60;
 
 export default async function GetHelpPage() {
   const emails = await getContactEmails();
   return (
-    <main className="min-h-screen bg-white text-[#1b2d4c]">
+    <main className="min-h-screen bg-white text-[#1a273d]">
+      {/* 1. Yellow Header Banner */}
+      <section className="bg-[#f7d06b] px-6 py-12 sm:py-16 lg:py-20 text-[#1a273d]">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-3 flex items-center gap-2">
+            <span className="h-0.5 w-5 bg-[#1a273d]" />
+            <span className="text-[11px] font-bold uppercase tracking-wider text-[#1a273d]">
+              Get Help
+            </span>
+          </div>
+          <h1 className="text-3xl font-bold tracking-tight text-[#1a273d] sm:text-4xl lg:text-5xl leading-tight">
+            Have a need HOPE may be able to help with?
+          </h1>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-[#1a273d]/85 sm:text-lg">
+            Connect with HOPE to discuss prosthetic, assistive, adaptive, and accessibility engineering needs.
+          </p>
+        </div>
+      </section>
+
+      {/* 2. Main Content & Intake Section */}
       <section className="mx-auto max-w-6xl px-6 py-12 sm:py-16 lg:py-20">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.15fr] lg:gap-16 items-start">
           {/* Left Column: Context, Process & Student-Powered Expectation */}
           <div>
-            <Eyebrow>Get Help</Eyebrow>
-            <h1 className="text-3xl font-bold tracking-tight text-[#1b2d4c] sm:text-4xl lg:text-5xl leading-tight">
-              Have a need HOPE may be able to help with?
-            </h1>
+            <h2 className="text-2xl font-bold tracking-tight text-[#1a273d] sm:text-3xl">
+              How we approach each request
+            </h2>
 
             <p className="mt-5 text-base leading-relaxed text-slate-700">
               HOPE works with individuals, families, organizations, and community
@@ -59,9 +66,9 @@ export default async function GetHelpPage() {
                   <Clock3 aria-hidden="true" size={22} strokeWidth={1.8} />
                 </span>
                 <div>
-                  <h2 className="text-base font-bold text-[#1b2d4c]">
+                  <h3 className="text-base font-bold text-[#1a273d]">
                     A student-powered team
-                  </h2>
+                  </h3>
                   <p className="mt-2 text-xs sm:text-sm leading-relaxed text-slate-700">
                     HOPE’s project work is largely carried out by students who balance
                     their HOPE responsibilities with classes, exams, jobs, and other
@@ -82,9 +89,9 @@ export default async function GetHelpPage() {
 
             {/* What Happens Next Card */}
             <div className="mt-8 rounded-2xl border border-slate-200/80 bg-[#faf8f5] p-5 sm:p-6">
-              <h2 className="text-base font-bold text-[#1b2d4c]">
+              <h3 className="text-base font-bold text-[#1a273d]">
                 What happens next
-              </h2>
+              </h3>
               <ul className="mt-3 space-y-2.5 text-xs sm:text-sm text-slate-600">
                 <li className="flex items-start gap-2">
                   <CheckCircle size={16} className="mt-0.5 shrink-0 text-[#1260d6]" />
@@ -111,4 +118,3 @@ export default async function GetHelpPage() {
     </main>
   );
 }
-

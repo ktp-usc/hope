@@ -36,7 +36,7 @@ const portableTextComponents: PortableTextComponents = {
             />
           </div>
           {value.caption && (
-            <figcaption className="mt-2.5 text-center text-sm text-[#475569] italic">
+            <figcaption className="mt-2.5 text-center text-sm text-slate-600 italic">
               {value.caption}
             </figcaption>
           )}
@@ -46,23 +46,23 @@ const portableTextComponents: PortableTextComponents = {
   },
   block: {
     h1: ({ children }) => (
-      <h2 className="mt-8 mb-4 text-3xl font-bold tracking-tight text-[#102743]">
+      <h2 className="mt-8 mb-4 text-3xl font-bold tracking-tight text-[#1a273d]">
         {children}
       </h2>
     ),
     h2: ({ children }) => (
-      <h2 className="mt-6 mb-3 text-2xl font-bold tracking-tight text-[#102743]">
+      <h2 className="mt-6 mb-3 text-2xl font-bold tracking-tight text-[#1a273d]">
         {children}
       </h2>
     ),
     h3: ({ children }) => (
-      <h3 className="mt-5 mb-2 text-xl font-bold text-[#102743]">{children}</h3>
+      <h3 className="mt-5 mb-2 text-xl font-bold text-[#1a273d]">{children}</h3>
     ),
     normal: ({ children }) => (
-      <p className="mb-4 leading-relaxed text-[#111b31]">{children}</p>
+      <p className="mb-4 leading-relaxed text-[#1a273d]">{children}</p>
     ),
     blockquote: ({ children }) => (
-      <blockquote className="my-4 border-l-4 border-[#1260d6] pl-4 italic text-[#475569]">
+      <blockquote className="my-4 border-l-4 border-[#1260d6] pl-4 italic text-slate-600">
         {children}
       </blockquote>
     ),
@@ -85,10 +85,10 @@ const portableTextComponents: PortableTextComponents = {
   },
   list: {
     bullet: ({ children }) => (
-      <ul className="mb-4 list-disc space-y-1 pl-6 text-[#111b31]">{children}</ul>
+      <ul className="mb-4 list-disc space-y-1 pl-6 text-[#1a273d]">{children}</ul>
     ),
     number: ({ children }) => (
-      <ol className="mb-4 list-decimal space-y-1 pl-6 text-[#111b31]">{children}</ol>
+      <ol className="mb-4 list-decimal space-y-1 pl-6 text-[#1a273d]">{children}</ol>
     ),
   },
 };

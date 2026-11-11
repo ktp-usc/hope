@@ -20,7 +20,7 @@ export interface MediaMilestonesProps {
   milestones: readonly MediaMilestone[];
 }
 
-const CARD_ACCENTS = ["bg-[#1260d9]", "bg-[#f8cd53]", "bg-[#e94e26]"] as const;
+const CARD_ACCENTS = ["bg-[#1260d9]", "bg-[#f7d06b]", "bg-[#e94e26]"] as const;
 
 export default function MediaMilestones({ milestones }: MediaMilestonesProps) {
   if (!milestones.length) return null;
@@ -32,7 +32,7 @@ export default function MediaMilestones({ milestones }: MediaMilestonesProps) {
     <section
       id="media-milestones"
       aria-labelledby="media-milestones-title"
-      className="bg-white text-[#080e32] pt-[44px] pb-[64px] max-[700px]:pt-[36px] max-[700px]:pb-[42px] scroll-mt-6 font-sans"
+      className="bg-white text-[#1a273d] pt-[44px] pb-[64px] max-[700px]:pt-[36px] max-[700px]:pb-[42px] scroll-mt-6 font-sans"
     >
       <div className="mx-auto max-w-[1400px] w-[91%] max-[700px]:w-[90%]">
         <header className="mb-[40px] max-[700px]:mb-[28px]">
@@ -42,7 +42,7 @@ export default function MediaMilestones({ milestones }: MediaMilestonesProps) {
           >
             Media &amp; Milestones
           </h2>
-          <p className="mt-2 text-[#293957] text-[clamp(18px,1.5vw,23px)] leading-[1.45]">
+          <p className="mt-2 text-slate-600 text-[clamp(18px,1.5vw,23px)] leading-[1.45]">
             HOPE&apos;s history is made up of projects, people, partnerships, and moments that helped move the organization forward.
           </p>
         </header>
@@ -78,7 +78,7 @@ export default function MediaMilestones({ milestones }: MediaMilestonesProps) {
                 <div className="flex flex-col flex-1 pt-[28px] pr-[32px] pb-[32px] pl-[46px] max-[1100px]:pt-[26px] max-[1100px]:pr-[24px] max-[1100px]:pb-[28px] max-[1100px]:pl-[34px] max-[700px]:pt-[22px] max-[700px]:pr-[22px] max-[700px]:pb-[24px] max-[700px]:pl-[30px]">
                   <div className="flex justify-between items-baseline gap-x-[18px] gap-y-[10px] mb-5 max-[700px]:mb-4 text-[20px] max-[1100px]:text-[17px] max-[700px]:text-[16px] leading-[1.4]">
                     <span className="font-semibold">{milestone.category}</span>
-                    <span className="shrink-0 border-b-[3px] border-[#f8cd53] pb-1 text-inherit font-bold">
+                    <span className="shrink-0 border-b-[3px] border-[#f7d06b] pb-1 text-inherit font-bold">
                       {milestone.yearOrDate}
                     </span>
                   </div>
