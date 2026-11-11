@@ -45,9 +45,9 @@ const portableTextComponents: PortableTextComponents = {
   },
   block: {
     h1: ({ children }) => (
-      <h1 className="mt-8 mb-4 text-3xl font-bold tracking-tight text-[#102743]">
+      <h2 className="mt-8 mb-4 text-3xl font-bold tracking-tight text-[#102743]">
         {children}
-      </h1>
+      </h2>
     ),
     h2: ({ children }) => (
       <h2 className="mt-6 mb-3 text-2xl font-bold tracking-tight text-[#102743]">
@@ -162,4 +162,3 @@ export default async function StorySlugPage({ params }: PageProps) {
     </HistoricalStoryTemplate>
   );
 }
-

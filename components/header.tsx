@@ -38,7 +38,7 @@ const SUPPORT_LINK = { label: "Support HOPE", href: "/support" };
 const CONTACT_LINK = { label: "Contact", href: "/contact" };
 
 const linkClass =
-  "rounded text-sm text-[#12303f] hover:underline underline-offset-4 " +
+  "inline-flex min-h-11 items-center rounded text-sm text-[#12303f] hover:underline underline-offset-4 " +
   "focus-visible:outline-2 focus-visible:outline-offset-2 " +
   "focus-visible:outline-[#12303f]";
 
@@ -100,7 +100,7 @@ function SupportButton({ onClick }: { onClick?: () => void }) {
     <Link
       href={SUPPORT_LINK.href}
       onClick={onClick}
-      className="inline-flex items-center gap-3 rounded-lg bg-[#f7d06b] px-5 py-2.5 text-sm text-[#12303f] hover:bg-[#f3c64f] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#12303f]"
+      className="inline-flex min-h-11 items-center gap-3 rounded-lg bg-[#f7d06b] px-5 py-2.5 text-sm text-[#12303f] hover:bg-[#f3c64f] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#12303f]"
     >
       {SUPPORT_LINK.label}
       <ArrowIcon />
@@ -263,7 +263,7 @@ export default function Header({ stories }: { stories: NavStory[] }) {
 
   return (
     <header className="w-full border-b border-black/10 bg-white">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
         {/* Logo: links back to the homepage */}
         <Link href="/" aria-label="HOPE home" className="shrink-0">
           <Image
@@ -271,6 +271,7 @@ export default function Header({ stories }: { stories: NavStory[] }) {
             alt="H.O.P.E. Hands on Prosthetic Engineering"
             width={120}
             height={80}
+            className="h-auto w-[120px]"
             priority
           />
         </Link>
@@ -296,7 +297,7 @@ export default function Header({ stories }: { stories: NavStory[] }) {
         <button
           ref={toggleRef}
           type="button"
-          className="rounded p-2 text-[#12303f] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#12303f] xl:hidden"
+          className="inline-flex size-11 items-center justify-center rounded text-[#12303f] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#12303f] xl:hidden"
           aria-expanded={menuOpen}
           aria-controls="mobile-nav"
           aria-label={menuOpen ? "Close menu" : "Open menu"}
@@ -322,12 +323,12 @@ export default function Header({ stories }: { stories: NavStory[] }) {
       </div>
 
       {/* Mobile navigation: groups are accordions, one open at a time */}
-      {menuOpen && (
-        <nav
-          id="mobile-nav"
-          aria-label="Mobile"
-          className="flex flex-col border-t border-black/10 px-6 py-2 xl:hidden"
-        >
+      <nav
+        id="mobile-nav"
+        aria-label="Mobile"
+        hidden={!menuOpen}
+        className={`${menuOpen ? "flex" : "hidden"} flex-col border-t border-black/10 px-4 py-2 sm:px-6 xl:hidden`}
+      >
           {navItems.map((item) => {
             if (!isGroup(item)) {
               return (
@@ -388,8 +389,7 @@ export default function Header({ stories }: { stories: NavStory[] }) {
           >
             {CONTACT_LINK.label}
           </NavLink>
-        </nav>
-      )}
+      </nav>
     </header>
   );
 }

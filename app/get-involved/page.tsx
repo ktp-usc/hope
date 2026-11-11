@@ -136,7 +136,7 @@ export default function GetInvolvedPage() {
                     </h2>
                     <div className="mt-8 grid gap-7 md:grid-cols-2">
                         <div className="flex flex-col rounded-[32px] border border-hope bg-hope p-8 text-white sm:p-11">
-                            <p className="text-sm font-extrabold uppercase tracking-[0.14em] text-sun">University of South Carolina</p>
+                            <p className="text-sm font-extrabold uppercase tracking-[0.14em] text-white">University of South Carolina</p>
                             <h3 className="mt-4 font-display text-4xl leading-[1.1] sm:text-[44px]">USC students</h3>
                             <p className="mt-5 text-[17px] leading-7 text-[#d7e6ff]">
                                 For students at the University of South Carolina, the best starting point is the HOPE student organization at USC. Students can join through Garnet Gate, connect with student leadership, and attend meetings, training, and project activities.
@@ -147,7 +147,7 @@ export default function GetInvolvedPage() {
                                 </ExternalLink>
                                 {STUDENT_ORG_BLOG_URL && (
                                     <p className="mt-5">
-                                        <a href={STUDENT_ORG_BLOG_URL} target="_blank" rel="noopener noreferrer" className="text-sm font-bold text-white underline underline-offset-4 hover:text-sun">
+                                        <a href={STUDENT_ORG_BLOG_URL} target="_blank" rel="noopener noreferrer" className="text-sm font-bold text-white underline underline-offset-4 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
                                             Visit the HOPE student organization website
                                             <span className="sr-only"> (opens in a new tab)</span>
                                         </a>
