@@ -3,33 +3,33 @@ import Image from "next/image";
 export default function FeaturedAffiliation() {
     return (
         <section className="mx-auto w-full max-w-6xl px-6 pb-14 lg:px-8">
-            <div className="grid overflow-hidden rounded-md bg-[#EBF2F8] lg:grid-cols-[1.65fr_1fr]">
+            <div className="grid overflow-hidden rounded-2xl bg-wash lg:grid-cols-[1.65fr_1fr]">
 
                 {/* Left side: e-NABLE information */}
                 <div className="p-8 lg:p-10">
                     <div className="mb-8 flex flex-wrap items-center justify-between gap-3">
-                        <span className="text-xs uppercase font-medium tracking-wide text-slate-600">
+                        <span className="text-xs font-semibold uppercase tracking-wide text-quiet">
                             Our Global Affiliation
                         </span>
 
-                        <span className="text-xs font-semibold text-[#1B2D4C]">
+                        <span className="text-xs font-semibold text-ink">
                             Certified chapter
                         </span>
                     </div>
 
-                    <h2 className="text-4xl font-normal text-[#1B2D4C]">
+                    <h2 className="text-4xl font-bold text-ink">
                         e-NABLE
                     </h2>
 
-                    <p className="mb-5 text-xs uppercase font-medium tracking-wide text-slate-600">
+                    <p className="mb-5 text-xs font-semibold uppercase tracking-wide text-quiet">
                         Enable the Future
                     </p>
 
-                    <h3 className="mb-4 text-xl font-medium text-[#1B2D4C]">
+                    <h3 className="mb-4 text-xl font-bold text-ink">
                         A global network. A local commitment.
                     </h3>
 
-                    <p className="mb-6 max-w-xl text-sm leading-relaxed text-slate-700">
+                    <p className="mb-6 max-w-xl text-sm leading-relaxed text-quiet">
                         HOPE has longstanding ties to the global e-NABLE community, which helped shape HOPE&apos;s early work with 3D-printed prosthetic hands. As a certified e-NABLE chapter, HOPE draws on the community&apos;s open-source designs, resources, and worldwide maker network while continuing to develop custom projects and local capabilities.
                     </p>
 
@@ -37,7 +37,7 @@ export default function FeaturedAffiliation() {
                         href="https://enablingthefuture.org/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-sm font-semibold text-[#1B2D4C] hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1B2D4C]"
+                        className="inline-flex items-center gap-2 text-sm font-semibold text-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
                         aria-label="Explore Enable the Future (opens in a new tab)"
                     >
                         Explore Enable the Future
@@ -60,7 +60,7 @@ export default function FeaturedAffiliation() {
                 </div>
 
                 {/* Right side: partnership image */}
-                <div className="relative flex min-h-[300px] flex-col overflow-hidden bg-[#D6E2EC]">
+                <div className="relative flex min-h-[300px] flex-col overflow-hidden bg-line">
                     <div className="relative flex-1 min-h-[240px]">
                         <Image
                             src="/images/partners/enable-workshop.png"
@@ -71,7 +71,7 @@ export default function FeaturedAffiliation() {
                         />
                     </div>
 
-                    <div className="bg-[#1B2D4C] px-5 py-3 text-xs text-white">
+                    <div className="bg-ink px-5 py-3 text-xs text-white">
                         Shared knowledge. Hands-on possibility.
                     </div>
                 </div>

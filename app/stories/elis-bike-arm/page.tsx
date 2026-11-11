@@ -10,7 +10,6 @@ export default function StoryPage() {
   return <HistoricalStoryTemplate
     title={"Eli’s Bike Arm — Designing for the Ride"}
     introduction={"Eli’s Bike Arm started as a custom engineering challenge: add an arm to the bicycle that Eli could use as another point of contact and press against for counterforce while riding."}
-    heroBackground="yellow"
     heroImage={{ src: heroImage, width: heroImage.width, height: heroImage.height, alt: "Eli smiling on his adapted bicycle with the custom bike arm attached", focalPosition: "center 45%" }}
     paragraphs={[
       "Research started in 2017, with the prototype being fitted in spring 2018, followed by continued design work that included development of a telescoping arm socket.",

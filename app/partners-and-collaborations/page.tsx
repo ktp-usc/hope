@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function PartnersAndCollaborationsPage() {
     return (
-        <main className="min-h-screen bg-white text-[#1B2D4C]">
+        <main className="min-h-screen bg-white text-ink">
             <PartnersHero />
             <FeaturedAffiliation />
             <InstitutionalPartners />

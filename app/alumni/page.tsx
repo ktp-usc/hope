@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function AlumniPage() {
   return <main className="bg-white text-ink">
     <section aria-labelledby="alumni-title" className="grid lg:min-h-[600px] lg:grid-cols-2">
-      <div className="flex flex-col items-start bg-[#f8cd53] px-6 py-14 sm:px-10 lg:px-16 lg:py-20">
+      <div className="flex flex-col items-start bg-sun px-6 py-14 sm:px-10 lg:px-16 lg:py-20">
         <p className="text-xs font-bold uppercase tracking-widest">Hands on Prosthetic Engineering</p>
         <h1 id="alumni-title" className="mt-6 text-6xl font-bold leading-tight tracking-tight sm:text-7xl">Alumni &amp;<br />Legacy</h1>
         <p className="mt-6 max-w-xl leading-7">HOPE has been built by generations of members who designed projects, taught new members, developed partnerships, raised funds, and led teams. Their work, lessons, and experience help the next generation continue building.</p>

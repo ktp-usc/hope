@@ -39,6 +39,18 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 Sanity Studio is accessible at `http://localhost:3000/studio`.
 
+### Sanity content types
+
+The Studio includes schemas for website pages, stories, projects and impact,
+history timeline events, partners, and global donation settings. Rich-text
+content uses Portable Text, and project or timeline entries can reference a
+story.
+
+These schemas prepare content editing in the Studio; the public website still
+uses its existing hard-coded content until a separate frontend integration is
+implemented. The `production` dataset starts empty, so create and publish
+content in the Studio before planning that migration.
+
 ## Learn More
 
 To learn more about Next.js and Sanity, take a look at the following resources:

@@ -227,7 +227,8 @@ export default function Donate({ settings }: { settings: SiteSettings }) {
   return (
     <div className="min-h-screen bg-paper text-ink">
       <main>
-        <section className="mx-auto grid max-w-[1240px] gap-14 px-6 pb-16 pt-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:px-10 lg:pb-24 lg:pt-16">
+        <section className="bg-sun px-6 pb-16 pt-10 lg:px-10 lg:pb-24 lg:pt-16">
+          <div className="mx-auto grid max-w-[1240px] gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div className="max-w-[650px]">
             <h1 className="font-display text-[clamp(3.25rem,7vw,6rem)] leading-[0.92] tracking-[-0.03em] text-balance text-ink">
               Give hope.
@@ -242,7 +243,7 @@ export default function Donate({ settings }: { settings: SiteSettings }) {
                 >
                   <path
                     d="M4 12C118 2 302 3 486 9"
-                    stroke="#FFD84D"
+                    stroke="#102743"
                     strokeWidth="9"
                     strokeLinecap="round"
                   />
@@ -260,6 +261,7 @@ export default function Donate({ settings }: { settings: SiteSettings }) {
           ) : (
             <SupportForm />
           )}
+          </div>
         </section>
 
         <section

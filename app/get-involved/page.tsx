@@ -82,18 +82,20 @@ export default function GetInvolvedPage() {
     return (
         <div className="min-h-screen bg-paper text-ink">
             <main>
-                <section className="mx-auto max-w-[1240px] px-6 pb-16 pt-10 lg:px-10 lg:pb-24 lg:pt-16">
-                    <p className="text-sm font-extrabold uppercase tracking-[0.14em] text-hope">Get involved</p>
-                    <h1 className="mt-6 font-display text-[clamp(3.25rem,8vw,6rem)] leading-[0.95] tracking-[-0.03em] text-balance">
+                <section className="bg-sun px-6 pb-16 pt-10 lg:px-10 lg:pb-24 lg:pt-16">
+                  <div className="mx-auto max-w-[1240px]">
+                    <p className="text-sm font-extrabold uppercase tracking-[0.14em] text-ink">Get involved</p>
+                    <h1 className="mt-6 font-sans text-[clamp(3.25rem,8vw,6rem)] font-bold leading-[0.95] tracking-[-0.03em] text-balance text-ink">
                         Work on real projects.
                         <br />
                         <span className="relative inline-block text-hope">
                             Develop practical skills.
                         </span>
                     </h1>
-                    <p className="mt-10 max-w-[38rem] text-lg leading-8 text-quiet text-pretty">
+                    <p className="mt-10 max-w-[38rem] text-lg leading-8 text-ink text-pretty">
                         HOPE brings together students from many different backgrounds to work on real projects, develop practical skills, and help run the organization. You do not have to be an engineer to contribute—HOPE brings together students with technical, creative, business, healthcare, social-science, and community-focused interests.
                     </p>
+                  </div>
                 </section>
 
                 <section aria-labelledby="contribute-heading" className="bg-wash px-6 py-16 lg:px-10 lg:py-24">

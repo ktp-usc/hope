@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function OurWorkPage() {
   return (
-    <main className="bg-white [font-family:var(--font-manrope),-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif] text-base leading-[1.6] text-[#102743]">
+    <main className="bg-white font-sans text-base leading-[1.6] text-ink">
       <OurWorkHero />
       <WhatWeDo />
       <ProjectsImpact />

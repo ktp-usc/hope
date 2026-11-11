@@ -49,7 +49,7 @@ export default function ProjectsImpact() {
         <div className="mb-12 grid gap-6 lg:grid-cols-[1.3fr_1fr] lg:items-end lg:gap-16">
           <div>
             <p className="w-fit rounded-[40px] bg-[#102743] px-4 py-1.5 text-xs leading-[1.3] font-bold tracking-[0.5px] text-white uppercase">Projects &amp; Impact</p>
-            <h2 id="projects-impact-title" className="mt-5 [font-family:var(--font-dm-serif),Georgia,serif] text-[clamp(32px,3.5vw,48px)] leading-[1.15] font-normal tracking-[-0.3px] text-[#102743]">Practical needs turned into working solutions.</h2>
+            <h2 id="projects-impact-title" className="mt-5 text-[clamp(32px,3.5vw,48px)] leading-[1.15] font-bold tracking-[-0.3px] text-[#102743]">Practical needs turned into working solutions.</h2>
           </div>
           <p className="max-w-[640px] text-[17px] leading-[1.6] text-[#475569]">
             Every project begins with a specific person, challenge, or community need.
@@ -88,4 +88,3 @@ export default function ProjectsImpact() {
     </section>
   );
 }
-

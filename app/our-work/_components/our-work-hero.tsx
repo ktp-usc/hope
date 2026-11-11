@@ -9,7 +9,7 @@ export default function OurWorkHero() {
       <div className="mx-auto w-[calc(100%-48px)] max-w-[1280px] grid items-center gap-10 md:grid-cols-2 md:gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14">
         <div className="max-w-[640px]">
           <p className="mb-2 inline-block text-xs font-bold tracking-[0.8px] text-[#102743] uppercase opacity-85">Assistive technology &amp; practical engineering</p>
-          <h1 id="our-work-title" className="mt-4 mb-5 [font-family:var(--font-dm-serif),Georgia,serif] text-[clamp(48px,6vw,76px)] leading-[1.05] font-normal tracking-[-0.5px] text-[#102743]">Our Work</h1>
+          <h1 id="our-work-title" className="mt-4 mb-5 text-[clamp(48px,6vw,76px)] leading-[1.05] font-bold tracking-[-0.5px] text-[#102743]">Our Work</h1>
           <p className="text-lg leading-[1.6] text-[#102743] opacity-92">
             Practical needs guide hands-on engineering. HOPE Inc., an
             independent nonprofit, provides resources and organizational support.
@@ -17,12 +17,12 @@ export default function OurWorkHero() {
             out much of the hands-on design, building, and testing.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-4">
-            <Button asChild className="h-auto min-h-12 gap-2.5 rounded-[40px] border-0 bg-[#102743] px-6 py-3.5 [font-family:inherit] text-sm leading-[1.4] font-bold whitespace-normal text-white no-underline [transition:opacity_0.2s_ease,transform_0.15s_ease] hover:[transform:translateY(-1px)] hover:bg-[#102743] hover:opacity-90 has-[>svg]:px-6">
+            <Button asChild className="h-auto min-h-12 gap-2.5 rounded-[40px] border-0 bg-ink px-6 py-3.5 text-sm leading-[1.4] font-bold whitespace-normal text-white no-underline [transition:opacity_0.2s_ease,transform_0.15s_ease] hover:[transform:translateY(-1px)] hover:bg-ink hover:opacity-90 has-[>svg]:px-6">
               <a href="#project-process">
                 Explore our process <ArrowDown size={16} aria-hidden="true" />
               </a>
             </Button>
-            <Button asChild variant="outline" className="h-auto min-h-12 rounded-[40px] border-2 border-[#102743] bg-transparent px-6 py-3.5 [font-family:inherit] text-sm font-bold text-[#102743] no-underline [transition:background_0.2s_ease] hover:bg-[rgba(16,39,67,0.08)] focus-visible:border-[#102743] dark:border-[#102743] dark:bg-transparent dark:hover:bg-[rgba(16,39,67,0.08)]">
+            <Button asChild variant="outline" className="h-auto min-h-12 rounded-[40px] border-2 border-ink bg-transparent px-6 py-3.5 text-sm font-bold text-ink no-underline [transition:background_0.2s_ease] hover:bg-ink/10 focus-visible:border-ink dark:border-ink dark:bg-transparent dark:hover:bg-ink/10">
               <a href="#projects-impact">View featured projects</a>
             </Button>
           </div>

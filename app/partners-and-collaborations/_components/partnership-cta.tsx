@@ -2,18 +2,18 @@ import Link from "next/link";
 
 export default function PartnershipCTA() {
     return (
-        <section className="bg-[#1B2D4C]">
+        <section className="bg-ink">
             <div className="mx-auto max-w-6xl px-6 py-16 lg:px-8">
 
                 <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
 
                     {/* Left side: heading and description */}
                     <div>
-                        <p className="mb-4 text-xs font-semibold uppercase tracking-wide text-[#F5CA58]">
+                        <p className="mb-4 text-xs font-semibold uppercase tracking-wide text-sun">
                             Let&apos;s Build Something Meaningful
                         </p>
 
-                        <h2 className="mb-4 text-3xl font-normal text-white md:text-4xl">
+                        <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">
                             There&apos;s a place for your expertise.
                         </h2>
 
@@ -27,7 +27,7 @@ export default function PartnershipCTA() {
                     {/* Right side: CTA button */}
                     <Link
                         href="/contact"
-                        className="inline-flex shrink-0 items-center justify-center gap-4 self-start rounded-md bg-[#F5CA58] px-6 py-4 text-sm font-semibold text-[#1B2D4C] transition-colors hover:bg-[#E9B942] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F5CA58] md:self-center"
+                        className="inline-flex shrink-0 items-center justify-center gap-4 self-start rounded-md bg-sun px-6 py-4 text-sm font-semibold text-ink transition-colors hover:brightness-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sun md:self-center"
                     >
                         Start a conversation
                         <svg

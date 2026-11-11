@@ -28,7 +28,7 @@ export default function ProjectProcess() {
         <div className="grid gap-6 lg:grid-cols-[1.4fr_1fr] lg:items-end lg:gap-16">
           <div>
             <p className="w-fit rounded-[40px] bg-[#102743] px-4 py-1.5 text-xs leading-[1.3] font-bold tracking-[0.5px] text-white uppercase">How we work</p>
-            <h2 id="project-process-title" className="mt-5 [font-family:var(--font-dm-serif),Georgia,serif] text-[clamp(32px,3.5vw,48px)] leading-[1.15] font-normal tracking-[-0.3px] text-[#102743]">Our project process</h2>
+            <h2 id="project-process-title" className="mt-5 text-[clamp(32px,3.5vw,48px)] leading-[1.15] font-bold tracking-[-0.3px] text-[#102743]">Our project process</h2>
           </div>
         </div>
         <ol className="mt-10 list-none p-0 md:mt-12" role="list">

@@ -9,7 +9,6 @@ export default function StoryPage() {
   return <HistoricalStoryTemplate
     title={"Where HOPE’s Hands-On Work Began"}
     introduction={"3D-printed prosthetic hands were at the center of HOPE’s early work."}
-    heroBackground="yellow"
     heroImage={{ src: heroImage, width: heroImage.width, height: heroImage.height, alt: "Students gathered around a 3D printer on a classroom table", focalPosition: "center 40%" }}
     paragraphs={[
       "Students learned to print, assemble, and work with prosthetic-hand designs, drawing in part on designs and knowledge shared by the broader open-source prosthetics community. Early HOPE activities included hand and finger builds, student build-a-thons, and work intended to make these devices available without cost to recipients.",

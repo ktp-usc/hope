@@ -6,7 +6,7 @@
 
 @theme inline {
     --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
-    --font-display: var(--font-dm-serif), ui-serif, Georgia, serif;
+    --font-display: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
     --color-ink: #102743;
     --color-hope: #1260d6;
     --color-hope-deep: #0f55bd;

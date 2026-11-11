@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import styles from "./page.module.css";
 
 export default function TimelineReveal({ children }: { children: React.ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -10,7 +9,7 @@ export default function TimelineReveal({ children }: { children: React.ReactNode
     const observer = new IntersectionObserver(entries => {
       for (const entry of entries) {
         if (entry.isIntersecting) {
-          entry.target.classList.add(styles.revealed);
+          entry.target.classList.add("!translate-y-0", "!opacity-100");
           observer.unobserve(entry.target);
         }
       }

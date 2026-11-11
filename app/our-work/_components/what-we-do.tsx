@@ -4,7 +4,7 @@ export default function WhatWeDo() {
       <div className="mx-auto w-[calc(100%-48px)] max-w-[1280px] grid gap-10 md:grid-cols-[1fr_1.2fr] md:gap-12">
         <div>
           <p className="w-fit rounded-[40px] bg-[#102743] px-4 py-1.5 text-xs leading-[1.3] font-bold tracking-[0.5px] text-white uppercase">What we do</p>
-          <h2 id="what-we-do-title" className="mt-5 [font-family:var(--font-dm-serif),Georgia,serif] text-[clamp(32px,3.5vw,48px)] leading-[1.15] font-normal tracking-[-0.3px] text-[#102743]">Engineering around a practical need.</h2>
+          <h2 id="what-we-do-title" className="mt-5 text-[clamp(32px,3.5vw,48px)] leading-[1.15] font-bold tracking-[-0.3px] text-[#102743]">Engineering around a practical need.</h2>
         </div>
         <div className="grid max-w-[680px] gap-5 text-base text-[#475569] [&_p]:leading-[1.7]">
           <p>
