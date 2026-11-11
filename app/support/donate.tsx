@@ -234,31 +234,31 @@ export default function Donate({
   return (
     <main className="min-h-screen bg-white text-[#1a273d]">
       {/* 1. Yellow Header Banner */}
-      <section className="bg-[#f7d06b] px-6 py-12 sm:py-16 lg:py-20 text-[#1a273d]">
+      <section className="bg-[#f7d06b] px-6 py-10 sm:py-12 lg:py-14 text-[#1a273d]">
         <div className="mx-auto max-w-6xl">
           <div className="mb-3 flex items-center gap-2">
             <span className="h-0.5 w-5 bg-[#1a273d]" />
-            <span className="text-[11px] font-bold uppercase tracking-wider text-[#1a273d]">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#1a273d]">
               Support HOPE
             </span>
           </div>
-          <h1 className="text-3xl font-bold tracking-tight text-[#1a273d] sm:text-5xl lg:text-6xl leading-[1.12]">
+          <h1 className="text-3xl font-bold tracking-tight text-[#1a273d] sm:text-5xl lg:text-[54px] leading-[1.1]">
             Support Practical Engineering
           </h1>
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-[#1a273d]/85 sm:text-lg">
+          <p className="mt-4 max-w-3xl text-base leading-relaxed text-[#1a273d]/90 sm:text-lg">
             Support HOPE can include more than direct donations. Equipment, materials, professional expertise, sponsorship, alumni involvement, and organizational partnerships all help students put engineering skills to work.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-7 flex flex-wrap gap-3">
             <a
               href="#ways-to-support"
-              className="inline-flex items-center rounded-lg bg-[#1a273d] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#122038] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1a273d]"
+              className="inline-flex items-center justify-center rounded-xl bg-[#1260d9] px-6 py-3 text-base font-bold text-white shadow-sm transition hover:bg-[#0f55bd] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1260d9]"
             >
               Ways to Support
               <ArrowRight className="ml-1.5 size-4" />
             </a>
             <a
               href="#direct-giving"
-              className="inline-flex items-center rounded-lg border border-[#1a273d]/20 bg-white/80 px-5 py-2.5 text-sm font-semibold text-[#1a273d] shadow-sm transition hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1a273d]"
+              className="inline-flex items-center justify-center rounded-xl border border-[#1a273d]/20 bg-white/80 px-6 py-3 text-base font-semibold text-[#1a273d] shadow-sm transition hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1a273d]"
             >
               Direct Giving
             </a>

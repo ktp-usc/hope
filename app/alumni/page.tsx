@@ -25,33 +25,33 @@ export default async function AlumniPage() {
     <main className="min-h-screen bg-white text-[#1a273d]">
       {/* 1. Yellow Split Hero */}
       <section aria-labelledby="alumni-title" className="bg-[#f7d06b] text-[#1a273d]">
-        <div className="mx-auto max-w-6xl grid items-center gap-10 px-6 py-12 sm:py-16 md:grid-cols-2 md:gap-12 lg:py-20">
+        <div className="mx-auto max-w-6xl grid items-center gap-8 px-6 py-10 sm:py-12 md:grid-cols-[1.15fr_0.85fr] md:gap-10 lg:py-14">
           <div>
             <div className="mb-3 flex items-center gap-2">
               <span className="h-0.5 w-5 bg-[#1a273d]" />
-              <span className="text-[11px] font-bold uppercase tracking-wider text-[#1a273d]">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#1a273d]">
                 Hands on Prosthetic Engineering
               </span>
             </div>
             <h1
               id="alumni-title"
-              className="text-4xl font-bold tracking-tight text-[#1a273d] sm:text-5xl lg:text-6xl leading-[1.12]"
+              className="text-4xl font-bold tracking-tight text-[#1a273d] sm:text-5xl lg:text-[54px] leading-[1.1]"
             >
               Alumni &amp;<br />Legacy
             </h1>
-            <p className="mt-5 text-base leading-relaxed text-[#1a273d]/85 sm:text-lg">
+            <p className="mt-4 max-w-xl text-base leading-relaxed text-[#1a273d]/90 sm:text-lg">
               HOPE has been built by generations of members who designed projects, taught new members, developed partnerships, raised funds, and led teams. Their work, lessons, and experience help the next generation continue building.
             </p>
-            <p className="mt-3 text-sm leading-relaxed text-[#1a273d]/75">
+            <p className="mt-3 max-w-xl text-sm leading-relaxed text-[#1a273d]/75">
               Our historical records are still being reconstructed. Stay involved, share an update, correct a record, or help preserve a missing part of HOPE&apos;s history.
             </p>
-            <div className="mt-8">
+            <div className="mt-7">
               <a
                 href="#reconnect"
-                className="inline-flex items-center rounded-lg bg-[#1a273d] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#122038] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1a273d]"
+                className="inline-flex items-center justify-center rounded-xl bg-[#1260d9] px-6 py-3 text-base font-bold text-white shadow-sm transition hover:bg-[#0f55bd] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1260d9]"
               >
                 Reconnect with HOPE
-                <ArrowUpRight aria-hidden="true" size={16} className="ml-1.5" />
+                <ArrowUpRight aria-hidden="true" size={18} className="ml-1.5" />
               </a>
             </div>
           </div>

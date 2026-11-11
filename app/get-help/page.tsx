@@ -12,18 +12,18 @@ export default async function GetHelpPage() {
   return (
     <main className="min-h-screen bg-white text-[#1a273d]">
       {/* 1. Yellow Header Banner */}
-      <section className="bg-[#f7d06b] px-6 py-12 sm:py-16 lg:py-20 text-[#1a273d]">
+      <section className="bg-[#f7d06b] px-6 py-10 sm:py-12 lg:py-14 text-[#1a273d]">
         <div className="mx-auto max-w-6xl">
           <div className="mb-3 flex items-center gap-2">
             <span className="h-0.5 w-5 bg-[#1a273d]" />
-            <span className="text-[11px] font-bold uppercase tracking-wider text-[#1a273d]">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#1a273d]">
               Get Help
             </span>
           </div>
-          <h1 className="text-3xl font-bold tracking-tight text-[#1a273d] sm:text-4xl lg:text-5xl leading-tight">
+          <h1 className="text-3xl font-bold tracking-tight text-[#1a273d] sm:text-5xl lg:text-[54px] leading-[1.1]">
             Have a need HOPE may be able to help with?
           </h1>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-[#1a273d]/85 sm:text-lg">
+          <p className="mt-4 max-w-3xl text-base leading-relaxed text-[#1a273d]/90 sm:text-lg">
             Connect with HOPE to discuss prosthetic, assistive, adaptive, and accessibility engineering needs.
           </p>
         </div>

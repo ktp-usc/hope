@@ -44,18 +44,18 @@ export default async function ContactPage() {
   return (
     <main className="min-h-screen bg-white text-[#1a273d]">
       {/* 1. Yellow Header Banner */}
-      <section className="bg-[#f7d06b] px-6 py-12 sm:py-16 lg:py-20 text-[#1a273d]">
+      <section className="bg-[#f7d06b] px-6 py-10 sm:py-12 lg:py-14 text-[#1a273d]">
         <div className="mx-auto max-w-6xl">
           <div className="mb-3 flex items-center gap-2">
             <span className="h-0.5 w-5 bg-[#1a273d]" />
-            <span className="text-[11px] font-bold uppercase tracking-wider text-[#1a273d]">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#1a273d]">
               Contact H.O.P.E.
             </span>
           </div>
-          <h1 className="text-3xl font-bold tracking-tight text-[#1a273d] sm:text-5xl lg:text-6xl leading-[1.12]">
+          <h1 className="text-3xl font-bold tracking-tight text-[#1a273d] sm:text-5xl lg:text-[54px] leading-[1.1]">
             Let’s start a conversation.
           </h1>
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-[#1a273d]/85 sm:text-lg">
+          <p className="mt-4 max-w-3xl text-base leading-relaxed text-[#1a273d]/90 sm:text-lg">
             Have a general question, partnership idea, or another way you’d like to support H.O.P.E.? We’d be glad to hear from you.
           </p>
         </div>

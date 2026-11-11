@@ -58,37 +58,37 @@ export default async function AboutPage() {
     <main className="min-h-screen bg-white text-[#1a273d]">
       {/* 1. Yellow Split Hero */}
       <section className="bg-[#f7d06b] text-[#1a273d]" aria-labelledby="about-title">
-        <div className="mx-auto max-w-6xl grid items-center gap-10 px-6 py-12 sm:py-16 md:grid-cols-2 md:gap-12 lg:py-20">
+        <div className="mx-auto max-w-6xl grid items-center gap-8 px-6 py-10 sm:py-12 md:grid-cols-[1.15fr_0.85fr] md:gap-10 lg:py-14">
           <div>
             <div className="mb-3 flex items-center gap-2">
               <span className="h-0.5 w-5 bg-[#1a273d]" />
-              <span className="text-[11px] font-bold uppercase tracking-wider text-[#1a273d]">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#1a273d]">
                 Hands on Prosthetic Engineering
               </span>
             </div>
             <h1
               id="about-title"
-              className="text-4xl font-bold tracking-tight text-[#1a273d] sm:text-5xl lg:text-6xl leading-[1.12]"
+              className="text-4xl font-bold tracking-tight text-[#1a273d] sm:text-5xl lg:text-[54px] leading-[1.1]"
             >
               About H.O.P.E.
             </h1>
-            <p className="mt-5 text-base leading-relaxed text-[#1a273d]/85 sm:text-lg">
+            <p className="mt-4 max-w-xl text-base leading-relaxed text-[#1a273d]/90 sm:text-lg">
               H.O.P.E. is a student-powered engineering community turning practical needs into practical solutions. From experimental prosthetics to custom assistive technologies, we bring students together to design, build, and make a difference.
             </p>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
+            <div className="mt-7 flex flex-wrap items-center gap-3">
               <Link
                 href="/history"
-                className="inline-flex items-center rounded-lg bg-[#1a273d] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#122038] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1a273d]"
+                className="inline-flex items-center justify-center rounded-xl bg-[#1260d9] px-6 py-3 text-base font-bold text-white shadow-sm transition hover:bg-[#0f55bd] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1260d9]"
               >
                 Explore our history
-                <ArrowUpRight size={16} className="ml-1.5" />
+                <ArrowUpRight size={18} className="ml-1.5" />
               </Link>
               <a
                 href="#purpose"
-                className="inline-flex items-center rounded-lg border border-[#1a273d]/20 bg-white/80 px-5 py-2.5 text-sm font-semibold text-[#1a273d] shadow-sm transition hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1a273d]"
+                className="inline-flex items-center justify-center rounded-xl border border-[#1a273d]/20 bg-white/80 px-6 py-3 text-base font-semibold text-[#1a273d] shadow-sm transition hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1a273d]"
               >
                 Our Purpose
-                <ArrowDown size={15} className="ml-1.5" />
+                <ArrowDown size={16} className="ml-1.5" />
               </a>
             </div>
           </div>
