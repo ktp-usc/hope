@@ -32,7 +32,7 @@ export default function PartnersHero() {
                 href="/contact"
                 className="inline-flex items-center justify-center rounded-xl bg-[#1260d9] px-6 py-3 text-base font-bold text-white shadow-sm transition hover:bg-[#0f55bd] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1260d9]"
               >
-                Explore Partnerships
+                Contact Us About Partnerships
                 <ArrowRight className="ml-1.5 size-4" />
               </Link>
             </div>
