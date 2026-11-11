@@ -157,7 +157,7 @@ export default function HistoryPage() {
         <div className="relative min-h-[380px] -ml-[20px] [clip-path:polygon(0_0,100%_0,100%_100%,7%_100%)] max-[850px]:min-h-[320px] max-[850px]:ml-0 max-[850px]:[clip-path:none] max-[380px]:min-h-[260px]">
           <Image
             src={workshop}
-            alt="H.O.P.E. students gathered around engineering equipment in a workshop"
+            alt="H.O.P.E. members gathered around a project display at Big Wednesday"
             fill
             preload
             sizes="(max-width: 850px) 100vw, 50vw"
@@ -293,7 +293,6 @@ export default function HistoryPage() {
                             <Image
                               src={image}
                               alt={alt}
-                              unoptimized={image === shields}
                               fill
                               sizes="(max-width: 850px) 85vw, 42vw"
                               className={`object-cover ${idx === 3 ? "[object-position:center_32%]" : "object-center"}`}
@@ -303,7 +302,6 @@ export default function HistoryPage() {
                           <Image
                             src={image}
                             alt={alt}
-                            unoptimized={image === shields}
                             fill
                             sizes="(max-width: 850px) 85vw, 42vw"
                             className={`object-cover ${idx === 3 ? "[object-position:center_32%]" : "object-center"}`}

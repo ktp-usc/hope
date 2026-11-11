@@ -4,6 +4,7 @@ import React from "react";
 import { DM_Serif_Display, Manrope } from "next/font/google";
 import SiteChrome from "@/components/site-chrome";
 import { DEFAULT_DESCRIPTION, DEFAULT_TITLE, OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
+import { getNavStories } from "@/sanity/lib/nav-stories";
 
 const display = DM_Serif_Display({ weight: "400", subsets: ["latin"], variable: "--font-dm-serif" });
 const sans = Manrope({ subsets: ["latin"], variable: "--font-manrope" });
@@ -16,15 +17,16 @@ export const metadata: Metadata = {
     twitter: { card: "summary_large_image", images: [OG_IMAGE.url] },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const stories = await getNavStories();
   return (
     <html lang="en" className={`${display.variable} ${sans.variable}`}>
       <body className="font-sans antialiased">
-        <SiteChrome>{children}</SiteChrome>
+        <SiteChrome stories={stories}>{children}</SiteChrome>
       </body>
     </html>
   );

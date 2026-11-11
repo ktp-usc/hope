@@ -84,22 +84,22 @@ const campusCards = [
     eyebrow: "Listen & define",
     title: "Person-centered design",
     body: "Connecting student engineers with individuals and families to understand real practical needs before designing.",
-    image: "/images/campus-design.jpg",
+    image: "/images/projects/12_Outdoor_Org_Fair_Team.jpg",
     alt: "HOPE students engaging with the campus community during project outreach",
   },
   {
     eyebrow: "Design & iterate",
     title: "Hands-on engineering",
     body: "Students gain direct experience with CAD modeling, 3D printing, prototyping, and iterative fabrication.",
-    image: "/images/campus-engineering.jpg",
-    alt: "HOPE team member assembling and calibrating a 3D printer for prosthetics work",
+    image: "/images/projects/11_First_HOPE_Printer_Build.jpg",
+    alt: "HOPE students gathered around a 3D printer build on a classroom table",
   },
   {
     eyebrow: "Build & document",
     title: "Two organizations, one mission",
     body: "The HOPE student organization at USC carries out hands-on design and fabrication. HOPE Inc. provides continuity, resources, and organizational support.",
-    image: "/images/campus-community.jpg",
-    alt: "HOPE student organization members at the University of South Carolina",
+    image: "/images/projects/14_Big_Wednesday_Team.jpg",
+    alt: "HOPE members gathered around a project display at Big Wednesday",
   },
 ];
 
@@ -135,7 +135,7 @@ export default function Home() {
         <div className="rounded-2xl border border-slate-200/70 bg-[#ebf3fa] p-3 shadow-sm">
           <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl">
             <Image
-              src="/images/hero.jpg"
+              src="/images/projects/10_Princeton_Buildathon_Team.jpg"
               alt="Students collaborating on hands-on prosthetic engineering design"
               fill
               priority
@@ -223,7 +223,7 @@ export default function Home() {
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-16 md:grid-cols-2 lg:py-20">
           <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-amber-200/50 shadow-sm md:aspect-square">
             <Image
-              src="/images/eli-arm.jpg"
+              src="/images/projects/01_Eli_Bike_Arm_Detail.jpg"
               alt="Detail of the 3D-printed bike arm joint attachment holding bicycle handlebar"
               fill
               sizes="(min-width: 768px) 50vw, 100vw"

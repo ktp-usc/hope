@@ -4,9 +4,12 @@ import React from "react";
 import { usePathname } from "next/navigation";
 import Header from "./header";
 import Footer from "./footer";
+import type { NavStory } from "@/lib/nav-stories";
 
 interface SiteChromeProps {
   children: React.ReactNode;
+  /** Stories listed in the header's Stories dropdown (fetched from Sanity in the root layout). */
+  stories: NavStory[];
 }
 
 /**
@@ -15,7 +18,7 @@ interface SiteChromeProps {
  * Header and Footer are suppressed so the Studio authoring interface
  * can occupy the full viewport.
  */
-export default function SiteChrome({ children }: SiteChromeProps) {
+export default function SiteChrome({ children, stories }: SiteChromeProps) {
   const pathname = usePathname();
   const isStudio = pathname === "/studio" || pathname?.startsWith("/studio/");
 
@@ -25,7 +28,7 @@ export default function SiteChrome({ children }: SiteChromeProps) {
 
   return (
     <>
-      <Header />
+      <Header stories={stories} />
       {children}
       <Footer />
     </>
