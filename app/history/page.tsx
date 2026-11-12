@@ -129,10 +129,10 @@ function Dinosaur() {
 
 export default function HistoryPage() {
   return (
-    <main className="text-[#11182e] bg-white font-[Arial,Helvetica,sans-serif] text-[16px] leading-[1.35] motion-safe:scroll-smooth">
+    <main className="text-[#1a273d] bg-white font-sans text-[16px] leading-[1.35] motion-safe:scroll-smooth">
       {/* Hero Section */}
       <section
-        className="grid grid-cols-[54%_46%] max-[850px]:grid-cols-1 bg-[#f8cd53] overflow-hidden"
+        className="grid grid-cols-[54%_46%] max-[850px]:grid-cols-1 bg-[#f7d06b] overflow-hidden"
         aria-labelledby="history-title"
       >
         <div className="pt-[42px] pr-[60px] pb-[38px] pl-[max(28px,calc((100vw-min(80vw,1180px))/2))] max-[1100px]:pl-[7vw] max-[1100px]:pr-[30px] max-[850px]:px-[7%] max-[850px]:py-[38px] max-[380px]:px-[5%] relative isolate">

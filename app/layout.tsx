@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import React from "react";
-import { DM_Serif_Display, Manrope } from "next/font/google";
+import { Manrope } from "next/font/google";
 import SiteChrome from "@/components/site-chrome";
 import { DEFAULT_DESCRIPTION, DEFAULT_TITLE, OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
 import { getNavStories } from "@/sanity/lib/nav-stories";
 
-const display = DM_Serif_Display({ weight: "400", subsets: ["latin"], variable: "--font-dm-serif" });
 const sans = Manrope({ subsets: ["latin"], variable: "--font-manrope" });
 
 export const metadata: Metadata = {
@@ -24,7 +23,7 @@ export default async function RootLayout({
 }>) {
   const stories = await getNavStories();
   return (
-    <html lang="en" className={`${display.variable} ${sans.variable}`}>
+    <html lang="en" className={sans.variable}>
       <body className="font-sans antialiased">
         <SiteChrome stories={stories}>{children}</SiteChrome>
       </body>

@@ -28,7 +28,7 @@ export default async function PartnersAndCollaborationsPage() {
     const others = partners.filter((p) => p !== featured);
 
     return (
-        <main className="min-h-screen bg-white text-[#1B2D4C]">
+        <main className="min-h-screen bg-white text-[#1a273d]">
             <PartnersHero />
             {featured && <FeaturedAffiliation partner={featured} />}
             <InstitutionalPartners partners={others} />
